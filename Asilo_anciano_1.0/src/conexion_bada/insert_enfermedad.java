@@ -5,10 +5,48 @@
  */
 package conexion_bada;
 
+import clases.enfermedades;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
  */
-public class insert_enfermedad {
+public class insert_enfermedad extends enfermedades {
     
+    Conexion cone = new Conexion();
+
+    public boolean insert_enfermedad() {
+        String sql = "INSERT INTO enfermedad(\n"
+                + "enfermedad_codigo,enfermedad_nombre)\n"
+                + "VALUES ('" +getNombre_enfermedad() + "');";
+        return cone.InsertUpdateDeleteAcciones(sql);
+
+    }
+
+    public List<enfermedades> ListEnfermedad() {
+        String sqls = "select * from enfermedad;";
+        ResultSet rs = cone.selectConsulta(sqls);
+        List<enfermedades> enfer = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                enfermedades mienfer = new enfermedades();
+                mienfer.setCodigo_enfermedad("enfermedad_codigo");
+                mienfer.setNombre_enfermedad("enfermedad_nombre");
+                enfer.add(mienfer);
+
+            }
+            rs.close();
+            return enfer;
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
 }
