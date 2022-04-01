@@ -40,7 +40,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
     public Agregar_paciente() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+/////holaaaaaa
     }
 
     /**
