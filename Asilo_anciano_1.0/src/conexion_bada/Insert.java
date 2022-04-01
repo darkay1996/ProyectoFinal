@@ -29,6 +29,7 @@ public class Insert extends paciente{
     }
     public List<paciente> ListaPaciente() {
         String sqls = "select * from paciente;";
+        String sqlp = "select * from persona wherecvxc";
         ResultSet rs = cone.selectConsulta(sqls);
         List<paciente> paci = new ArrayList<>();
         try {
