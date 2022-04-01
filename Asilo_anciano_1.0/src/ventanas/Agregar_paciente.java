@@ -684,6 +684,8 @@ public class Agregar_paciente extends javax.swing.JFrame {
         text_celular_paciente.setText("");
         combo_sangre_paciente.setSelectedIndex(0);
         check_iess.setSelected(false);
+        fecha_Nacimiento_paciente.setCalendar(null);
+        fecha_ingreso_paciente.setCalendar(null);
     }
 
     public boolean validaciones() {
