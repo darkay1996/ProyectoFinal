@@ -13,11 +13,18 @@ import java.util.logging.Logger;
 public class Insert extends paciente{
 
     Conexion cone = new Conexion();
+    
+    public boolean InsertarPersona() {
+        String sql = "INSERT INTO persona(\n"
+                + "	per_cedula, per_primer_nombre,per_segundo_nombre, per_primer_apellido,per_segundo_apellido, per_correo, per_genero, per_direccion,per_tipo_sangre,per_telefono,per_fecha_nacimiento)\n"
+                + "	VALUES ('"+getCedula()+"', '"+getPri_nomb()+"', '"+getSeg_nombre()+"', '"+getPrim_apell()+"', '"+getSeg_apelli()+"', '"+getCorreo()+"', '"+getGenero()+"', '"+getDireccion()+"', '"+getTipo_sangre()+"','"+getTelefono()+"','"+getFecha_Nacimiento()+"');";
+        return cone.InsertUpdateDeleteAcciones(sql);
+    }
 
     public boolean InsertarPaciente() {
         String sql = "INSERT INTO paciente(\n"
-                + "	paci_codigo, paci_cedula,paci_primer_nombre, paci_segundo_nombre,paci_primer_apellido, paci_segundo_apellido, paci_correo,paci_genero, paci_direccion,paci_telefono,paci_tipo_sangre,paci_seguro,paci_fecha_nacimiento,paci_fecha_de_ingreso)\n"
-                + "	VALUES ('"+getCodigo()+"','"+getCedula()+"', '"+getPri_nomb()+"', '"+getSeg_nombre()+"', '"+getPrim_apell()+"', '"+getSeg_apelli()+"', '"+getCorreo()+"', '"+getGenero()+"', '"+getDireccion()+"', '"+getTelefono()+"','"+getTipo_sangre()+"','"+getSeguro()+"','"+getFecha_Nacimiento()+"','"+getFecha_de_ingreso()+"');";
+                + "	paci_cedula,paci_seguro,paci_fecha_de_ingreso)\n"
+                + "	VALUES ('"+getCedula()+"','"+getSeguro()+"','"+getFecha_de_ingreso()+"');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
     public List<paciente> ListaPaciente() {
