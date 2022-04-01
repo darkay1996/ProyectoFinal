@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.text.DateFormat;
 import clases.validaciones;
+import clases.persona;
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
@@ -610,13 +611,14 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }
 
     public void RegistrarPacientes() {
+        Insert persona = new Insert();
         Insert paciente = new Insert();
-        paciente.setCodigo(text_codigo_paciente.getText());
-        paciente.setCedula(text_cedula_paciente.getText());
-        paciente.setPri_nomb(text_PrimerNombre_paciente.getText());
-        paciente.setSeg_nombre(text_SegundoNombre_paciente.getText());
-        paciente.setPrim_apell(text_PrimerApellido_paciente.getText());
-        paciente.setSeg_apelli(text_SegundoApellido_paciente.getText());
+//        paciente.setCodigo(text_codigo_paciente.getText());
+        persona.setCedula(text_cedula_paciente.getText());
+        persona.setPri_nomb(text_PrimerNombre_paciente.getText());
+        persona.setSeg_nombre(text_SegundoNombre_paciente.getText());
+        persona.setPrim_apell(text_PrimerApellido_paciente.getText());
+        persona.setSeg_apelli(text_SegundoApellido_paciente.getText());
 
         if (Masculino_paciente.isSelected()) {
             genero = "hombre";
@@ -624,26 +626,24 @@ public class Agregar_paciente extends javax.swing.JFrame {
         if (Femenino_paciente.isSelected()) {
             genero = "mujer";
         }
-
-        paciente.setGenero(genero);
+        persona.setGenero(genero);
 
         if (check_iess.isSelected()) {
             afiliacion = "si";
         } else {
             afiliacion = "no";
         }
-        paciente.setSeguro(afiliacion);
-        paciente.setCorreo(text_email_paciente.getText());
+        persona.setCorreo(text_email_paciente.getText());
 
         String dia = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.MONTH) + 1);
         String año = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.YEAR));
         String FechaNacimiento = (dia + "-" + mes + "-" + año);
-        paciente.setFecha_Nacimiento(FechaNacimiento);
+        persona.setFecha_Nacimiento(FechaNacimiento);
 
-        paciente.setDireccion(text_direccion_paciente.getText());
-        paciente.setTelefono(text_celular_paciente.getText());
-        paciente.setTipo_sangre(combo_sangre_paciente.getSelectedItem().toString());
+        persona.setDireccion(text_direccion_paciente.getText());
+        persona.setTelefono(text_celular_paciente.getText());
+        persona.setTipo_sangre(combo_sangre_paciente.getSelectedItem().toString());
 
         String diaI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mesI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.MONTH) + 1);
@@ -652,8 +652,10 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
         //String FechaDeIngreso = df.format(fecha_ingreso_paciente.getDate());
         paciente.setFecha_de_ingreso(FechaDeIngreso);
+        paciente.setSeguro(afiliacion);
+        paciente.setCedula(text_cedula_paciente.getText());
 
-        if (paciente.InsertarPaciente()) {
+        if (persona.InsertarPersona()&& paciente.InsertarPaciente()) {
             System.out.println("Conexion Exitosa");
         } else {
             System.out.println("Conexion Erronea");
