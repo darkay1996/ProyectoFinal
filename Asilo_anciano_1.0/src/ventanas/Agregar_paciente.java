@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.text.DateFormat;
+import clases.validaciones;
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
@@ -20,7 +21,7 @@ import java.util.List;
 //import javax.swing.table.DefaultTableModel;
 
 public class Agregar_paciente extends javax.swing.JFrame {
-
+    validaciones misvalidaciones = new validaciones();
     int id = 0;
     String Cedula = "";
     String Nombre = "";
@@ -686,41 +687,97 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }
 
     public boolean validaciones() {
-        boolean validado = false;
-        if (!text_cedula_paciente.getText().isEmpty() && text_cedula_paciente.getText().matches("^\\d{10}$")) {
-            validado = true;
-        } else {
+        boolean validado = true;
+        if (text_cedula_paciente.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "cedula incorrecta");
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del paciente");
+        } else {
+            if (!misvalidaciones.validar_cedula(text_cedula_paciente.getText())) {
+                JOptionPane.showMessageDialog(this, "Cedula incorrecta");
+                validado = false;
+            }
         }
-        if (!text_PrimerNombre_paciente.getText().isEmpty() && text_PrimerNombre_paciente.getText().matches("^[a-zA-Z]{3,20}")) {
-            validado = true;
-        } else {
+//
+        if (text_PrimerNombre_paciente.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "primer nombre incorrecto");
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre del paciente");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_PrimerNombre_paciente.getText())) {
+                JOptionPane.showMessageDialog(this, "Primer nombre incorrecto");
+                validado = false;
+            }
         }
-        if (!text_SegundoNombre_paciente.getText().isEmpty() && text_SegundoNombre_paciente.getText().matches("^[a-zA-Z]{3,20}")) {
-            validado = true;
-        } else {
+        if (text_SegundoNombre_paciente.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "segundo nombre incorrecto");
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre del paciente");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_SegundoNombre_paciente.getText())) {
+                JOptionPane.showMessageDialog(this, "Segundo nombre incorrecto");
+                validado = false;
+            }
         }
-        if (!text_PrimerApellido_paciente.getText().isEmpty() && text_PrimerApellido_paciente.getText().matches("^[a-zA-Z]{3,20}")) {
-            validado = true;
-        } else {
+        if (text_PrimerApellido_paciente.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "primer apellido incorrecto");
+            JOptionPane.showMessageDialog(this, "Ingrese el apellido del paciente");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_PrimerApellido_paciente.getText())) {
+                JOptionPane.showMessageDialog(this, "Primer apellido incorrecto");
+                validado = false;
+            }
         }
-        if (!text_SegundoApellido_paciente.getText().isEmpty() && text_SegundoApellido_paciente.getText().matches("^[a-zA-Z]{3,20}")) {
-            validado = true;
-        } else {
+        if (text_SegundoApellido_paciente.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "segundo apellido incorrecto");
+            JOptionPane.showMessageDialog(this, "Ingrese el apellido del paciente");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_SegundoApellido_paciente.getText())) {
+                JOptionPane.showMessageDialog(this, "Segundo apellido incorrecto");
+                validado = false;
+            }
         }
-        if (Masculino_paciente.isSelected() || Femenino_paciente.isSelected()) {
-            validado = true;
-        } else {
+        if (text_direccion_paciente.getText().isEmpty()) {
             validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la direccion del paciente");
+        } else {
+            if (!misvalidaciones.validarDireccion(text_direccion_paciente.getText())) {
+                JOptionPane.showMessageDialog(this, "Direccion invalida");
+                validado = false;
+            }
+        }
+        if (text_celular_paciente.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el celular del paciente");
+        } else {
+            if (!misvalidaciones.validarTelefono(text_celular_paciente.getText())) {
+                JOptionPane.showMessageDialog(this, "Celular invalido");
+                validado = false;
+            }
+        }
+        if (text_email_paciente.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el correo del paciente");
+        } else {
+            if (!misvalidaciones.validarCorreo(text_email_paciente.getText())) {
+                JOptionPane.showMessageDialog(this, "Correo invalido");
+                validado = false;
+            }
+        }
+      
+        if (combo_sangre_paciente.getSelectedIndex()==0) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
+        }
+        System.out.println(fecha_Nacimiento_paciente.getCalendar().toString());
+        if (fecha_Nacimiento_paciente.getCalendar().toString().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento del paciente");
+        }
+        if (String.valueOf(fecha_ingreso_paciente.getCalendar()).isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la fecha de ingreso del paciente");
+        }
+        if (!Masculino_paciente.isSelected() && !Femenino_paciente.isSelected()) {
+            validado = false;
+            System.out.println("holsa");
             JOptionPane.showMessageDialog(this, "seleccione un genero");
         }
 
