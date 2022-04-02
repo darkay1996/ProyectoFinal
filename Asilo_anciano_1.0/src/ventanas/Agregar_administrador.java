@@ -24,7 +24,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
     public Agregar_administrador() {
         initComponents();
         this.setLocationRelativeTo(null);
-        System.out.println("probando probando probando");
     }
 
     /**
