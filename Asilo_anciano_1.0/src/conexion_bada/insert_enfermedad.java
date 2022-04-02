@@ -23,7 +23,7 @@ public class insert_enfermedad extends enfermedades {
 
     public boolean insert_enfermedad() {
         String sql = "INSERT INTO enfermedad(\n"
-                + "enfermedad_codigo,enfermedad_nombre)\n"
+                + "enfermedad_nombre_)\n"
                 + "VALUES ('" +getNombre_enfermedad() + "');";
         return cone.InsertUpdateDeleteAcciones(sql);
 
