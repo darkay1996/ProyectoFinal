@@ -1,6 +1,7 @@
 
 package conexion_bada;
 import clases.paciente;
+import java.math.BigInteger;
 //import conexion_bada.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,14 +28,16 @@ public class Insert extends paciente{
                 + "	VALUES ('"+getCedula()+"','"+getSeguro()+"','"+getFecha_de_ingreso()+"');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
-    public List<paciente> ListaPaciente() {
+    public List<paciente> ListaPaciente(){
         String sqls = "select * from paciente;";
-        String sqlp = "select * from persona wherecvxc";
+        String sqlp = "select * from persona;";
         ResultSet rs = cone.selectConsulta(sqls);
         List<paciente> paci = new ArrayList<>();
+//        String ced=rs.getString("paci_cedula");
         try {
             while (rs.next()) {
                 paciente mi_paciente = new paciente();
+                String ced=rs.getString("paci_cedula");
                 mi_paciente.setCodigo(rs.getString("paci_codigo"));
                 mi_paciente.setCedula(rs.getString("paci_cedula"));
                 mi_paciente.setPri_nomb(rs.getString("paci_primer_nombre"));
@@ -60,5 +63,23 @@ public class Insert extends paciente{
         }
     }
     
+//     public boolean validar_duplicado(String cedula){
+//        boolean encontrado = true;
+////        String sqld = "SELECT count(*) FROM paciente Where paci_cedula='"+cedula+"'";
+//        String sqld ="select * from paciente"
+//                + "where paci_cedula='"+cedula+"';";
+//    ResultSet dup = cone.selectConsulta(sqld);
+//         if (dup.getString("paci_cedula").eq) {
+//             System.out.println("hola");
+//         }else{
+//             System.out.println("ocupado");
+//         }
+////         while(dup.next()){
+////             int count=dup.getInt("count");
+////             System.out.println(count);
+////         }
+//
+//        return encontrado;
+//    }
    
 }
