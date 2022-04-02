@@ -36,8 +36,8 @@ public class insert_enfermedad extends enfermedades {
         try {
             while (rs.next()) {
                 enfermedades mienfer = new enfermedades();
-                mienfer.setCodigo_enfermedad("enfermedad_codigo");
-                mienfer.setNombre_enfermedad("enfermedad_nombre");
+                mienfer.setCodigo_enfermedad(rs.getString("enfermedad_codigo"));
+                mienfer.setNombre_enfermedad(rs.getString("enfermedad_nombre_"));
                 enfer.add(mienfer);
 
             }
