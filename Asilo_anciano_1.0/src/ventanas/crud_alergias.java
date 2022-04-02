@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.text.DateFormat;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class crud_alergias extends javax.swing.JFrame {
 
@@ -19,6 +20,7 @@ public class crud_alergias extends javax.swing.JFrame {
     public crud_alergias() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cargarTabla();
 
     }
 
@@ -187,6 +189,7 @@ public class crud_alergias extends javax.swing.JFrame {
 
     }
     
+    //Guardar las alergias en la BD
     public void RegistrarAlergias() {
         Insert_alergias alergia = new Insert_alergias();
         alergia.setNombre_alergia(txtalergia.getText());
@@ -198,6 +201,16 @@ public class crud_alergias extends javax.swing.JFrame {
         }
     }
 
+    //Mostrar los datos en la tabla
+    public void cargarTabla() {
+        DefaultTableModel tb = (DefaultTableModel) tabla_alergias.getModel();
+        tb.setNumRows(0);
+        List<alergias> com = inser.ListaAlergias();
+        com.stream().forEach(p -> {
+            String[] cami = {p.getCodigo_alergia(),p.getNombre_alergia()};
+            tb.addRow(cami);
+        });
+    }
     public void Limpiar() {
         txtalergia.setText("");
     }
