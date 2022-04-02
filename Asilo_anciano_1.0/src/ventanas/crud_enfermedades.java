@@ -23,9 +23,10 @@ public class crud_enfermedades extends javax.swing.JFrame {
      * Creates new form crud_enfermedades
      */
     public crud_enfermedades() {
-        this.setLocationRelativeTo(null);
+        
         this.setTitle("Enfermedades");
         initComponents();
+        this.setLocationRelativeTo(null);
         limpiarDatos();
         cargarTabla();
     }
