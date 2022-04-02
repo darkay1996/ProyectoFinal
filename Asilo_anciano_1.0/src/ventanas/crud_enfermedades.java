@@ -10,7 +10,7 @@ import clases.enfermedades;
 import conexion_bada.Insert_doctor;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
-
+//Prueba
 import conexion_bada.insert_enfermedad;
 
 /**
