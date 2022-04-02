@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import java.text.DateFormat;
 import clases.validaciones;
 import clases.persona;
+import java.sql.ResultSet;
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
@@ -43,7 +44,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
     public Agregar_paciente() {
         initComponents();
         this.setLocationRelativeTo(null);
-/////holaaaaaa
+//        inser.ListaPaciente();
     }
 
     /**
@@ -99,7 +100,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         text_codigo_paciente = new javax.swing.JTextField();
         modificar = new javax.swing.JButton();
-        busc_codigo = new javax.swing.JTextField();
         buscar = new javax.swing.JToggleButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -353,10 +353,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(344, 344, 344)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Guardar_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(149, 149, 149)
-                                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(Guardar_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                                 .addComponent(text_codigo_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -405,18 +402,11 @@ public class Agregar_paciente extends javax.swing.JFrame {
                                                 .addGap(55, 55, 55)
                                                 .addComponent(fecha_ingreso_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addGroup(layout.createSequentialGroup()
-                                                                .addGap(67, 67, 67)
-                                                                .addComponent(busc_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                        .addGap(6, 6, 6))
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                        .addComponent(modificar)
-                                                        .addGap(57, 57, 57)))))))
+                                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(34, 34, 34))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(modificar)
+                                                .addGap(39, 39, 39)))))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -428,6 +418,10 @@ public class Agregar_paciente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Regresar_paciente)
                 .addGap(69, 69, 69))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(265, 265, 265)
+                .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -504,32 +498,28 @@ public class Agregar_paciente extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(text_email_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
                             .addComponent(text_celular_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel10)
                                 .addComponent(combo_sangre_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(Checkbox_Seguro_paciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(check_iess))
-                        .addGap(82, 82, 82))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(busc_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Guardar_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(modificar)))
-                        .addGap(24, 24, 24))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(modificar)
+                        .addGap(4, 4, 4)
+                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(Guardar_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -588,81 +578,88 @@ public class Agregar_paciente extends javax.swing.JFrame {
     private void Guardar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_pacienteActionPerformed
         RegistrarPacientes();
     }//GEN-LAST:event_Guardar_pacienteActionPerformed
-    public void llenar_paciente() {
-
-        for (int i = 0; i < inser.ListaPaciente().size(); i++) {
-
-            List<paciente> com = inser.ListaPaciente();
-            com.stream().forEach(p -> {
-                text_codigo_paciente.setText(p.getCodigo().toString());
-                text_cedula_paciente.setText(p.getCedula().toString());
-                text_PrimerNombre_paciente.setText(p.getPri_nomb().toString());
-                text_SegundoNombre_paciente.setText(p.getSeg_nombre().toString());
-                text_PrimerApellido_paciente.setText(p.getPri_nomb().toString());
-                text_SegundoApellido_paciente.setText(p.getSeg_apelli().toString());
-                text_email_paciente.setText(p.getCorreo().toString());
-                text_direccion_paciente.setText(p.getDireccion().toString());
-                text_celular_paciente.setText(p.getTelefono().toString());
-
-            });
-        }
-
-    }
+//    public void llenar_paciente() {
+//
+//        for (int i = 0; i < inser.ListaPaciente().size(); i++) {
+//            System.out.println(inser.ListaPaciente().get(i).getCedula());
+//            List<paciente> com = inser.ListaPaciente();
+//            com.stream().forEach(p -> {
+//                text_codigo_paciente.setText(p.getCodigo());
+//                text_cedula_paciente.setText(p.getCedula());
+//                text_PrimerNombre_paciente.setText(p.getPri_nomb().toString());
+//                text_SegundoNombre_paciente.setText(p.getSeg_nombre().toString());
+//                text_PrimerApellido_paciente.setText(p.getPri_nomb().toString());
+//                text_SegundoApellido_paciente.setText(p.getSeg_apelli().toString());
+//                text_email_paciente.setText(p.getCorreo().toString());
+//                text_direccion_paciente.setText(p.getDireccion().toString());
+//                text_celular_paciente.setText(p.getTelefono().toString());
+//
+//            });
+//        }
+//
+//    }
 
     public void RegistrarPacientes() {
         Insert persona = new Insert();
         Insert paciente = new Insert();
+        System.out.println("holaaaaaaaaaaa" + text_cedula_paciente.getText());
+//        llenar_paciente();
+//        inser.ListaPaciente();
         try {
-            if (validaciones() && validar_duplicado()) {
-//        paciente.setCodigo(text_codigo_paciente.getText());
-                persona.setCedula(text_cedula_paciente.getText());
-                persona.setPri_nomb(text_PrimerNombre_paciente.getText());
-                persona.setSeg_nombre(text_SegundoNombre_paciente.getText());
-                persona.setPrim_apell(text_PrimerApellido_paciente.getText());
-                persona.setSeg_apelli(text_SegundoApellido_paciente.getText());
+            if (validaciones()) {
+                if (inser.validarduplicado(text_cedula_paciente.getText())) {
+                    persona.setCedula(text_cedula_paciente.getText());
+                    persona.setPri_nomb(text_PrimerNombre_paciente.getText());
+                    persona.setSeg_nombre(text_SegundoNombre_paciente.getText());
+                    persona.setPrim_apell(text_PrimerApellido_paciente.getText());
+                    persona.setSeg_apelli(text_SegundoApellido_paciente.getText());
 
-                if (Masculino_paciente.isSelected()) {
-                    genero = "hombre";
-                }
-                if (Femenino_paciente.isSelected()) {
-                    genero = "mujer";
-                }
-                persona.setGenero(genero);
+                    if (Masculino_paciente.isSelected()) {
+                        genero = "hombre";
+                    }
+                    if (Femenino_paciente.isSelected()) {
+                        genero = "mujer";
+                    }
+                    persona.setGenero(genero);
 
-                if (check_iess.isSelected()) {
-                    afiliacion = "si";
+                    if (check_iess.isSelected()) {
+                        afiliacion = "si";
+                    } else {
+                        afiliacion = "no";
+                    }
+                    persona.setCorreo(text_email_paciente.getText());
+
+                    String dia = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
+                    String mes = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.MONTH) + 1);
+                    String año = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.YEAR));
+                    String FechaNacimiento = (dia + "-" + mes + "-" + año);
+                    persona.setFecha_Nacimiento(FechaNacimiento);
+
+                    persona.setDireccion(text_direccion_paciente.getText());
+                    persona.setTelefono(text_celular_paciente.getText());
+                    persona.setTipo_sangre(combo_sangre_paciente.getSelectedItem().toString());
+
+                    String diaI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
+                    String mesI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.MONTH) + 1);
+                    String añoI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.YEAR));
+                    String FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
+
+                    //String FechaDeIngreso = df.format(fecha_ingreso_paciente.getDate());
+                    paciente.setFecha_de_ingreso(FechaDeIngreso);
+                    paciente.setSeguro(afiliacion);
+                    paciente.setCedula(text_cedula_paciente.getText());
+
+                    if (persona.InsertarPersona() && paciente.InsertarPaciente()) {
+                        System.out.println("Conexion Exitosa");
+                        limpiar();
+                    } else {
+                        System.out.println("Conexion Erronea");
+                    }
                 } else {
-                    afiliacion = "no";
+                    JOptionPane.showMessageDialog(this, "EL PACIENTE YA EXISTE EN LA BASE DE DATOS");
+                    text_cedula_paciente.setText("");
                 }
-                persona.setCorreo(text_email_paciente.getText());
 
-                String dia = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
-                String mes = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.MONTH) + 1);
-                String año = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.YEAR));
-                String FechaNacimiento = (dia + "-" + mes + "-" + año);
-                persona.setFecha_Nacimiento(FechaNacimiento);
-
-                persona.setDireccion(text_direccion_paciente.getText());
-                persona.setTelefono(text_celular_paciente.getText());
-                persona.setTipo_sangre(combo_sangre_paciente.getSelectedItem().toString());
-
-                String diaI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
-                String mesI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.MONTH) + 1);
-                String añoI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.YEAR));
-                String FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
-
-                //String FechaDeIngreso = df.format(fecha_ingreso_paciente.getDate());
-                paciente.setFecha_de_ingreso(FechaDeIngreso);
-                paciente.setSeguro(afiliacion);
-                paciente.setCedula(text_cedula_paciente.getText());
-
-                if (persona.InsertarPersona() && paciente.InsertarPaciente()) {
-                    System.out.println("Conexion Exitosa");
-                    limpiar();
-                } else {
-                    System.out.println("Conexion Erronea");
-                }
-//        limpiar();
             }
         } catch (NullPointerException n) {
 
@@ -777,7 +774,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
         }
-        System.out.println(fecha_Nacimiento_paciente.getCalendar().toString());
+//        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
         if (fecha_Nacimiento_paciente.getCalendar().toString().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento del paciente");
@@ -794,20 +791,20 @@ public class Agregar_paciente extends javax.swing.JFrame {
         return validado;
     }
 
-    public boolean validar_duplicado() {
-        boolean encontrado = false;
-        if (!text_cedula_paciente.getText().isEmpty()) {
-            for (int i = 0; i < lista_Paciente.size(); i++) {
-                if (lista_Paciente.get(i).getCedula().equals(text_cedula_paciente.getText())) {
-                    System.out.println(lista_Paciente.get(i).getCedula());
-                    encontrado = true;
-                }
-            }
-        } else {
-
-        }
-        return encontrado;
-    }
+//    public boolean validar_duplicado() {
+//        boolean encontrado = false;
+//        if (!text_cedula_paciente.getText().isEmpty()) {
+//            for (int i = 0; i < lista_Paciente.size(); i++) {
+//                if (lista_Paciente.get(i).getCedula().equals(text_cedula_paciente.getText())) {
+//                    System.out.println(lista_Paciente.get(i).getCedula());
+//                    encontrado = true;
+//                }
+//            }
+//        } else {
+//
+//        }
+//        return encontrado;
+//    }
     private void Regresar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regresar_pacienteActionPerformed
         this.dispose();
         new crud_paciente().setVisible(true);
@@ -846,12 +843,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_modificarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        List<paciente> com = inser.ListaPaciente();
-        com.stream().forEach(p -> {
-            if (busc_codigo.getText().equals(p.getCodigo())) {
-                llenar_paciente();
-            }
-        });
+
     }//GEN-LAST:event_buscarActionPerformed
 
     /**
@@ -895,7 +887,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
     private javax.swing.JButton Guardar_paciente;
     private javax.swing.JRadioButton Masculino_paciente;
     private javax.swing.JButton Regresar_paciente;
-    private javax.swing.JTextField busc_codigo;
     private javax.swing.JToggleButton buscar;
     private javax.swing.JCheckBox check_iess;
     private javax.swing.JComboBox<String> combo_sangre_paciente;

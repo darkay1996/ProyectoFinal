@@ -109,11 +109,7 @@
                                           <EmptySpace min="-2" pref="344" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="Guardar_paciente" min="-2" pref="70" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
-                                      <Component id="buscar" min="-2" pref="76" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="Guardar_paciente" min="-2" pref="70" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="19" max="32767" attributes="0"/>
                               <Component id="text_codigo_paciente" min="-2" pref="148" max="-2" attributes="0"/>
@@ -177,23 +173,12 @@
                                               <Component id="fecha_ingreso_paciente" min="-2" pref="149" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel19" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
-                                                          <Group type="102" attributes="0">
-                                                              <EmptySpace min="67" pref="67" max="-2" attributes="0"/>
-                                                              <Component id="busc_codigo" min="-2" pref="82" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="modificar" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
+                                              <Component id="jLabel19" min="-2" pref="121" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="modificar" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -215,6 +200,11 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="Regresar_paciente" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="265" max="-2" attributes="0"/>
+              <Component id="buscar" min="-2" pref="76" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -312,14 +302,14 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="text_celular_paciente" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="11" max="32767" attributes="0"/>
+                      <EmptySpace pref="9" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -328,24 +318,16 @@
                           </Group>
                           <Component id="check_iess" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="modificar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Component id="buscar" min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="busc_codigo" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="Guardar_paciente" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="buscar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="modificar" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="Guardar_paciente" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -651,8 +633,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificarActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="busc_codigo">
     </Component>
     <Component class="javax.swing.JToggleButton" name="buscar">
       <Properties>
