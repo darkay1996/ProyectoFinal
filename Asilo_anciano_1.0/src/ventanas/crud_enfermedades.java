@@ -5,12 +5,20 @@
  */
 package ventanas;
 
+import java.util.ArrayList;
+import clases.enfermedades;
+import conexion_bada.Insert_doctor;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
+import conexion_bada.insert_enfermedad;
+
 /**
  *
  * @author Usuario
  */
 public class crud_enfermedades extends javax.swing.JFrame {
-
+ insert_enfermedad inser = new insert_enfermedad();
     /**
      * Creates new form crud_enfermedades
      */
@@ -18,9 +26,58 @@ public class crud_enfermedades extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Enfermedades");
         initComponents();
+        limpiarDatos();
     }
-    
-    
+
+    public void guardarEnfermedad() {
+        insert_enfermedad enfermedades = new insert_enfermedad();
+
+        enfermedades.setNombre_enfermedad(txtbuscar.getText());
+
+        if (enfermedades.insert_enfermedad()) {
+            System.out.println("Conexion Exitosa");
+        } else {
+            System.out.println("Conexion Erronea");
+        }
+
+    }
+     public void buscar_enfermedad() {
+        String nombre_enfermedad = txtbuscar.getText();
+        var enfermedadfiltro = new ArrayList<enfermedades>();
+        inser.ListEnfermedad().forEach((e) -> {
+            if (e.getNombre_enfermedad().equals(nombre_enfermedad)) {
+                enfermedadfiltro.add(e);
+            }
+        });
+
+        String matriz[][] = new String[enfermedadfiltro.size()][2];
+         for (int j = 0; j < enfermedadfiltro.size(); j++) {
+            matriz[j][0] = enfermedadfiltro.get(j).getCodigo_enfermedad();
+            matriz[j][1] = enfermedadfiltro.get(j).getNombre_enfermedad();
+         }
+         tabla_enfermedad.setModel(new javax.swing.table.DefaultTableModel(
+                matriz,
+                new String[]{
+                    "Nombre de enfermedad"
+                }
+        ));
+
+    }
+       public void limpiarDatos(){
+        txtbuscar.setText("");
+    }
+    public void llenar_enfermedades(){
+         for (int i = 0; i < inser.ListEnfermedad().size(); i++) {
+
+            List<enfermedades> com = inser.ListEnfermedad();
+            com.stream().forEach(p -> {
+                txtbuscar.setText(p.getNombre_enfermedad().toString());
+
+            });
+        }
+
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,11 +90,11 @@ public class crud_enfermedades extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtbuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla_enfermedad = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -60,8 +117,13 @@ public class crud_enfermedades extends javax.swing.JFrame {
         jButton1.setText("GUARDAR");
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_enfermedad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -72,7 +134,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
                 "Nombre de Enfermedad"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla_enfermedad);
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
@@ -94,7 +156,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57))
@@ -124,7 +186,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,6 +202,11 @@ public class crud_enfermedades extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        guardarEnfermedad();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,7 +252,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tabla_enfermedad;
+    private javax.swing.JTextField txtbuscar;
     // End of variables declaration//GEN-END:variables
 }
