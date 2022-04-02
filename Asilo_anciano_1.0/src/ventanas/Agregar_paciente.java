@@ -22,6 +22,7 @@ import java.util.List;
 //import javax.swing.table.DefaultTableModel;
 
 public class Agregar_paciente extends javax.swing.JFrame {
+
     validaciones misvalidaciones = new validaciones();
     int id = 0;
     String Cedula = "";
@@ -586,8 +587,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     private void Guardar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_pacienteActionPerformed
         RegistrarPacientes();
-        limpiar();
-
     }//GEN-LAST:event_Guardar_pacienteActionPerformed
     public void llenar_paciente() {
 
@@ -613,54 +612,61 @@ public class Agregar_paciente extends javax.swing.JFrame {
     public void RegistrarPacientes() {
         Insert persona = new Insert();
         Insert paciente = new Insert();
+        try {
+            if (validaciones() && validar_duplicado()) {
 //        paciente.setCodigo(text_codigo_paciente.getText());
-        persona.setCedula(text_cedula_paciente.getText());
-        persona.setPri_nomb(text_PrimerNombre_paciente.getText());
-        persona.setSeg_nombre(text_SegundoNombre_paciente.getText());
-        persona.setPrim_apell(text_PrimerApellido_paciente.getText());
-        persona.setSeg_apelli(text_SegundoApellido_paciente.getText());
+                persona.setCedula(text_cedula_paciente.getText());
+                persona.setPri_nomb(text_PrimerNombre_paciente.getText());
+                persona.setSeg_nombre(text_SegundoNombre_paciente.getText());
+                persona.setPrim_apell(text_PrimerApellido_paciente.getText());
+                persona.setSeg_apelli(text_SegundoApellido_paciente.getText());
 
-        if (Masculino_paciente.isSelected()) {
-            genero = "hombre";
-        }
-        if (Femenino_paciente.isSelected()) {
-            genero = "mujer";
-        }
-        persona.setGenero(genero);
+                if (Masculino_paciente.isSelected()) {
+                    genero = "hombre";
+                }
+                if (Femenino_paciente.isSelected()) {
+                    genero = "mujer";
+                }
+                persona.setGenero(genero);
 
-        if (check_iess.isSelected()) {
-            afiliacion = "si";
-        } else {
-            afiliacion = "no";
-        }
-        persona.setCorreo(text_email_paciente.getText());
+                if (check_iess.isSelected()) {
+                    afiliacion = "si";
+                } else {
+                    afiliacion = "no";
+                }
+                persona.setCorreo(text_email_paciente.getText());
 
-        String dia = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.YEAR));
-        String FechaNacimiento = (dia + "-" + mes + "-" + año);
-        persona.setFecha_Nacimiento(FechaNacimiento);
+                String dia = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
+                String mes = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.MONTH) + 1);
+                String año = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.YEAR));
+                String FechaNacimiento = (dia + "-" + mes + "-" + año);
+                persona.setFecha_Nacimiento(FechaNacimiento);
 
-        persona.setDireccion(text_direccion_paciente.getText());
-        persona.setTelefono(text_celular_paciente.getText());
-        persona.setTipo_sangre(combo_sangre_paciente.getSelectedItem().toString());
+                persona.setDireccion(text_direccion_paciente.getText());
+                persona.setTelefono(text_celular_paciente.getText());
+                persona.setTipo_sangre(combo_sangre_paciente.getSelectedItem().toString());
 
-        String diaI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mesI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.MONTH) + 1);
-        String añoI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.YEAR));
-        String FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
+                String diaI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
+                String mesI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.MONTH) + 1);
+                String añoI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.YEAR));
+                String FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
 
-        //String FechaDeIngreso = df.format(fecha_ingreso_paciente.getDate());
-        paciente.setFecha_de_ingreso(FechaDeIngreso);
-        paciente.setSeguro(afiliacion);
-        paciente.setCedula(text_cedula_paciente.getText());
+                //String FechaDeIngreso = df.format(fecha_ingreso_paciente.getDate());
+                paciente.setFecha_de_ingreso(FechaDeIngreso);
+                paciente.setSeguro(afiliacion);
+                paciente.setCedula(text_cedula_paciente.getText());
 
-        if (persona.InsertarPersona()&& paciente.InsertarPaciente()) {
-            System.out.println("Conexion Exitosa");
-        } else {
-            System.out.println("Conexion Erronea");
-        }
+                if (persona.InsertarPersona() && paciente.InsertarPaciente()) {
+                    System.out.println("Conexion Exitosa");
+                    limpiar();
+                } else {
+                    System.out.println("Conexion Erronea");
+                }
 //        limpiar();
+            }
+        } catch (NullPointerException n) {
+
+        }
 
     }
 
@@ -692,6 +698,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     public boolean validaciones() {
         boolean validado = true;
+
         if (text_cedula_paciente.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la cedula del paciente");
@@ -765,8 +772,8 @@ public class Agregar_paciente extends javax.swing.JFrame {
                 validado = false;
             }
         }
-      
-        if (combo_sangre_paciente.getSelectedIndex()==0) {
+
+        if (combo_sangre_paciente.getSelectedIndex() == 0) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
         }
@@ -781,7 +788,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
         }
         if (!Masculino_paciente.isSelected() && !Femenino_paciente.isSelected()) {
             validado = false;
-            System.out.println("holsa");
             JOptionPane.showMessageDialog(this, "seleccione un genero");
         }
 
@@ -793,6 +799,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         if (!text_cedula_paciente.getText().isEmpty()) {
             for (int i = 0; i < lista_Paciente.size(); i++) {
                 if (lista_Paciente.get(i).getCedula().equals(text_cedula_paciente.getText())) {
+                    System.out.println(lista_Paciente.get(i).getCedula());
                     encontrado = true;
                 }
             }
@@ -839,16 +846,12 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_modificarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        
         List<paciente> com = inser.ListaPaciente();
-            com.stream().forEach(p -> {
-        if (busc_codigo.getText().equals(p.getCodigo())) {
-            
+        com.stream().forEach(p -> {
+            if (busc_codigo.getText().equals(p.getCodigo())) {
                 llenar_paciente();
-            
-            
-        }
-            });
+            }
+        });
     }//GEN-LAST:event_buscarActionPerformed
 
     /**
