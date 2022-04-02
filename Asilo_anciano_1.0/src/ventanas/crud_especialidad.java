@@ -1,21 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
+import clases.especialidad;
+import clases.validaciones;
+import conexion_bada.Conexion;
+import conexion_bada.Insert_especialidad;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import java.text.DateFormat;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 public class crud_especialidad extends javax.swing.JFrame {
 
-    /**
-     * Creates new form crud_especialidad
-     */
+    ArrayList<especialidad> lista_especialidades = new ArrayList();
+    Insert_especialidad inser = new Insert_especialidad();
+
     public crud_especialidad() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        cargarTabla();
     }
 
     /**
@@ -51,13 +56,13 @@ public class crud_especialidad extends javax.swing.JFrame {
 
         tabla_especialidad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Nombre de Especialidad"
+                "Códogo", "Nombre de Especialidad"
             }
         ));
         jScrollPane1.setViewportView(tabla_especialidad);
@@ -67,6 +72,11 @@ public class crud_especialidad extends javax.swing.JFrame {
         btguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
         btguardar.setText("GUARDAR");
         btguardar.setOpaque(false);
+        btguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btguardarActionPerformed(evt);
+            }
+        });
 
         btregresar.setBackground(new java.awt.Color(153, 153, 153));
         btregresar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -163,6 +173,50 @@ public class crud_especialidad extends javax.swing.JFrame {
     private void btregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btregresarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btregresarActionPerformed
+
+    private void btguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btguardarActionPerformed
+        RegistrarEspecialidades();
+        cargarTabla();
+    }//GEN-LAST:event_btguardarActionPerformed
+
+    public void llenar_especialidad() {
+
+        for (int i = 0; i < inser.ListaEspecialidades().size(); i++) {
+
+            List<especialidad> com = inser.ListaEspecialidades();
+            com.stream().forEach(p -> {
+                txtespecialidad.setText(p.getNombre_especialidad().toString());
+            });
+        }
+
+    }
+
+    //Guardar las alergias en la BD
+    public void RegistrarEspecialidades() {
+        Insert_especialidad alergia = new Insert_especialidad();
+        alergia.setNombre_especialidad(txtespecialidad.getText());
+
+        if (alergia.InsertarEspecialidad()) {
+            System.out.println("Conexion Exitosa");
+        } else {
+            System.out.println("Conexion Erronea");
+        }
+    }
+
+    //Mostrar los datos en la tabla
+    public void cargarTabla() {
+        DefaultTableModel tb = (DefaultTableModel) tabla_especialidad.getModel();
+        tb.setNumRows(0);
+        List<especialidad> com = inser.ListaEspecialidades();
+        com.stream().forEach(p -> {
+            String[] cami = {p.getCodigo_especialidad(), p.getNombre_especialidad()};
+            tb.addRow(cami);
+        });
+    }
+
+    public void Limpiar() {
+        txtespecialidad.setText("");
+    }
 
     /**
      * @param args the command line arguments
