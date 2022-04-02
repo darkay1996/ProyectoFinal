@@ -28,7 +28,7 @@ public class Insert_alergias extends alergias {
             while (rs.next()) {
                 alergias mi_alergia = new alergias();
                 mi_alergia.setCodigo_alergia(rs.getString("aler_codigo"));
-                mi_alergia.setNombre_alergia(rs.getString("aler_nombre"));
+                mi_alergia.setNombre_alergia(rs.getString("aler_nombre_"));
                 alergia.add(mi_alergia);
             }
             rs.close();
