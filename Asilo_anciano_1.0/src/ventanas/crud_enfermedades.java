@@ -220,6 +220,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
     private void botonguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonguardarActionPerformed
         // TODO add your handling code here:
         guardarEnfermedad();
+        cargarTabla();
         
     }//GEN-LAST:event_botonguardarActionPerformed
 
