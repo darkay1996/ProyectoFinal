@@ -1,21 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
+import clases.alergias;
+import clases.validaciones;
+import conexion_bada.Conexion;
+import conexion_bada.Insert_alergias;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import java.text.DateFormat;
+import java.util.List;
+
 public class crud_alergias extends javax.swing.JFrame {
 
-    /**
-     * Creates new form crud_alergias
-     */
+    ArrayList<alergias> lista_Alergias = new ArrayList();
+    Insert_alergias inser = new Insert_alergias();
+
     public crud_alergias() {
         initComponents();
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -31,7 +35,7 @@ public class crud_alergias extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtalergia = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Guardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_alergias = new javax.swing.JTable();
         bt_regresar = new javax.swing.JButton();
@@ -52,21 +56,33 @@ public class crud_alergias extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Nombre de Alergia:");
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 153));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
-        jButton1.setText("GUARDAR");
-        jButton1.setOpaque(false);
+        txtalergia.setText("Ingrese el nombre de una alergia");
+        txtalergia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtalergiaMousePressed(evt);
+            }
+        });
+
+        Guardar.setBackground(new java.awt.Color(153, 153, 153));
+        Guardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
+        Guardar.setText("GUARDAR");
+        Guardar.setOpaque(false);
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarActionPerformed(evt);
+            }
+        });
 
         tabla_alergias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Nombre de Alergia"
+                "Código", "Nombre de Alergia"
             }
         ));
         jScrollPane1.setViewportView(tabla_alergias);
@@ -102,7 +118,7 @@ public class crud_alergias extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtalergia, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48)
-                                .addComponent(jButton1))
+                                .addComponent(Guardar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(234, 234, 234)
                                 .addComponent(jLabel1)
@@ -132,7 +148,7 @@ public class crud_alergias extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtalergia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(Guardar))
                 .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
@@ -147,6 +163,45 @@ public class crud_alergias extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+        RegistrarAlergias();
+        Limpiar();
+    }//GEN-LAST:event_GuardarActionPerformed
+
+    private void txtalergiaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtalergiaMousePressed
+        txtalergia.setText("");
+        txtalergia.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtalergiaMousePressed
+
+    public void llenar_alergias() {
+
+        for (int i = 0; i < inser.ListaAlergias().size(); i++) {
+
+            List<alergias> com = inser.ListaAlergias();
+            com.stream().forEach(p -> {
+                txtalergia.setText(p.getNombre_alergia().toString());
+
+            });
+        }
+
+    }
+    
+    public void RegistrarAlergias() {
+        Insert_alergias alergia = new Insert_alergias();
+        alergia.setNombre_alergia(txtalergia.getText());
+
+        if (alergia.InsertarAlergias()) {
+            System.out.println("Conexion Exitosa");
+        } else {
+            System.out.println("Conexion Erronea");
+        }
+    }
+
+    public void Limpiar() {
+        txtalergia.setText("");
+    }
+
 
     /**
      * @param args the command line arguments
@@ -184,8 +239,8 @@ public class crud_alergias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Guardar;
     private javax.swing.JButton bt_regresar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
