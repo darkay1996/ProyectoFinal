@@ -38,4 +38,9 @@ public class paciente extends persona{
         this.Seguro = Seguro;
     }
 
+    @Override
+    public String toString() {
+        return "paciente{" + "fecha_de_ingreso=" + fecha_de_ingreso + ", Seguro=" + Seguro + '}';
+    }
+    
 }
