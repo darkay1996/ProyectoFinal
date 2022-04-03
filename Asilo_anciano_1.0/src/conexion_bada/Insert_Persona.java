@@ -13,8 +13,8 @@ import java.sql.SQLException;
  *
  * @author Bryan
  */
-public class Insert_Persona extends persona{
-    
+public class Insert_Persona extends persona {
+
     Conexion cone = new Conexion();
 
     public boolean InsertarPersona() {
@@ -23,8 +23,8 @@ public class Insert_Persona extends persona{
                 + "	VALUES ('" + getCedula() + "', '" + getPri_nomb() + "', '" + getSeg_nombre() + "', '" + getPrim_apell() + "', '" + getSeg_apelli() + "', '" + getCorreo() + "', '" + getGenero() + "', '" + getDireccion() + "', '" + getTipo_sangre() + "','" + getTelefono() + "','" + getFecha_Nacimiento() + "');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
-    
-        public boolean validarduplicado(String cedula) throws SQLException {
+
+    public boolean validarduplicado(String cedula) throws SQLException {
         boolean validar = false;
         int codigo = 0;
         String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
