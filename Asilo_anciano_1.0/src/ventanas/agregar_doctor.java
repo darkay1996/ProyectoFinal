@@ -653,6 +653,7 @@ public class agregar_doctor extends javax.swing.JFrame {
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "El doctor ya existe en el sistema");
+                    text_cedula_doctor.setText("");
 
                 }
             }
