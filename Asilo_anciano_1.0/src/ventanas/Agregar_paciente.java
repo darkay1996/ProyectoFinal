@@ -144,7 +144,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
         text_codigo_paciente.setForeground(new java.awt.Color(102, 102, 102));
         text_codigo_paciente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_codigo_paciente.setText("Código de paciente");
         text_codigo_paciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_codigo_pacienteMousePressed(evt);
@@ -544,6 +543,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     private void text_cedula_pacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_cedula_pacienteMousePressed
 
+        text_cedula_paciente.setText("");
         text_cedula_paciente.setForeground(Color.BLACK);
 
         // TODO add your handling code here:
@@ -555,6 +555,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     private void text_PrimerNombre_pacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_PrimerNombre_pacienteMousePressed
 
+        text_PrimerNombre_paciente.setText("");
         text_PrimerNombre_paciente.setForeground(Color.BLACK);
 
         // TODO add your handling code here:
@@ -566,12 +567,14 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     private void text_SegundoNombre_pacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_SegundoNombre_pacienteMousePressed
 
+        text_SegundoNombre_paciente.setText("");
         text_SegundoNombre_paciente.setForeground(Color.BLACK);
         // TODO add your handling code here:
     }//GEN-LAST:event_text_SegundoNombre_pacienteMousePressed
 
     private void text_PrimerApellido_pacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_PrimerApellido_pacienteMousePressed
 
+        text_PrimerApellido_paciente.setText("");
         text_PrimerApellido_paciente.setForeground(Color.BLACK);
 
         // TODO add your handling code here:
@@ -579,6 +582,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     private void text_SegundoApellido_pacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_SegundoApellido_pacienteMousePressed
 
+        text_SegundoApellido_paciente.setText("");
         text_SegundoApellido_paciente.setForeground(Color.BLACK);
 
         // TODO add your handling code here:
@@ -829,6 +833,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     private void text_direccion_pacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_direccion_pacienteMousePressed
 
+        text_direccion_paciente.setText("");
         text_direccion_paciente.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_direccion_pacienteMousePressed
 
@@ -838,11 +843,13 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     private void text_email_pacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_email_pacienteMousePressed
 
+        text_email_paciente.setText("");
         text_email_paciente.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_email_pacienteMousePressed
 
     private void text_celular_pacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_celular_pacienteMousePressed
 
+        text_celular_paciente.setText("");
         text_celular_paciente.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_celular_pacienteMousePressed
 
