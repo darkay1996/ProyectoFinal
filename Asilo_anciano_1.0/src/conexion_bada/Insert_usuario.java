@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-// Prueba
-
+//Prueba
 public class Insert_usuario extends usuario {
 
     Conexion cone = new Conexion();
