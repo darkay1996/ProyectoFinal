@@ -136,7 +136,7 @@ public class crud_familiar extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<familiar> com = inser.ListaFamiliar();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(),p.getTipo_sangre(),p.getCodigo_de_paciente(),p.getHora_inicio(),p.getHora_fin(),p.getTelefono(),p.getFecha_Nacimiento(),p.getFecha_de_visita()};
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(),p.getTipo_sangre(),p.getCodigo_de_paciente(),p.getTelefono(),p.getFecha_Nacimiento()};
             tb.addRow(cami);
         });
     }
@@ -162,13 +162,11 @@ public class crud_familiar extends javax.swing.JFrame {
             matriz[j][8] = pacientefiltro.get(j).getDireccion();
             matriz[j][9] = pacientefiltro.get(j).getTipo_sangre();
             matriz[j][10] = pacientefiltro.get(j).getCodigo_de_paciente();
-            matriz[j][11] = pacientefiltro.get(j).getHora_inicio();
-            matriz[j][12] = pacientefiltro.get(j).getHora_fin();
+
 
             matriz[j][13] = pacientefiltro.get(j).getTelefono();
             matriz[j][14] = pacientefiltro.get(j).getFecha_Nacimiento();
 
-            matriz[j][11] = pacientefiltro.get(j).getFecha_de_visita();
 
         }
         TablaFamiliar.setModel(new javax.swing.table.DefaultTableModel(
