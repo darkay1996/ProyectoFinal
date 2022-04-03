@@ -67,7 +67,9 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="382" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                  <Component id="text_PrimerNombre_doctor" min="-2" pref="272" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
@@ -116,20 +118,14 @@
                           </Group>
                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="text_PrimerNombre_doctor" min="-2" pref="272" max="-2" attributes="0"/>
-                                      <Component id="text_cedula_doctor" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
-                                      <Component id="text_SegundoNombre_doctor" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
-                                      <Component id="text_PrimerApellido_doctor" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
-                                      <Component id="text_SegundoApellido_doctor" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
-                                      <Component id="text_direccion_doctor" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="text_cedula_doctor" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
+                              <Component id="text_SegundoNombre_doctor" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
+                              <Component id="text_PrimerApellido_doctor" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
+                              <Component id="text_SegundoApellido_doctor" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
+                              <Component id="text_direccion_doctor" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
                               <Component id="text_email_doctor" min="-2" pref="272" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace min="34" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
@@ -187,31 +183,36 @@
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtcodigo_doctor" min="-2" pref="31" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="text_cedula_doctor" min="-2" pref="32" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtcodigo_doctor" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="text_cedula_doctor" min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="text_PrimerNombre_doctor" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                           <Component id="Fecha_Nacimiento_doctor" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="text_PrimerNombre_doctor" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -672,11 +673,17 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtnuevo_usuario">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="El usuario debe contener minimo 3 letras y 1 numero"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnuevo_usuarioActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtnueva_contrasena">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

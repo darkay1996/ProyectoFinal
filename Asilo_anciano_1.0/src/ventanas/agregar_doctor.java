@@ -1,22 +1,35 @@
 package ventanas;
 
+import java.awt.Color;
 import clases.doctor;
+import clases.usuario;
+import conexion_bada.Insert_doctor;
+import conexion_bada.Insert_usuario;
+import java.text.DateFormat;
+import java.util.ArrayList;
 import clases.especialidad;
 import java.text.DateFormat;
-import conexion_bada.Insert_doctor;
-import conexion_bada.Insert;
-import conexion_bada.Insert_especialidad;
-import java.awt.Color;
-import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
+import clases.validaciones;
+import conexion_bada.Conexion;
+import conexion_bada.Insert;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import conexion_bada.Insert_especialidad;
 
 public class agregar_doctor extends javax.swing.JFrame {
 
-
     DateFormat df = DateFormat.getDateInstance();
     ArrayList<doctor> lista_doctor = new ArrayList();
+
+    validaciones misvalidaciones = new validaciones();
+    Insert inser = new Insert();
+    Conexion cone = new Conexion();
+
     public agregar_doctor() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -276,11 +289,14 @@ public class agregar_doctor extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("NUEVA CONTRASEÑA:");
 
+        txtnuevo_usuario.setToolTipText("El usuario debe contener minimo 3 letras y 1 numero");
         txtnuevo_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnuevo_usuarioActionPerformed(evt);
             }
         });
+
+        txtnueva_contrasena.setToolTipText("Debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -305,7 +321,9 @@ public class agregar_doctor extends javax.swing.JFrame {
                                 .addComponent(txtcodigo_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(382, 382, 382)
+                                .addGap(58, 58, 58)
+                                .addComponent(text_PrimerNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
@@ -342,17 +360,13 @@ public class agregar_doctor extends javax.swing.JFrame {
                             .addComponent(jLabel9))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(text_PrimerNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(text_cedula_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(text_SegundoNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(text_PrimerApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(text_SegundoApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(text_direccion_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(text_cedula_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(text_SegundoNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(text_PrimerApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(text_SegundoApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(text_direccion_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(text_email_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(42, 42, 42)
@@ -394,25 +408,28 @@ public class agregar_doctor extends javax.swing.JFrame {
                         .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(text_cedula_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel12))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtcodigo_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcodigo_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(text_cedula_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(text_PrimerNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(Fecha_Nacimiento_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(text_PrimerNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))))
+                        .addComponent(jLabel13)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
@@ -522,8 +539,13 @@ public class agregar_doctor extends javax.swing.JFrame {
     }//GEN-LAST:event_Regresar_doctorActionPerformed
 
     private void Guardar_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_doctorActionPerformed
-        RegistrarDoctor();
-        limpiar();
+        try {
+            RegistrarDoctor();
+        } catch (SQLException ex) {
+            Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //limpiar();
 
     }//GEN-LAST:event_Guardar_doctorActionPerformed
 
@@ -574,62 +596,210 @@ public class agregar_doctor extends javax.swing.JFrame {
         text_celular_doctor.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_celular_doctorMousePressed
 
-    public void RegistrarDoctor() {
-        
-        String genero="";
-        Insert_doctor doctor = new Insert_doctor();
-        //doctor.setCodigo(text_codigo_doctor.getText());
-        doctor.setCedula(text_cedula_doctor.getText());
-        doctor.setPri_nomb(text_PrimerNombre_doctor.getText());
-        doctor.setSeg_nombre(text_SegundoNombre_doctor.getText());
-        doctor.setPrim_apell(text_PrimerApellido_doctor.getText());
-        doctor.setSeg_apelli(text_SegundoApellido_doctor.getText());
-        
-        if (Masculino_doctor.isSelected()) {
-            genero = "hombre";
-        }
-        if (Femenino_doctor.isSelected()) {
-            genero = "mujer";
-        }
-        doctor.setGenero(genero);
-        
-        
-        String dia = Integer.toString(Fecha_Nacimiento_doctor.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(Fecha_Nacimiento_doctor.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(Fecha_Nacimiento_doctor.getCalendar().get(Calendar.YEAR));
-        String FechaNacimiento = (dia + "-" + mes + "-" + año);
-        //String FechaNacimiento = df.format(Fecha_Nacimiento_doctor.getDate());
-        doctor.setFecha_Nacimiento(FechaNacimiento);
-        
-        doctor.setDireccion(text_direccion_doctor.getText());
-        doctor.setCorreo(text_email_doctor.getText());
-        doctor.setTipo_sangre(combo_sangre_doctor.getSelectedItem().toString());
-        doctor.setTelefono(text_celular_doctor.getText());
-        doctor.setEspecialidad(combo_especialidad_doctor.getSelectedItem().toString());
-        
-        if (doctor.InsertarDoctor()) {
-            System.out.println("Conexion Exitosa");
-        } else {
-            System.out.println("Conexion Erronea");
+    public void RegistrarDoctor() throws SQLException {
+
+        Insert_doctor docto = new Insert_doctor();
+        Insert_usuario usu = new Insert_usuario();
+        try {
+            if (validaciones()) {
+                if (docto.validarduplicado(text_cedula_doctor.getText())) {
+                    if (usu.validarNomduplicado(txtnuevo_usuario.getText())) {
+                        String genero = "";
+                        //doctor.setCodigo(text_codigo_doctor.getText());
+                        docto.setCedula(text_cedula_doctor.getText());
+                        docto.setPri_nomb(text_PrimerNombre_doctor.getText());
+                        docto.setSeg_nombre(text_SegundoNombre_doctor.getText());
+                        docto.setPrim_apell(text_PrimerApellido_doctor.getText());
+                        docto.setSeg_apelli(text_SegundoApellido_doctor.getText());
+                        docto.setDireccion(text_direccion_doctor.getText());
+
+                        if (Masculino_doctor.isSelected()) {
+                            genero = "hombre";
+                        }
+                        if (Femenino_doctor.isSelected()) {
+                            genero = "mujer";
+                        }
+                        docto.setGenero(genero);
+                        docto.setCorreo(text_email_doctor.getText());
+                        String dia = Integer.toString(Fecha_Nacimiento_doctor.getCalendar().get(Calendar.DAY_OF_MONTH));
+                        String mes = Integer.toString(Fecha_Nacimiento_doctor.getCalendar().get(Calendar.MONTH) + 1);
+                        String año = Integer.toString(Fecha_Nacimiento_doctor.getCalendar().get(Calendar.YEAR));
+                        String FechaNacimiento = (dia + "-" + mes + "-" + año);
+                        //String FechaNacimiento = df.format(Fecha_Nacimiento_doctor.getDate());
+                        docto.setFecha_Nacimiento(FechaNacimiento);
+
+                        docto.setTelefono(text_celular_doctor.getText());
+                        docto.setTipo_sangre(combo_sangre_doctor.getSelectedItem().toString());
+                        docto.InsertarPersona();
+                        //Fin Persona
+                        ///////////////////////////////////
+                        usu.setContraseña(txtnueva_contrasena.getText());
+                        usu.setUsuario(txtnuevo_usuario.getText());
+                        usu.InsertarUsuario();
+                        ///////////////////////////////////
+                        docto.setEspecialidad(combo_especialidad_doctor.getSelectedItem().toString());
+                        docto.setCedula(text_cedula_doctor.getText());
+                        docto.setCod_usuario(usu.obtenerUsuario());
+
+                        if (docto.InsertarDoctor()) {
+                            System.out.println("Conexion Exitosa");
+                            limpiar();
+                        } else {
+                            System.out.println("Conexion Erronea");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe");
+
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "El doctor ya existe en el sistema");
+
+                }
+            }
+        } catch (NullPointerException n) {
+
         }
     }
+
+    public boolean validaciones() {
+        boolean validado = true;
+
+        if (text_cedula_doctor.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del doctor");
+        } else {
+            if (!misvalidaciones.validar_cedula(text_cedula_doctor.getText())) {
+                JOptionPane.showMessageDialog(this, "Cedula incorrecta");
+                validado = false;
+            }
+        }
+//
+        if (text_PrimerNombre_doctor.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre del doctor");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_PrimerNombre_doctor.getText())) {
+                JOptionPane.showMessageDialog(this, "Primer nombre incorrecto");
+                validado = false;
+            }
+        }
+        if (text_SegundoNombre_doctor.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre del doctor");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_SegundoNombre_doctor.getText())) {
+                JOptionPane.showMessageDialog(this, "Segundo nombre incorrecto");
+                validado = false;
+            }
+        }
+        if (text_PrimerApellido_doctor.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el apellido del doctor");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_PrimerApellido_doctor.getText())) {
+                JOptionPane.showMessageDialog(this, "Primer apellido incorrecto");
+                validado = false;
+            }
+        }
+        if (text_PrimerApellido_doctor.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el apellido del doctor");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_PrimerApellido_doctor.getText())) {
+                JOptionPane.showMessageDialog(this, "Segundo apellido incorrecto");
+                validado = false;
+            }
+        }
+        if (text_direccion_doctor.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la direccion del doctor");
+        } else {
+            if (!misvalidaciones.validarDireccion(text_direccion_doctor.getText())) {
+                JOptionPane.showMessageDialog(this, "Direccion invalida");
+                validado = false;
+            }
+        }
+        if (text_celular_doctor.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el celular del doctor");
+        } else {
+            if (!misvalidaciones.validarTelefono(text_celular_doctor.getText())) {
+                JOptionPane.showMessageDialog(this, "Celular invalido");
+                validado = false;
+            }
+        }
+        if (text_email_doctor.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el correo del doctor");
+        } else {
+            if (!misvalidaciones.validarCorreo(text_email_doctor.getText())) {
+                JOptionPane.showMessageDialog(this, "Correo invalido");
+                validado = false;
+            }
+        }
+
+        if (txtnuevo_usuario.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese un usuario");
+        } else {
+            if (!misvalidaciones.validarUsuario(txtnuevo_usuario.getText())) {
+                JOptionPane.showMessageDialog(this, "Usuario invalido");
+                validado = false;
+            }
+        }
+
+        if (txtnueva_contrasena.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese una contraseña");
+        } else {
+            if (!misvalidaciones.validarContrasena(txtnueva_contrasena.getText())) {
+                JOptionPane.showMessageDialog(this, "Contraseña invalida");
+                validado = false;
+            }
+        }
+
+        if (combo_especialidad_doctor.getSelectedIndex() == 0) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la especialidad");
+        }
+
+        if (combo_sangre_doctor.getSelectedIndex() == 0) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
+        }
+//        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
+        if (Fecha_Nacimiento_doctor.getDate() == null) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento");
+        }
+
+        if (!Masculino_doctor.isSelected() && !Femenino_doctor.isSelected()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "seleccione un genero");
+        }
+
+        return validado;
+    }
+
     public void limpiar() {
-        //text_codigo_doctor.setText("");
-        text_PrimerApellido_doctor.setText("");
-        text_PrimerNombre_doctor.setText("");
-        text_SegundoApellido_doctor.setText("");
-        text_SegundoNombre_doctor.setText("");
+        txtcodigo_doctor.setText("");
         text_cedula_doctor.setText("");
-        text_celular_doctor.setText("");
-        text_email_doctor.setText("");
-        grupo_sexo.clearSelection();
+        text_PrimerNombre_doctor.setText("");
+        text_SegundoNombre_doctor.setText("");
+        text_PrimerApellido_doctor.setText("");
+        text_SegundoApellido_doctor.setText("");
         text_direccion_doctor.setText("");
+        text_email_doctor.setText("");
+        text_celular_doctor.setText("");
+        grupo_sexo.clearSelection();
         combo_sangre_doctor.setSelectedIndex(0);
         combo_especialidad_doctor.setSelectedIndex(0);
-        
+        Fecha_Nacimiento_doctor.setCalendar(null);
+        txtnuevo_usuario.setText("");
+        txtnueva_contrasena.setText("");
     }
-    
-     //Llenar especialidad
+
+    //Llenar especialidad
     public void LLenarComboBoxEspecialidad() {
         Insert_especialidad inser = new Insert_especialidad();
         List<especialidad> com = inser.ListaEspecialidades();
@@ -638,6 +808,7 @@ public class agregar_doctor extends javax.swing.JFrame {
             combo_especialidad_doctor.addItem(com.get(i).getNombre_especialidad());
         }
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
