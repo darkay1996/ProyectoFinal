@@ -20,6 +20,7 @@ public class agregar_doctor extends javax.swing.JFrame {
     public agregar_doctor() {
         initComponents();
         this.setLocationRelativeTo(null);
+        LLenarComboBoxEspecialidad();
     }
 
     /**
@@ -188,7 +189,7 @@ public class agregar_doctor extends javax.swing.JFrame {
 
         jLabel11.setText("Especialidad");
 
-        combo_especialidad_doctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "CARDIOLOGIA", "ODONTOLOGIA", "MEDICINA GENERAL", "DERMATOLOGO", "GASTROENTEROLOGO", "GERIATRIA" }));
+        combo_especialidad_doctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion" }));
 
         Guardar_doctor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Guardar_doctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N

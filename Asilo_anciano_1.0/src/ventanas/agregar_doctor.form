@@ -468,14 +468,8 @@
     <Component class="javax.swing.JComboBox" name="combo_especialidad_doctor">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
+          <StringArray count="1">
             <StringItem index="0" value="Seleccione una opcion"/>
-            <StringItem index="1" value="CARDIOLOGIA"/>
-            <StringItem index="2" value="ODONTOLOGIA"/>
-            <StringItem index="3" value="MEDICINA GENERAL"/>
-            <StringItem index="4" value="DERMATOLOGO"/>
-            <StringItem index="5" value="GASTROENTEROLOGO"/>
-            <StringItem index="6" value="GERIATRIA"/>
           </StringArray>
         </Property>
       </Properties>
