@@ -1,6 +1,7 @@
 package conexion_bada;
 
 import clases.administrador;
+import clases.usuario;
 //import conexion_bada.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,17 +10,31 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Insert_administrador extends administrador {
+public class Insert_administrador extends administrador{
 
     Conexion cone = new Conexion();
 
-    public boolean InsertarAdministrador() {
-        String sql = "INSERT INTO administrador(\n"
-                + "	admin_codigo, admin_cedula,admin_primer_nombre,admin_segundo_nombre, admin_primer_apellido,admin_segundo_apellido, admin_correo, admin_genero, admin_direccion, admin_tipo_sangre,admin_telefono,admin_nivel_educacion,admin_fecha_nacimiento)\n"
-                + "	VALUES ('" + getCodigo() + "','" + getCedula() + "', '" + getPri_nomb() + "', '" + getSeg_nombre() + "', '" + getPrim_apell() + "', '" + getSeg_apelli() + "', '" + getCorreo() + "','" + getGenero() + "','" + getDireccion() + "','" + getTipo_sangre() + "','" + getTelefono() + "','" + getNivel_educacion() + "','" + getFecha_Nacimiento() + "');";
+    public boolean InsertarPersona() {
+        String sql = "INSERT INTO persona(\n"
+                + "	per_cedula, per_primer_nombre,per_segundo_nombre, per_primer_apellido,per_segundo_apellido, per_correo, per_genero, per_direccion,per_tipo_sangre,per_telefono,per_fecha_nacimiento)\n"
+                + "	VALUES ('" + getCedula() + "', '" + getPri_nomb() + "', '" + getSeg_nombre() + "', '" + getPrim_apell() + "', '" + getSeg_apelli() + "', '" + getCorreo() + "', '" + getGenero() + "', '" + getDireccion() + "', '" + getTipo_sangre() + "','" + getTelefono() + "','" + getFecha_Nacimiento() + "');";
+        return cone.InsertUpdateDeleteAcciones(sql);
+    }
+    usuario miusuario= new usuario();
+    public boolean InsertarUsuario() {
+        String sql = "INSERT INTO usuario(\n"
+                + "	us_usuario,us_contraseña)\n"
+                + "	VALUES ('" + miusuario.getUsuario() + "', '" + miusuario.getContraseña() + "');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
+    public boolean InsertarAdministrador() {
+        String sql = "INSERT INTO administrador(\n"
+                + "     admin_cedula,admin_nivel_educacion,admin_codigo_usuario)\n"
+                + "	VALUES ('" +getCedula()  +"','" + getNivel_educacion() + "','" + getCod_usuario() + "');";
+        return cone.InsertUpdateDeleteAcciones(sql);
+    }
+    
     public List<administrador> ListaAdministrador() {
         String sqls = "select * from administrador;";
         ResultSet rs = cone.selectConsulta(sqls);
