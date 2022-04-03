@@ -41,6 +41,12 @@ public class validaciones {
         return validar;
     }
     
+    public boolean validarNombresEspacios(String cadena) {
+        cadena = cadena.trim();//trim()
+        boolean validar = cadena.matches("[\\w\\s]*");
+        return validar;
+    }
+    
      public boolean validarTelefono(String telefono) {
         boolean validar = false;
         if (telefono.matches("[0-9]{10}")) {
