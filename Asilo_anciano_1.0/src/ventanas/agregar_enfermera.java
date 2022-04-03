@@ -2,16 +2,31 @@ package ventanas;
 
 import clases.enfermera;
 import conexion_bada.Insert_enfermera;
-import conexion_bada.Insert;
 import java.awt.Color;
-import java.util.Calendar;
+import clases.usuario;
+//import conexion_bada.Insert_familiar;
+//import conexion_bada.Insert;
+import conexion_bada.Insert_usuario;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+import clases.validaciones;
+import conexion_bada.Conexion;
+import conexion_bada.Insert;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class agregar_enfermera extends javax.swing.JFrame {
-    
+
     DateFormat df = DateFormat.getDateInstance();
-    ArrayList<enfermera> lista_enfermera = new ArrayList();
+    //ArrayList<enfermera> lista_enfermera = new ArrayList();
+    validaciones misvalidaciones = new validaciones();
+    Insert inser = new Insert();
+    Conexion cone = new Conexion();
 
     public agregar_enfermera() {
         initComponents();
@@ -473,7 +488,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void text_cedula_enfermeraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_cedula_enfermeraMousePressed
-        
+
         text_cedula_enfermera.setText("");
         text_cedula_enfermera.setForeground(Color.BLACK);
 
@@ -534,64 +549,13 @@ public class agregar_enfermera extends javax.swing.JFrame {
     }//GEN-LAST:event_text_celular_enfermeraMousePressed
 
     private void Guardar_enfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_enfermeraActionPerformed
-        RegistrarEnfermera();
-        limpiar();
+        try {
+            RegistrarEnfermera();
+        } catch (SQLException ex) {
+            Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Guardar_enfermeraActionPerformed
-    public void RegistrarEnfermera() {
-        Insert_enfermera enfermera = new Insert_enfermera();
-        String genero = "";
-        //enfermera.setCodigo(text_codigo_enfermera.getText());
-        enfermera.setCedula(text_cedula_enfermera.getText());
-        enfermera.setPri_nomb(text_PrimerNombre_enfermera.getText());
-        enfermera.setSeg_nombre(text_SegundoNombre_enfermera.getText());
-        enfermera.setPrim_apell(text_PrimerApellido_enfermera.getText());
-        enfermera.setSeg_apelli(text_SegundoApellido_enfermera.getText());
-        if (Masculino_enfermera.isSelected()) {
-            genero = "hombre";
-        }
-        if (Femenino_enfermera.isSelected()) {
-            genero = "mujer";
-        }
-        
-        enfermera.setGenero(genero);
-        enfermera.setTelefono(text_celular_enfermera.getText());
-        enfermera.setCorreo(text_email_enfermera.getText());
-        enfermera.setDireccion(text_direccion_enfermera.getText());
-        
-        
-        String dia = Integer.toString(Fecha_Nacimiento_enfermera.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(Fecha_Nacimiento_enfermera.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(Fecha_Nacimiento_enfermera.getCalendar().get(Calendar.YEAR));
-        String FechaNacimiento = (dia + "-" + mes + "-" + año);
-        //String FechaNacimiento = df.format(Fecha_Nacimiento_enfermera.getDate());
-        enfermera.setFecha_Nacimiento(FechaNacimiento);
-        
-        enfermera.setTipo_sangre(combo_sangre_enfermera.getSelectedItem().toString());
-        enfermera.setAño_ecperiencia(spiner_experiencia_enfermera.getValue().toString());
-        
-        if (enfermera.InsertarEnfermera()) {
-            System.out.println("Conexion Exitosa");
-        } else {
-            System.out.println("Conexion Erronea");
-        }
-    }
 
-    public void limpiar() {
-        
-        //text_codigo_enfermera.setText("");
-        text_cedula_enfermera.setText("");
-        text_PrimerNombre_enfermera.setText("");
-        text_SegundoNombre_enfermera.setText("");
-        text_PrimerApellido_enfermera.setText("");
-        text_SegundoApellido_enfermera.setText("");
-        grupo_sexo.clearSelection();
-        text_direccion_enfermera.setText("");
-        text_email_enfermera.setText("");
-        text_celular_enfermera.setText("");
-        combo_sangre_enfermera.setSelectedIndex(0);
-        spiner_experiencia_enfermera.setValue(0);
-        
-    }
     private void Regresar_enfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regresar_enfermeraActionPerformed
         this.dispose();
         new crud_enfermera().setVisible(true);
@@ -607,6 +571,207 @@ public class agregar_enfermera extends javax.swing.JFrame {
     private void text_direccion_enfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_direccion_enfermeraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_text_direccion_enfermeraActionPerformed
+
+    public void RegistrarEnfermera() throws SQLException {
+        Insert_enfermera enfermera = new Insert_enfermera();
+        Insert_usuario usu = new Insert_usuario();
+
+        try {
+
+            if (validaciones()) {
+                if (enfermera.validarduplicado(text_cedula_enfermera.getText())) {
+                    if (usu.validarNomduplicado(txtusurio_enfermera.getText())) {
+                        String genero = "";
+                        //enfermera.setCodigo(text_codigo_enfermera.getText());
+                        enfermera.setCedula(text_cedula_enfermera.getText());
+                        enfermera.setPri_nomb(text_PrimerNombre_enfermera.getText());
+                        enfermera.setSeg_nombre(text_SegundoNombre_enfermera.getText());
+                        enfermera.setPrim_apell(text_PrimerApellido_enfermera.getText());
+                        enfermera.setSeg_apelli(text_SegundoApellido_enfermera.getText());
+                        enfermera.setDireccion(text_direccion_enfermera.getText());
+                        if (Masculino_enfermera.isSelected()) {
+                            genero = "hombre";
+                        }
+                        if (Femenino_enfermera.isSelected()) {
+                            genero = "mujer";
+                        }
+
+                        enfermera.setGenero(genero);
+                        enfermera.setCorreo(text_email_enfermera.getText());
+                        String dia = Integer.toString(Fecha_Nacimiento_enfermera.getCalendar().get(Calendar.DAY_OF_MONTH));
+                        String mes = Integer.toString(Fecha_Nacimiento_enfermera.getCalendar().get(Calendar.MONTH) + 1);
+                        String año = Integer.toString(Fecha_Nacimiento_enfermera.getCalendar().get(Calendar.YEAR));
+                        String FechaNacimiento = (dia + "-" + mes + "-" + año);
+                        //String FechaNacimiento = df.format(Fecha_Nacimiento_enfermera.getDate());
+                        enfermera.setFecha_Nacimiento(FechaNacimiento);
+
+                        enfermera.setTelefono(text_celular_enfermera.getText());
+                        enfermera.setTipo_sangre(combo_sangre_enfermera.getSelectedItem().toString());
+                        enfermera.InsertarPersona();
+                        //fin persona
+                        //////////////////////////
+                        usu.setContraseña(txtcontrasena_enfermera.getText());
+                        usu.setUsuario(txtusurio_enfermera.getText());
+                        usu.InsertarUsuario();
+                        //////////////////////
+                        enfermera.setAnio_experiencia(spiner_experiencia_enfermera.getValue().toString());
+                        enfermera.setCedula(text_cedula_enfermera.getText());
+                        enfermera.setCod_usuario(usu.obtenerUsuario());
+                        if (enfermera.InsertarEnfermera()) {
+                            System.out.println("Conexion Exitosa");
+                            limpiar();
+                        } else {
+                            System.out.println("Conexion Erronea");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe");
+
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "El enfermero ya existe en el sistema");
+                    text_cedula_enfermera.setText("");
+
+                }
+            }
+        } catch (NullPointerException n) {
+
+        }
+    }
+
+    public boolean validaciones() {
+        boolean validado = true;
+
+        if (text_cedula_enfermera.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula");
+        } else {
+            if (!misvalidaciones.validar_cedula(text_cedula_enfermera.getText())) {
+                JOptionPane.showMessageDialog(this, "Cedula incorrecta");
+                validado = false;
+            }
+        }
+//
+        if (text_PrimerNombre_enfermera.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el primer nombre");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_PrimerNombre_enfermera.getText())) {
+                JOptionPane.showMessageDialog(this, "Primer nombre incorrecto");
+                validado = false;
+            }
+        }
+        if (text_SegundoNombre_enfermera.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el segundo nombre");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_SegundoNombre_enfermera.getText())) {
+                JOptionPane.showMessageDialog(this, "Segundo nombre incorrecto");
+                validado = false;
+            }
+        }
+        if (text_PrimerApellido_enfermera.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el primer apellido");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_PrimerApellido_enfermera.getText())) {
+                JOptionPane.showMessageDialog(this, "Primer apellido incorrecto");
+                validado = false;
+            }
+        }
+        if (text_SegundoApellido_enfermera.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el segundo apellido");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_SegundoApellido_enfermera.getText())) {
+                JOptionPane.showMessageDialog(this, "Segundo apellido incorrecto");
+                validado = false;
+            }
+        }
+        if (text_direccion_enfermera.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la direccion");
+        } else {
+            if (!misvalidaciones.validarDireccion(text_direccion_enfermera.getText())) {
+                JOptionPane.showMessageDialog(this, "Direccion invalida");
+                validado = false;
+            }
+        }
+        if (text_celular_enfermera.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el celular");
+        } else {
+            if (!misvalidaciones.validarTelefono(text_celular_enfermera.getText())) {
+                JOptionPane.showMessageDialog(this, "Celular invalido");
+                validado = false;
+            }
+        }
+        if (text_email_enfermera.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el correo");
+        } else {
+            if (!misvalidaciones.validarCorreo(text_email_enfermera.getText())) {
+                JOptionPane.showMessageDialog(this, "Correo invalido");
+                validado = false;
+            }
+        }
+
+        if (txtusurio_enfermera.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese un usuario");
+        } else {
+            if (!misvalidaciones.validarUsuario(txtusurio_enfermera.getText())) {
+                JOptionPane.showMessageDialog(this, "Usuario invalido");
+                validado = false;
+            }
+        }
+
+        if (txtcontrasena_enfermera.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese una contraseña");
+        } else {
+            if (!misvalidaciones.validarContrasena(txtcontrasena_enfermera.getText())) {
+                JOptionPane.showMessageDialog(this, "Contraseña invalida");
+                validado = false;
+            }
+        }
+
+        if (combo_sangre_enfermera.getSelectedIndex() == 0) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
+        }
+//        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
+        if (Fecha_Nacimiento_enfermera.getDate() == null) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento");
+        }
+
+        if (!Masculino_enfermera.isSelected() && !Femenino_enfermera.isSelected()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "seleccione un genero");
+        }
+
+        return validado;
+    }
+
+    public void limpiar() {
+
+        txtcodigo_enfermera.setText("");
+        text_cedula_enfermera.setText("");
+        text_PrimerNombre_enfermera.setText("");
+        text_SegundoNombre_enfermera.setText("");
+        text_PrimerApellido_enfermera.setText("");
+        text_SegundoApellido_enfermera.setText("");
+        text_direccion_enfermera.setText("");
+        text_email_enfermera.setText("");
+        text_celular_enfermera.setText("");
+        grupo_sexo.clearSelection();
+        combo_sangre_enfermera.setSelectedIndex(0);
+        spiner_experiencia_enfermera.setValue(0);
+        Fecha_Nacimiento_enfermera.setCalendar(null);
+        txtusurio_enfermera.setText("");
+        txtcontrasena_enfermera.setText("");
+
+    }
 
     /**
      * @param args the command line arguments
