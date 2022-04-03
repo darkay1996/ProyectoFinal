@@ -32,48 +32,37 @@ public class Insert extends paciente {
     }
 
     public List<paciente> ListaPaciente() {
-        String sqls = "select * from paciente;";
+        String sqls = "select * from persona join paciente on persona.per_cedula = paciente.paci_cedula;";
         ResultSet respaci = cone.selectConsulta(sqls);
         List<paciente> paci = new ArrayList<>();
 
-//        String sqlp = "select * from persona;";
-//        ResultSet resper = cone.selectConsulta(sqlp);
-//        List<persona> per = new ArrayList<>();
         try {
             while (respaci.next()) {
-//                System.out.println("1");
-                String sqlp = "select * from persona;";
-                ResultSet resper = cone.selectConsulta(sqlp);
-                List<persona> per = new ArrayList<>();
-                while (resper.next()) {
-                    paciente mi_paciente = new paciente();
-                    persona mi_persona = new persona();
-                    String cedp = respaci.getString("paci_cedula");
-                    String cedpe = resper.getString("per_cedula");
-//                    System.out.println(cedp + "====" + cedpe);
-                    if (cedp.equalsIgnoreCase(cedpe)) {
+
+                paciente mi_paciente = new paciente();
+                persona mi_persona = new persona();
+
 //                        System.out.println("coninciden");
-                        mi_paciente.setCodigo(respaci.getString("paci_codigo"));
-                        mi_paciente.setCedula(respaci.getString("paci_cedula"));
-                        mi_paciente.setSeguro(respaci.getString("paci_seguro"));
-                        mi_paciente.setFecha_de_ingreso(respaci.getString("paci_fecha_de_ingreso"));
+                mi_paciente.setCodigo(respaci.getString("paci_codigo"));
+                mi_paciente.setCedula(respaci.getString("paci_cedula"));
+                mi_paciente.setSeguro(respaci.getString("paci_seguro"));
+                mi_paciente.setFecha_de_ingreso(respaci.getString("paci_fecha_de_ingreso"));
 
-                        mi_paciente.setCedula(resper.getString("per_cedula"));
-                        mi_paciente.setPri_nomb(resper.getString("per_primer_nombre"));
-                        mi_paciente.setSeg_nombre(resper.getString("per_segundo_nombre"));
-                        mi_paciente.setPrim_apell(resper.getString("per_primer_apellido"));
-                        mi_paciente.setSeg_apelli(resper.getString("per_segundo_apellido"));
-                        mi_paciente.setCorreo(resper.getString("per_correo"));
-                        mi_paciente.setGenero(resper.getString("per_genero"));
-                        mi_paciente.setDireccion(resper.getString("per_direccion"));
-                        mi_paciente.setTelefono(resper.getString("per_telefono"));
-                        mi_paciente.setTipo_sangre(resper.getString("per_tipo_sangre"));
-                        mi_paciente.setFecha_Nacimiento(resper.getString("per_fecha_nacimiento"));
+                mi_paciente.setCedula(respaci.getString("per_cedula"));
+                mi_paciente.setPri_nomb(respaci.getString("per_primer_nombre"));
+                mi_paciente.setSeg_nombre(respaci.getString("per_segundo_nombre"));
+                mi_paciente.setPrim_apell(respaci.getString("per_primer_apellido"));
+                mi_paciente.setSeg_apelli(respaci.getString("per_segundo_apellido"));
+                mi_paciente.setCorreo(respaci.getString("per_correo"));
+                mi_paciente.setGenero(respaci.getString("per_genero"));
+                mi_paciente.setDireccion(respaci.getString("per_direccion"));
+                mi_paciente.setTelefono(respaci.getString("per_telefono"));
+                mi_paciente.setTipo_sangre(respaci.getString("per_tipo_sangre"));
+                mi_paciente.setFecha_Nacimiento(respaci.getString("per_fecha_nacimiento"));
 
-                        paci.add(mi_paciente);
+                paci.add(mi_paciente);
 //                        resper.close();
-                    }
-                }
+
             }
 //            respaci.close();
             return paci;
@@ -83,40 +72,50 @@ public class Insert extends paciente {
         }
     }
 
-//    public boolean validar_duplicado(String cedula){
-//        Conexion cone = new Conexion();
-//        validaciones mivalidacion = new validaciones();
-//        
-//        boolean encontrado = false;
-//        String sqld = "select * from paciente where paci_cedula='" + cedula + "';";
-//        ResultSet rs = cone.selectConsulta(sqld);
-//        try {
-//            while (rs.next()) {
-//                mivalidacion.setNum(rs.getInt("count"));
-//                System.out.println("Hola");
-//                System.out.println(mivalidacion.getNum());
+//    public boolean validarduplicado(String cedula) throws SQLException {
+//        boolean validar = false;
+//        int codigo = 0;
+//        String sqls = "select count(*) from paciente where paci_cedula='"+cedula+"';";
+//        ResultSet dup = cone.selectConsulta(sqls);
+////        try {catch
+//            while (dup.next()) {
+//                codigo = dup.getInt("count");
 //            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+//        if (codigo==0) {
+//            validar = true;
 //        }
-//        if (mivalidacion.getNum()==0) {
-//            encontrado=true;
-//        }
-//        return encontrado;
+//        System.out.println("repetido="+codigo);
+//        return validar;
 //    }
-    public boolean validarduplicado(String cedula) {
-        boolean validar = true;
-        List<paciente> com = ListaPaciente();
-        for (int i = 0; i < com.size(); i++) {
-//            System.out.println("validacionduplicado"+com.get(i).getCedula() + "===" + cedula);
-            if (com.get(i).getCedula().equalsIgnoreCase(cedula)) {
-                validar = false;
-                System.out.println(validar);
+    
+            public boolean validarduplicado(String cedula) throws SQLException {
+        boolean validar = false;
+        int codigo = 0;
+        String sqls = "select count(*) from persona where per_cedula='"+cedula+"';";
+        ResultSet dup = cone.selectConsulta(sqls);
+//        try {catch
+            while (dup.next()) {
+                codigo = dup.getInt("count");
             }
-
+        if (codigo==0) {
+            validar = true;
         }
-
+//        System.out.println("repetido="+codigo);
         return validar;
     }
 
+//    public boolean validarduplicado(String cedula) {
+//        boolean validar = true;
+//        List<paciente> com = ListaPaciente();
+//        for (int i = 0; i < com.size(); i++) {
+////            System.out.println("validacionduplicado"+com.get(i).getCedula() + "===" + cedula);
+//            if (com.get(i).getCedula().equalsIgnoreCase(cedula)) {
+//                validar = false;
+//                System.out.println(validar);
+//            }
+//
+//        }
+//
+//        return validar;
+//    }
 }
