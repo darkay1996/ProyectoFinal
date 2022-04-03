@@ -5,17 +5,22 @@
  */
 package ventanas;
 
+import clases.administrador;
+import clases.paciente;
+import conexion_bada.Insert_administrador;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class crud_administrador extends javax.swing.JFrame {
 
-    /**
-     * Creates new form crud_administrador
-     */
+    Insert_administrador inser = new Insert_administrador();
     public crud_administrador() {
         initComponents();
+        cargarTabla();
     }
 
     /**
@@ -118,6 +123,17 @@ public class crud_administrador extends javax.swing.JFrame {
         new Agregar_paciente().setVisible(true);
     }//GEN-LAST:event_BtIngresarAdministradorActionPerformed
 
+    
+        public void cargarTabla() {
+        DefaultTableModel tb = (DefaultTableModel) TablaAdministrador.getModel();
+        tb.setNumRows(0);
+        List<administrador> com = inser.ListaAdministrador();
+        com.stream().forEach(p -> {
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getGenero(), p.getTipo_sangre(), p.getDireccion(),p.getFecha_Nacimiento(), p.getNivel_educacion(), p.getCorreo(), p.getTelefono()};
+            tb.addRow(cami);
+        });
+    }
+    
     /**
      * @param args the command line arguments
      */
