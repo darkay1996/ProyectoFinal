@@ -7,23 +7,25 @@ package ventanas;
 
 import java.util.ArrayList;
 import clases.enfermedades;
-import conexion_bada.Insert_doctor;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
-//Prueba
 import conexion_bada.insert_enfermedad;
+import javax.swing.JOptionPane;
+import clases.validaciones;
 
 /**
  *
  * @author Usuario
  */
 public class crud_enfermedades extends javax.swing.JFrame {
- insert_enfermedad inser = new insert_enfermedad();
-    /**
-     * Creates new form crud_enfermedades
-     */
+
+    insert_enfermedad inser = new insert_enfermedad();
+
+    //Objeto de la clase validaciones 
+    validaciones misvalidaciones = new validaciones();
+
     public crud_enfermedades() {
-        
+
         this.setTitle("Enfermedades");
         initComponents();
         this.setLocationRelativeTo(null);
@@ -34,64 +36,109 @@ public class crud_enfermedades extends javax.swing.JFrame {
     public void guardarEnfermedad() {
         insert_enfermedad enfermedades = new insert_enfermedad();
 
-        enfermedades.setNombre_enfermedad(txtbuscar.getText());
+        try {
+            if (validarInformacion() == true && ValidarDuplicados() == true) {
+                enfermedades.setNombre_enfermedad(txtEnfermedad.getText());
+                Limpiar();
 
-        if (enfermedades.insert_enfermedad()) {
-            System.out.println("Conexion Exitosa");
+                if (enfermedades.insert_enfermedad()) {
+                    System.out.println("Conexion Exitosa");
+                } else {
+                    System.out.println("Conexion Erronea");
+                }
+            }
+
+        } catch (NullPointerException e) {
+
+        }
+    }
+
+    public boolean validarInformacion() {
+        boolean validado = true;
+
+        if (txtEnfermedad.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre de la enfermedad");
         } else {
-            System.out.println("Conexion Erronea");
+            if (!misvalidaciones.validarNombresEspacios(txtEnfermedad.getText())) {
+                JOptionPane.showMessageDialog(this, "Nombre de la enfermedad incorrecto");
+                validado = false;
+            }
         }
 
+        return validado;
     }
-//     public void buscar_enfermedad() {
-//        String nombre_enfermedad = txtbuscar.getText();
-//        var enfermedadfiltro = new ArrayList<enfermedades>();
-//        inser.ListEnfermedad().forEach((e) -> {
-//            if (e.getNombre_enfermedad().equals(nombre_enfermedad)) {
-//                enfermedadfiltro.add(e);
-//            }
-//        });
-//
-//        String matriz[][] = new String[enfermedadfiltro.size()][2];
-//         for (int j = 0; j < enfermedadfiltro.size(); j++) {
-//            matriz[j][0] = enfermedadfiltro.get(j).getCodigo_enfermedad();
-//            matriz[j][1] = enfermedadfiltro.get(j).getNombre_enfermedad();
-//         }
-//         tabla_enfermedad.setModel(new javax.swing.table.DefaultTableModel(
-//                matriz,
-//                new String[]{
-//                    "Nombre de enfermedad"
-//                }
-//        ));
-//
-//    }
-       public void limpiarDatos(){
-        txtbuscar.setText("");
+
+    public void Limpiar() {
+        txtEnfermedad.setText("");
     }
-    public void llenar_alergias() {
+
+    public void limpiarDatos() {
+        txtEnfermedad.setText("");
+    }
+
+    public void llenar_enfermedades() {
 
         for (int i = 0; i < inser.ListEnfermedad().size(); i++) {
 
             List<enfermedades> com = inser.ListEnfermedad();
             com.stream().forEach(p -> {
-                txtbuscar.setText(p.getNombre_enfermedad().toString());
+                txtEnfermedad.setText(p.getNombre_enfermedad().toString());
 
             });
         }
 
     }
+
     public void cargarTabla() {
         DefaultTableModel tab = (DefaultTableModel) tabla_enfermedad.getModel();
         tab.setNumRows(0);
         List<enfermedades> com = inser.ListEnfermedad();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo_enfermedad(),p.getNombre_enfermedad()};
+            String[] cami = {p.getCodigo_enfermedad(), p.getNombre_enfermedad()};
             tab.addRow(cami);
 
         });
 
     }
 
+    public void buscar_enfermedad() {
+        String codigo = txtBuscar.getText();
+        var enfermedadfiltro = new ArrayList<enfermedades>();
+
+        inser.ListEnfermedad().forEach((e) -> {
+            if (e.getCodigo_enfermedad().equals(codigo)) {
+                enfermedadfiltro.add(e);
+            }
+        });
+        String matriz[][] = new String[enfermedadfiltro.size()][3];
+        for (int j = 0; j < enfermedadfiltro.size(); j++) {
+            matriz[j][0] = enfermedadfiltro.get(j).getCodigo_enfermedad();
+            matriz[j][1] = enfermedadfiltro.get(j).getNombre_enfermedad();
+
+        }
+        tabla_enfermedad.setModel(new javax.swing.table.DefaultTableModel(
+                matriz,
+                new String[]{
+                    "codigo", "Nombre"
+                }
+        ));
+    }
+    
+    public boolean ValidarDuplicados() { 
+        boolean validado = true;
+        insert_enfermedad inser = new insert_enfermedad();
+        List<enfermedades> com = inser.ListEnfermedad();
+
+        for (int i = 0; i < com.size(); i++) {
+            if(com.get(i).getNombre_enfermedad().equalsIgnoreCase(txtEnfermedad.getText())){
+                validado = false;
+                JOptionPane.showMessageDialog(null, "La enfermedad ya existe");
+            }
+        }
+        
+        return validado;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,14 +151,17 @@ public class crud_enfermedades extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtbuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         botonguardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_enfermedad = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtBuscar = new javax.swing.JTextField();
+        Buscar = new javax.swing.JButton();
+        Consultar = new javax.swing.JButton();
+        txtEnfermedad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -150,10 +200,6 @@ public class crud_enfermedades extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabla_enfermedad);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
-        jButton2.setText("CONSULTAR");
-
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-eliminar.png"))); // NOI18N
         jButton3.setText("ELIMINAR");
@@ -162,57 +208,89 @@ public class crud_enfermedades extends javax.swing.JFrame {
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         jButton4.setText("REGRESAR");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setText("Código:");
+
+        Buscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Buscar.setText("Buscar");
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
+
+        Consultar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Consultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
+        Consultar.setText("CONSULTAR");
+        Consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(botonguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(241, 241, 241)
+                .addComponent(jLabel1)
+                .addContainerGap(243, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jButton2)
-                        .addGap(139, 139, 139)
-                        .addComponent(jButton3)
-                        .addGap(153, 153, 153)
-                        .addComponent(jButton4))
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(Consultar)
+                .addGap(137, 137, 137)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(79, 79, 79))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(58, 58, 58)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85)
+                    .addComponent(botonguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(jLabel3)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Consultar)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 570));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -221,8 +299,16 @@ public class crud_enfermedades extends javax.swing.JFrame {
         // TODO add your handling code here:
         guardarEnfermedad();
         cargarTabla();
-        
+
     }//GEN-LAST:event_botonguardarActionPerformed
+
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        buscar_enfermedad();
+    }//GEN-LAST:event_BuscarActionPerformed
+
+    private void ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_ConsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,15 +346,18 @@ public class crud_enfermedades extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buscar;
+    private javax.swing.JButton Consultar;
     private javax.swing.JButton botonguardar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_enfermedad;
-    private javax.swing.JTextField txtbuscar;
+    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtEnfermedad;
     // End of variables declaration//GEN-END:variables
 }
