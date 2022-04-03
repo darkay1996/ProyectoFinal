@@ -1,21 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
+import clases.alergias;
+import conexion_bada.Insert_alergias;
+import clases.enfermedades;
+import conexion_bada.insert_enfermedad;
+import java.util.List;
+
 public class FichaMedica extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FichaMedica
-     */
     public FichaMedica() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        LLenarComboBoxAlergias();
+        LLenarComboBoxEnfermedades();
     }
 
     /**
@@ -58,12 +55,8 @@ public class FichaMedica extends javax.swing.JFrame {
         txtcorreofm = new javax.swing.JTextField();
         txtdireccionfm = new javax.swing.JTextField();
         txttelefonofm = new javax.swing.JTextField();
-        fecha_fichamedica = new com.toedter.calendar.JDateChooser();
         masculinoficha = new javax.swing.JRadioButton();
         femeninoficha = new javax.swing.JRadioButton();
-        combosangre = new javax.swing.JComboBox<>();
-        jLabel18 = new javax.swing.JLabel();
-        txtenfermedadcodigo = new javax.swing.JTextField();
         comboenfermedadficha = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         comboalergiaficha = new javax.swing.JComboBox<>();
@@ -76,9 +69,9 @@ public class FichaMedica extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        txtalergiaficha = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        txtTipoSangre = new javax.swing.JTextField();
+        txtFechaNacimiento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -179,11 +172,11 @@ public class FichaMedica extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel14.setText("Fecha de Nacimiento:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel15.setText("Tipo de Sangre:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -193,11 +186,10 @@ public class FichaMedica extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel17.setText("ENFERMEDADES:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, -1));
         jPanel1.add(txtcorreofm, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 210, 30));
         jPanel1.add(txtdireccionfm, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 280, 30));
         jPanel1.add(txttelefonofm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 160, 30));
-        jPanel1.add(fecha_fichamedica, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 100, 30));
 
         masculinoficha.setBackground(new java.awt.Color(204, 204, 204));
         gruposexoficha.add(masculinoficha);
@@ -211,23 +203,15 @@ public class FichaMedica extends javax.swing.JFrame {
         femeninoficha.setText("F");
         jPanel1.add(femeninoficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, -1, -1));
 
-        combosangre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccion  una opcion" }));
-        jPanel1.add(combosangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 130, 30));
-
-        jLabel18.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
-        jLabel18.setText("Codigo de Enfermedad:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
-        jPanel1.add(txtenfermedadcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 150, 30));
-
         comboenfermedadficha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Alzheimer", "Ictus. ", "Infarto", "Artrosis y artritis", "Hipertensión", "Parkinson" }));
-        jPanel1.add(comboenfermedadficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 140, 30));
+        jPanel1.add(comboenfermedadficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 160, 30));
 
         jLabel19.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel19.setText("ALERGIAS:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 460, 90, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 90, -1));
 
         comboalergiaficha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion" }));
-        jPanel1.add(comboalergiaficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 450, 140, 30));
+        jPanel1.add(comboalergiaficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 420, 160, 30));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 720, 20));
 
         jLabel20.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
@@ -260,15 +244,12 @@ public class FichaMedica extends javax.swing.JFrame {
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medical-history.png"))); // NOI18N
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        jLabel24.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
-        jLabel24.setText("Codigo de Alergias:");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, -1, -1));
-        jPanel1.add(txtalergiaficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, 160, 30));
-
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
         jButton1.setText("GUARDAR");
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 660, -1, -1));
+        jPanel1.add(txtTipoSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 310, 70, 30));
+        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 140, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 760));
 
@@ -290,6 +271,26 @@ public class FichaMedica extends javax.swing.JFrame {
     private void txtcodigofichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigofichaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcodigofichaActionPerformed
+
+    //Llenar alergias
+    public void LLenarComboBoxAlergias() {
+        Insert_alergias inser = new Insert_alergias();
+        List<alergias> com = inser.ListaAlergias();
+
+        for (int i = 0; i < com.size(); i++) {
+            comboalergiaficha.addItem(com.get(i).getNombre_alergia());
+        }
+    }
+
+    //Llenar enfermedades
+    public void LLenarComboBoxEnfermedades() {
+        insert_enfermedad inser = new insert_enfermedad();
+        List<enfermedades> com = inser.ListEnfermedad();
+
+        for (int i = 0; i < com.size(); i++) {
+            comboenfermedadficha.addItem(com.get(i).getNombre_enfermedad());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -329,8 +330,6 @@ public class FichaMedica extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboalergiaficha;
     private javax.swing.JComboBox<String> comboenfermedadficha;
-    private javax.swing.JComboBox<String> combosangre;
-    private com.toedter.calendar.JDateChooser fecha_fichamedica;
     private javax.swing.JRadioButton femeninoficha;
     private javax.swing.ButtonGroup gruposexoficha;
     private javax.swing.JButton jButton1;
@@ -345,14 +344,12 @@ public class FichaMedica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -366,14 +363,14 @@ public class FichaMedica extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JRadioButton masculinoficha;
-    private javax.swing.JTextField txtalergiaficha;
+    private javax.swing.JTextField txtFechaNacimiento;
+    private javax.swing.JTextField txtTipoSangre;
     private javax.swing.JTextField txtapellidofm;
     private javax.swing.JTextField txtcedulafm;
     private javax.swing.JTextField txtcodigoficha;
     private javax.swing.JTextField txtcodigopaciente;
     private javax.swing.JTextField txtcorreofm;
     private javax.swing.JTextField txtdireccionfm;
-    private javax.swing.JTextField txtenfermedadcodigo;
     private javax.swing.JTextField txtnombrefm;
     private javax.swing.JTextArea txtobservacionesficha;
     private javax.swing.JTextField txtsegundoapellidofm;
