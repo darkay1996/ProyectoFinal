@@ -22,14 +22,14 @@ public class Insert_administrador extends administrador {
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
-    usuario miusuario = new usuario();
+//    usuario miusuario = new usuario();
 
-    public boolean InsertarUsuario() {
-        String sql = "INSERT INTO usuario(\n"
-                + "	us_usuario,us_contraseña)\n"
-                + "	VALUES ('" + miusuario.getUsuario() + "', '" + miusuario.getContraseña() + "');";
-        return cone.InsertUpdateDeleteAcciones(sql);
-    }
+//    public boolean InsertarUsuario() {
+//        String sql = "INSERT INTO usuario(\n"
+//                + "	us_usuario,us_contraseña)\n"
+//                + "	VALUES ('" + miusuario.getUsuario() + "', '" + miusuario.getContraseña() + "');";
+//        return cone.InsertUpdateDeleteAcciones(sql);
+//    }
 
     public boolean InsertarAdministrador() {
         String sql = "INSERT INTO administrador(\n"
@@ -71,21 +71,7 @@ public class Insert_administrador extends administrador {
         }
     }
 
-    public boolean validarNomduplicado(String usuario) throws SQLException {
-        boolean validar = false;
-        int codigo = 0;
-        String sqls = "select count(*) from usuario where us_usuario='" + usuario + "';";
-        ResultSet dup = cone.selectConsulta(sqls);
-//        try {catch
-        while (dup.next()) {
-            codigo = dup.getInt("count");
-        }
-        if (codigo == 0) {
-            validar = true;
-        }
-//        System.out.println("repetido=" + codigo);
-        return validar;
-    }
+
 
     public boolean validarduplicado(String cedula) throws SQLException {
         boolean validar = false;
@@ -99,7 +85,7 @@ public class Insert_administrador extends administrador {
         if (codigo == 0) {
             validar = true;
         }
-//        System.out.println("repetido=" + codigo);
+        System.out.println("repetido=" + codigo);
         return validar;
     }
 

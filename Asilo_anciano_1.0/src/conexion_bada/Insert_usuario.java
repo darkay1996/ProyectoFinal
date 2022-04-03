@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//Prueba
+// Prueba
+
 public class Insert_usuario extends usuario {
 
     Conexion cone = new Conexion();
@@ -22,7 +23,7 @@ public class Insert_usuario extends usuario {
     }
 
     public List<usuario> ListaUsuarios() {
-        String sqls = "select * from persona per, administrador admi, usuario us where per.per_cedula= admi.admin_cedula and  us.us_codigo = admin_codigo_usuario;";
+        String sqls = "select us_usuario,us_contrasena from persona per, administrador admi, usuario us where per.per_cedula= admi.admin_cedula and  us.us_codigo = admin_codigo_usuario;";
         ResultSet rs = cone.selectConsulta(sqls);
         List<usuario> usu = new ArrayList<>();
         try {
@@ -53,4 +54,22 @@ public class Insert_usuario extends usuario {
         }
         return codigo;
     }
+    
+    
+        public boolean validarNomduplicado(String usuario) throws SQLException {
+        boolean validar = false;
+        int codigo = 0;
+        String sqls = "select count(*) from usuario where us_usuario='" + usuario + "';";
+        ResultSet dup = cone.selectConsulta(sqls);
+//        try {catch
+        while (dup.next()) {
+            codigo = dup.getInt("count");
+        }
+        if (codigo == 0) {
+            validar = true;
+        }
+//        System.out.println("repetido=" + codigo);
+        return validar;
+    }
 }
+

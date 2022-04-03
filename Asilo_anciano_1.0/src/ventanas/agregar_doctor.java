@@ -34,71 +34,78 @@ public class agregar_doctor extends javax.swing.JFrame {
 
         grupo_sexo = new javax.swing.ButtonGroup();
         jCalendar1 = new com.toedter.calendar.JCalendar();
+        jPanel1 = new javax.swing.JPanel();
+        Fecha_Nacimiento_doctor = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        text_celular_doctor = new javax.swing.JTextField();
+        text_email_doctor = new javax.swing.JTextField();
+        text_PrimerNombre_doctor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        text_cedula_doctor = new javax.swing.JTextField();
-        text_PrimerNombre_doctor = new javax.swing.JTextField();
-        text_SegundoNombre_doctor = new javax.swing.JTextField();
         text_PrimerApellido_doctor = new javax.swing.JTextField();
-        text_SegundoApellido_doctor = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        jSeparator5 = new javax.swing.JSeparator();
-        jLabel13 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         Femenino_doctor = new javax.swing.JRadioButton();
+        text_SegundoApellido_doctor = new javax.swing.JTextField();
         Masculino_doctor = new javax.swing.JRadioButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        text_email_doctor = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        text_celular_doctor = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         combo_especialidad_doctor = new javax.swing.JComboBox<>();
         Guardar_doctor = new javax.swing.JButton();
         Regresar_doctor = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         text_direccion_doctor = new javax.swing.JTextField();
-        jSeparator7 = new javax.swing.JSeparator();
-        jLabel15 = new javax.swing.JLabel();
         combo_sangre_doctor = new javax.swing.JComboBox<>();
+        text_cedula_doctor = new javax.swing.JTextField();
+        text_SegundoNombre_doctor = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtcodigo_doctor = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        Fecha_Nacimiento_doctor = new com.toedter.calendar.JDateChooser();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        txtnuevo_usuario = new javax.swing.JTextField();
+        txtnueva_contrasena = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 255));
+        jPanel1.setBackground(new java.awt.Color(240, 220, 144));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRAR DOCTOR");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel2.setText("Cedula:");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setText("Celular:");
 
-        jLabel3.setText("Primer Nombre:");
-
-        jLabel4.setText("Segundo Nombre:");
-
-        jLabel5.setText("Primer Apellido:");
-
-        jLabel6.setText("Segundo Apellido:");
-
-        text_cedula_doctor.setForeground(new java.awt.Color(102, 102, 102));
-        text_cedula_doctor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_cedula_doctor.setText("Ingrese la cedula");
-        text_cedula_doctor.addMouseListener(new java.awt.event.MouseAdapter() {
+        text_celular_doctor.setForeground(new java.awt.Color(102, 102, 102));
+        text_celular_doctor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        text_celular_doctor.setText("Ingrese el celular");
+        text_celular_doctor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                text_cedula_doctorMousePressed(evt);
+                text_celular_doctorMousePressed(evt);
             }
         });
-        text_cedula_doctor.addActionListener(new java.awt.event.ActionListener() {
+
+        text_email_doctor.setForeground(new java.awt.Color(102, 102, 102));
+        text_email_doctor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        text_email_doctor.setText("Ingrese el E-mail");
+        text_email_doctor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_email_doctorMousePressed(evt);
+            }
+        });
+        text_email_doctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                text_cedula_doctorActionPerformed(evt);
+                text_email_doctorActionPerformed(evt);
             }
         });
 
@@ -116,14 +123,17 @@ public class agregar_doctor extends javax.swing.JFrame {
             }
         });
 
-        text_SegundoNombre_doctor.setForeground(new java.awt.Color(102, 102, 102));
-        text_SegundoNombre_doctor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_SegundoNombre_doctor.setText("Ingrese el Segundo nombre");
-        text_SegundoNombre_doctor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                text_SegundoNombre_doctorMousePressed(evt);
-            }
-        });
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("Cedula:");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setText("Primer Nombre:");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setText("Segundo Nombre:");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setText("Primer Apellido:");
 
         text_PrimerApellido_doctor.setForeground(new java.awt.Color(102, 102, 102));
         text_PrimerApellido_doctor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -133,6 +143,14 @@ public class agregar_doctor extends javax.swing.JFrame {
                 text_PrimerApellido_doctorMousePressed(evt);
             }
         });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setText("Segundo Apellido:");
+
+        grupo_sexo.add(Femenino_doctor);
+        Femenino_doctor.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Femenino_doctor.setText("F");
+        Femenino_doctor.setOpaque(false);
 
         text_SegundoApellido_doctor.setForeground(new java.awt.Color(102, 102, 102));
         text_SegundoApellido_doctor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -148,52 +166,29 @@ public class agregar_doctor extends javax.swing.JFrame {
             }
         });
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel13.setText("Datos Personales");
-
-        grupo_sexo.add(Femenino_doctor);
-        Femenino_doctor.setText("F");
-
         grupo_sexo.add(Masculino_doctor);
+        Masculino_doctor.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Masculino_doctor.setText("M");
+        Masculino_doctor.setOpaque(false);
         Masculino_doctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Masculino_doctorActionPerformed(evt);
             }
         });
 
-        jLabel8.setText("Sexo");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setText("Sexo:");
 
-        jLabel9.setText("E-mail");
-
-        text_email_doctor.setForeground(new java.awt.Color(102, 102, 102));
-        text_email_doctor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_email_doctor.setText("Ingrese el E-mail");
-        text_email_doctor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                text_email_doctorMousePressed(evt);
-            }
-        });
-
-        jLabel10.setText("Celular");
-
-        text_celular_doctor.setForeground(new java.awt.Color(102, 102, 102));
-        text_celular_doctor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_celular_doctor.setText("Ingrese el celular");
-        text_celular_doctor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                text_celular_doctorMousePressed(evt);
-            }
-        });
-
-        jLabel11.setText("Especialidad");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setText("E-mail:");
 
         combo_especialidad_doctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion" }));
 
         Guardar_doctor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Guardar_doctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
-        Guardar_doctor.setText("GUARDAR");
+        Guardar_doctor.setToolTipText("GUARDAR");
+        Guardar_doctor.setBorder(null);
+        Guardar_doctor.setOpaque(false);
         Guardar_doctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Guardar_doctorActionPerformed(evt);
@@ -202,13 +197,16 @@ public class agregar_doctor extends javax.swing.JFrame {
 
         Regresar_doctor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Regresar_doctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        Regresar_doctor.setText("REGRESAR");
+        Regresar_doctor.setToolTipText("REGRESAR");
+        Regresar_doctor.setBorder(null);
+        Regresar_doctor.setOpaque(false);
         Regresar_doctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Regresar_doctorActionPerformed(evt);
             }
         });
 
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setText("Dirección:");
 
         text_direccion_doctor.setForeground(new java.awt.Color(102, 102, 102));
@@ -225,200 +223,286 @@ public class agregar_doctor extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("Tipo de sangre");
-
         combo_sangre_doctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" }));
 
-        jLabel16.setText("Fecha de nacimiento:");
+        text_cedula_doctor.setForeground(new java.awt.Color(102, 102, 102));
+        text_cedula_doctor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        text_cedula_doctor.setText("Ingrese la cedula");
+        text_cedula_doctor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_cedula_doctorMousePressed(evt);
+            }
+        });
+        text_cedula_doctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_cedula_doctorActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        text_SegundoNombre_doctor.setForeground(new java.awt.Color(102, 102, 102));
+        text_SegundoNombre_doctor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        text_SegundoNombre_doctor.setText("Ingrese el Segundo nombre");
+        text_SegundoNombre_doctor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_SegundoNombre_doctorMousePressed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setText("Datos Personales");
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel12.setText("Codigo:");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setText("Fecha de Nacimiento:");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setText("Especialidad:");
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel15.setText("Tipo de Sangre:");
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel16.setText("CREAR USUARIO");
+        jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel17.setText("NUEVO USUARIO:");
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel18.setText("NUEVA CONTRASEÑA:");
+
+        txtnuevo_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnuevo_usuarioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel13)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel14)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator6)
+                .addGap(24, 24, 24))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(text_direccion_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(text_PrimerNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(text_SegundoNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(text_PrimerApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(text_SegundoApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(text_cedula_doctor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Fecha_Nacimiento_doctor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(combo_especialidad_doctor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(combo_sangre_doctor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(42, 42, 42))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(53, 53, 53)
+                                .addComponent(txtcodigo_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(382, 382, 382)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
-                                        .addGap(107, 107, 107))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11)
-                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(34, 34, 34)
                                         .addComponent(Masculino_doctor)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Femenino_doctor)))
-                                .addContainerGap())))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel10))
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(text_celular_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(text_email_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel15)
-                        .addGap(68, 68, 68))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(Guardar_doctor)
-                        .addGap(46, 46, 46)
-                        .addComponent(Regresar_doctor)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(text_cedula_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(text_PrimerNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Fecha_Nacimiento_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(text_SegundoNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(82, 82, 82)
-                                .addComponent(jLabel8)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(Femenino_doctor))
+                                    .addComponent(jLabel11)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addGap(65, 65, 65)
+                                        .addComponent(Fecha_Nacimiento_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(201, 201, 201))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(text_PrimerApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Masculino_doctor)
-                                .addComponent(Femenino_doctor)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(text_SegundoApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_especialidad_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(text_direccion_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(text_email_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(text_celular_doctor))
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Guardar_doctor)
-                            .addComponent(Regresar_doctor))
-                        .addGap(159, 159, 159))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel9))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(combo_sangre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel9))
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(text_PrimerNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(text_cedula_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(text_SegundoNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(text_PrimerApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(text_SegundoApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(text_direccion_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(text_email_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(48, 48, 48)
+                                        .addComponent(text_celular_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(combo_especialidad_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel15)
+                                            .addGap(42, 42, 42)
+                                            .addComponent(combo_sangre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(42, 42, 42)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel18)
+                                            .addComponent(jLabel17))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtnuevo_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtnueva_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(Guardar_doctor)
+                        .addGap(94, 94, 94)
+                        .addComponent(Regresar_doctor))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(357, 357, 357)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(text_cedula_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel12))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtcodigo_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Fecha_Nacimiento_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(text_PrimerNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(text_SegundoNombre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Masculino_doctor)
+                            .addComponent(Femenino_doctor))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(combo_especialidad_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(combo_sangre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))
+                        .addGap(112, 112, 112))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(text_PrimerApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(text_SegundoApellido_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(text_celular_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(27, 27, 27)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel14)
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(text_email_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Regresar_doctor)
+                            .addComponent(Guardar_doctor)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(text_direccion_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel17)
+                            .addComponent(txtnuevo_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel18)
+                            .addComponent(txtnueva_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(626, 626, 626))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtnuevo_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnuevo_usuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnuevo_usuarioActionPerformed
+
+    private void text_SegundoNombre_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_SegundoNombre_doctorMousePressed
+        text_SegundoNombre_doctor.setText("");
+        text_SegundoNombre_doctor.setForeground(Color.BLACK);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_SegundoNombre_doctorMousePressed
+
+    private void text_cedula_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_cedula_doctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_cedula_doctorActionPerformed
 
     private void text_cedula_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_cedula_doctorMousePressed
 
@@ -428,58 +512,14 @@ public class agregar_doctor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_text_cedula_doctorMousePressed
 
-    private void text_cedula_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_cedula_doctorActionPerformed
+    private void text_direccion_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_direccion_doctorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_text_cedula_doctorActionPerformed
+    }//GEN-LAST:event_text_direccion_doctorActionPerformed
 
-    private void text_PrimerNombre_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_PrimerNombre_doctorMousePressed
-        text_PrimerNombre_doctor.setText("");
-        text_PrimerNombre_doctor.setForeground(Color.BLACK);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text_PrimerNombre_doctorMousePressed
-
-    private void text_PrimerNombre_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_PrimerNombre_doctorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text_PrimerNombre_doctorActionPerformed
-
-    private void text_SegundoNombre_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_SegundoNombre_doctorMousePressed
-        text_SegundoNombre_doctor.setText("");
-        text_SegundoNombre_doctor.setForeground(Color.BLACK);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text_SegundoNombre_doctorMousePressed
-
-    private void text_PrimerApellido_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_PrimerApellido_doctorMousePressed
-        text_PrimerApellido_doctor.setText("");
-        text_PrimerApellido_doctor.setForeground(Color.BLACK);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text_PrimerApellido_doctorMousePressed
-
-    private void text_SegundoApellido_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_SegundoApellido_doctorMousePressed
-        text_SegundoApellido_doctor.setText("");
-        text_SegundoApellido_doctor.setForeground(Color.BLACK);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text_SegundoApellido_doctorMousePressed
-
-    private void text_SegundoApellido_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_SegundoApellido_doctorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text_SegundoApellido_doctorActionPerformed
-
-    private void Masculino_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Masculino_doctorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Masculino_doctorActionPerformed
-
-    private void text_email_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_email_doctorMousePressed
-         text_email_doctor.setText("");
-        text_email_doctor.setForeground(Color.BLACK);
-    }//GEN-LAST:event_text_email_doctorMousePressed
-
-    private void text_celular_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_celular_doctorMousePressed
-        text_celular_doctor.setText("");
-        text_celular_doctor.setForeground(Color.BLACK);
-    }//GEN-LAST:event_text_celular_doctorMousePressed
+    private void text_direccion_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_direccion_doctorMousePressed
+        text_direccion_doctor.setText("");
+        text_direccion_doctor.setForeground(Color.BLACK);
+    }//GEN-LAST:event_text_direccion_doctorMousePressed
 
     private void Regresar_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regresar_doctorActionPerformed
         this.dispose();
@@ -489,17 +529,55 @@ public class agregar_doctor extends javax.swing.JFrame {
     private void Guardar_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_doctorActionPerformed
         RegistrarDoctor();
         limpiar();
-        
+
     }//GEN-LAST:event_Guardar_doctorActionPerformed
 
-    private void text_direccion_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_direccion_doctorMousePressed
-        text_direccion_doctor.setText("");
-        text_direccion_doctor.setForeground(Color.BLACK);
-    }//GEN-LAST:event_text_direccion_doctorMousePressed
-
-    private void text_direccion_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_direccion_doctorActionPerformed
+    private void Masculino_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Masculino_doctorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_text_direccion_doctorActionPerformed
+    }//GEN-LAST:event_Masculino_doctorActionPerformed
+
+    private void text_SegundoApellido_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_SegundoApellido_doctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_SegundoApellido_doctorActionPerformed
+
+    private void text_SegundoApellido_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_SegundoApellido_doctorMousePressed
+        text_SegundoApellido_doctor.setText("");
+        text_SegundoApellido_doctor.setForeground(Color.BLACK);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_SegundoApellido_doctorMousePressed
+
+    private void text_PrimerApellido_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_PrimerApellido_doctorMousePressed
+        text_PrimerApellido_doctor.setText("");
+        text_PrimerApellido_doctor.setForeground(Color.BLACK);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_PrimerApellido_doctorMousePressed
+
+    private void text_PrimerNombre_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_PrimerNombre_doctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_PrimerNombre_doctorActionPerformed
+
+    private void text_PrimerNombre_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_PrimerNombre_doctorMousePressed
+        text_PrimerNombre_doctor.setText("");
+        text_PrimerNombre_doctor.setForeground(Color.BLACK);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_PrimerNombre_doctorMousePressed
+
+    private void text_email_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_email_doctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_email_doctorActionPerformed
+
+    private void text_email_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_email_doctorMousePressed
+        text_email_doctor.setText("");
+        text_email_doctor.setForeground(Color.BLACK);
+    }//GEN-LAST:event_text_email_doctorMousePressed
+
+    private void text_celular_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_celular_doctorMousePressed
+        text_celular_doctor.setText("");
+        text_celular_doctor.setForeground(Color.BLACK);
+    }//GEN-LAST:event_text_celular_doctorMousePressed
 
     public void RegistrarDoctor() {
         
@@ -610,23 +688,24 @@ public class agregar_doctor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTextField text_PrimerApellido_doctor;
     private javax.swing.JTextField text_PrimerNombre_doctor;
     private javax.swing.JTextField text_SegundoApellido_doctor;
@@ -635,5 +714,8 @@ public class agregar_doctor extends javax.swing.JFrame {
     private javax.swing.JTextField text_celular_doctor;
     private javax.swing.JTextField text_direccion_doctor;
     private javax.swing.JTextField text_email_doctor;
+    private javax.swing.JTextField txtcodigo_doctor;
+    private javax.swing.JTextField txtnueva_contrasena;
+    private javax.swing.JTextField txtnuevo_usuario;
     // End of variables declaration//GEN-END:variables
 }
