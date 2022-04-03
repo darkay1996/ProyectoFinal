@@ -674,6 +674,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "El administrador ya existe en el sistema");
+                    txt_cedula_administrador.setText("");
 
                 }
             }
