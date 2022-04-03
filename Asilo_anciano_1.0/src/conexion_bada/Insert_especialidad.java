@@ -1,5 +1,5 @@
-
 package conexion_bada;
+
 import clases.especialidad;
 import conexion_bada.Conexion;
 import java.sql.ResultSet;
@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Insert_especialidad extends especialidad{
-    
+public class Insert_especialidad extends especialidad {
+
     Conexion cone = new Conexion();
 
     public boolean InsertarEspecialidad() {
         String sql = "INSERT INTO especialidades(\n"
                 + "	esp_nombre_)\n"
-                + "	VALUES ('" + getNombre_especialidad()+ "');";
+                + "	VALUES ('" + getNombre_especialidad() + "');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
-    
+
     public List<especialidad> ListaEspecialidades() {
         String sqls = "select * from especialidades;";
         ResultSet rs = cone.selectConsulta(sqls);
