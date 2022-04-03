@@ -44,16 +44,16 @@ public class Insert_doctor extends doctor {
                 mi_doc.setEspecialidad(rs.getString("doc_especialidad"));
                 mi_doc.setCod_usuario(rs.getInt("doc_codigo_usuario"));
 
-                mi_doc.setPri_nomb(rs.getString("doc_primer_nombre"));
-                mi_doc.setSeg_nombre(rs.getString("doc_segundo_nombre"));
-                mi_doc.setPrim_apell(rs.getString("doc_primer_apellido"));
-                mi_doc.setSeg_apelli(rs.getString("doc_segundo_apellido"));
-                mi_doc.setCorreo(rs.getString("doc_correo"));
-                mi_doc.setGenero(rs.getString("doc_genero"));
-                mi_doc.setFecha_Nacimiento(rs.getString("doc_fecha_nacimiento"));
-                mi_doc.setDireccion(rs.getString("doc_direccion"));
-                mi_doc.setTelefono(rs.getString("doc_telefono"));
-                mi_doc.setTipo_sangre(rs.getString("doc_tipo_sangre"));
+                mi_doc.setPri_nomb(rs.getString("per_primer_nombre"));
+                mi_doc.setSeg_nombre(rs.getString("per_segundo_nombre"));
+                mi_doc.setPrim_apell(rs.getString("per_primer_apellido"));
+                mi_doc.setSeg_apelli(rs.getString("per_segundo_apellido"));
+                mi_doc.setCorreo(rs.getString("per_correo"));
+                mi_doc.setGenero(rs.getString("per_genero"));
+                mi_doc.setFecha_Nacimiento(rs.getString("per_fecha_nacimiento"));
+                mi_doc.setDireccion(rs.getString("per_direccion"));
+                mi_doc.setTelefono(rs.getString("per_telefono"));
+                mi_doc.setTipo_sangre(rs.getString("per_tipo_sangre"));
 
                 doc.add(mi_doc);
             }
