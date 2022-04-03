@@ -1,6 +1,7 @@
 package conexion_bada;
 
 import clases.enfermera;
+import clases.usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,22 +9,26 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Carlos
- */
-public class Insert_enfermera extends enfermera{
-    
+public class Insert_enfermera extends enfermera {
+
     Conexion cone = new Conexion();
-     public boolean InsertarEnfermera() {
-        String sql = "INSERT INTO enfermera(\n"
-                + "	enfer_codigo, enfer_cedula,enfer_primer_nombre, enfer_segundo_nombre,enfer_primer_apellido, enfer_segundo_apellido, enfer_correo,enfer_genero, enfer_direccion,enfer_telefono,enfer_tipo_sangre,enfer_anio_experiencia,enfer_fecha_nacimiento)\n"
-                + "	VALUES ('"+getCodigo()+"','"+getCedula()+"', '"+getPri_nomb()+"', '"+getSeg_nombre()+"', '"+getPrim_apell()+"', '"+getSeg_apelli()+"', '"+getCorreo()+"','"+getGenero()+"', '"+getDireccion()+"','"+getTelefono()+"','"+getTipo_sangre()+"','"+getAño_ecperiencia()+"','"+getFecha_Nacimiento()+"');";
+
+    public boolean InsertarPersona() {
+        String sql = "INSERT INTO persona(\n"
+                + "	per_cedula, per_primer_nombre,per_segundo_nombre, per_primer_apellido,per_segundo_apellido, per_correo, per_genero, per_direccion,per_tipo_sangre,per_telefono,per_fecha_nacimiento)\n"
+                + "	VALUES ('" + getCedula() + "', '" + getPri_nomb() + "', '" + getSeg_nombre() + "', '" + getPrim_apell() + "', '" + getSeg_apelli() + "', '" + getCorreo() + "', '" + getGenero() + "', '" + getDireccion() + "', '" + getTipo_sangre() + "','" + getTelefono() + "','" + getFecha_Nacimiento() + "');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
-     
-     public List<enfermera> ListaEnfermera() {
-        String sqls = "select * from enfermera;";
+
+    public boolean InsertarEnfermera() {
+        String sql = "INSERT INTO enfermera(\n"
+                + "	enfer_cedula,enfer_anio_experiencia,enfer_codigo_usuario)\n"
+                + "	VALUES ('" + getCedula() + "','" + getAnio_experiencia() + "','" + getCod_usuario() + "');";
+        return cone.InsertUpdateDeleteAcciones(sql);
+    }
+
+    public List<enfermera> ListaEnfermera() {
+        String sqls = "select * from persona per, enfermera enfer, usuario us where per.per_cedula= enfer.enfer_cedula and  us.us_codigo = enfer_codigo_usuario;";
         ResultSet rs = cone.selectConsulta(sqls);
         List<enfermera> enfer = new ArrayList<>();
         try {
@@ -31,18 +36,20 @@ public class Insert_enfermera extends enfermera{
                 enfermera mi_enfer = new enfermera();
                 mi_enfer.setCedula(rs.getString("enfer_codigo"));
                 mi_enfer.setCedula(rs.getString("enfer_cedula"));
-                mi_enfer.setPri_nomb(rs.getString("enfer_primer_nombre"));
-                mi_enfer.setSeg_nombre(rs.getString("enfer_segundo_nombre"));
-                mi_enfer.setPrim_apell(rs.getString("enfer_primer_apellido"));
-                mi_enfer.setSeg_apelli(rs.getString("enfer_segundo_apellido"));
-                mi_enfer.setCorreo(rs.getString("enfer_correo"));
-                mi_enfer.setGenero(rs.getString("enfer_genero"));            
-                
-                mi_enfer.setDireccion(rs.getString("enfer_direccion"));
-                mi_enfer.setTelefono(rs.getString("enfer_telefono"));
-                mi_enfer.setTipo_sangre(rs.getString("enfer_tipo_sangre"));
-                mi_enfer.setAño_ecperiencia(rs.getString("enfer_anio_experiencia"));
-                mi_enfer.setFecha_Nacimiento(rs.getString("enfer_fecha_nacimiento"));
+                mi_enfer.setAnio_experiencia(rs.getString("enfer_anio_experiencia"));
+                mi_enfer.setCod_usuario(rs.getInt("enfer_codigo_usuario"));
+
+                mi_enfer.setPri_nomb(rs.getString("per_primer_nombre"));
+                mi_enfer.setSeg_nombre(rs.getString("per_segundo_nombre"));
+                mi_enfer.setPrim_apell(rs.getString("per_primer_apellido"));
+                mi_enfer.setSeg_apelli(rs.getString("per_segundo_apellido"));
+                mi_enfer.setCorreo(rs.getString("per_correo"));
+                mi_enfer.setGenero(rs.getString("per_genero"));
+                mi_enfer.setFecha_Nacimiento(rs.getString("per_fecha_nacimiento"));
+                mi_enfer.setDireccion(rs.getString("per_direccion"));
+                mi_enfer.setTelefono(rs.getString("per_telefono"));
+                mi_enfer.setTipo_sangre(rs.getString("per_tipo_sangre"));
+
                 enfer.add(mi_enfer);
             }
             rs.close();
@@ -51,5 +58,21 @@ public class Insert_enfermera extends enfermera{
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
+
+    public boolean validarduplicado(String cedula) throws SQLException {
+        boolean validar = false;
+        int codigo = 0;
+        String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
+        ResultSet dup = cone.selectConsulta(sqls);
+//        try {catch
+        while (dup.next()) {
+            codigo = dup.getInt("count");
+        }
+        if (codigo == 0) {
+            validar = true;
+        }
+        System.out.println("repetido=" + codigo);
+        return validar;
     }
 }
