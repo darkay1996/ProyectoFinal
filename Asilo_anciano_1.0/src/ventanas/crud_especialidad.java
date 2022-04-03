@@ -265,7 +265,7 @@ public class crud_especialidad extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la especialidad");
         } else {
-            if (!misvalidaciones.validar_nombre_apellido(txtespecialidad.getText())) {
+            if (!misvalidaciones.validarNombresEspacios(txtespecialidad.getText())) {
                 JOptionPane.showMessageDialog(this, "Nombre de la especialidad incorrecto");
                 validado = false;
             }
