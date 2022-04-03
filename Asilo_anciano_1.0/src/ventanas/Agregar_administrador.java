@@ -310,7 +310,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setText("NUEVA CONTRASEÑA:");
 
-        txt_contrasena.setToolTipText("debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20");
+        txt_contrasena.setToolTipText("Debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -674,6 +674,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "El administrador ya existe en el sistema");
+                    txt_cedula_administrador.setText("");
 
                 }
             }
@@ -687,7 +688,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
         if (txt_cedula_administrador.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese la cedula del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula");
         } else {
             if (!misvalidaciones.validar_cedula(txt_cedula_administrador.getText())) {
                 JOptionPane.showMessageDialog(this, "Cedula incorrecta");
@@ -697,7 +698,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 //
         if (txt_PrimerNombre_administrador.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese el nombre del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese el primer nombre");
         } else {
             if (!misvalidaciones.validar_nombre_apellido(txt_PrimerNombre_administrador.getText())) {
                 JOptionPane.showMessageDialog(this, "Primer nombre incorrecto");
@@ -706,7 +707,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         }
         if (txt_SegundoNombre_administrador.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese el nombre del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese el segundo nombre");
         } else {
             if (!misvalidaciones.validar_nombre_apellido(txt_SegundoNombre_administrador.getText())) {
                 JOptionPane.showMessageDialog(this, "Segundo nombre incorrecto");
@@ -715,7 +716,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         }
         if (txt_PrimerApellido_administrador.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese el apellido del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese el primer apellido");
         } else {
             if (!misvalidaciones.validar_nombre_apellido(txt_PrimerApellido_administrador.getText())) {
                 JOptionPane.showMessageDialog(this, "Primer apellido incorrecto");
@@ -724,7 +725,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         }
         if (txt_SegundoApellido_administrador.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese el apellido del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese el segundo apellido");
         } else {
             if (!misvalidaciones.validar_nombre_apellido(txt_SegundoApellido_administrador.getText())) {
                 JOptionPane.showMessageDialog(this, "Segundo apellido incorrecto");
@@ -733,7 +734,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         }
         if (txt_direccion_administrador.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese la direccion del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese la direccion");
         } else {
             if (!misvalidaciones.validarDireccion(txt_direccion_administrador.getText())) {
                 JOptionPane.showMessageDialog(this, "Direccion invalida");
@@ -742,7 +743,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         }
         if (txt_celular_administrador.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese el celular del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese el celular");
         } else {
             if (!misvalidaciones.validarTelefono(txt_celular_administrador.getText())) {
                 JOptionPane.showMessageDialog(this, "Celular invalido");
@@ -751,7 +752,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         }
         if (txt_email_administrador.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese el correo del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese el correo");
         } else {
             if (!misvalidaciones.validarCorreo(txt_email_administrador.getText())) {
                 JOptionPane.showMessageDialog(this, "Correo invalido");
@@ -761,7 +762,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
         if (txt_usuario.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese el correo del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese un usuario");
         } else {
             if (!misvalidaciones.validarUsuario(txt_usuario.getText())) {
                 JOptionPane.showMessageDialog(this, "Usuario invalido");
@@ -771,7 +772,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
         if (txt_contrasena.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese el correo del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese una contraseña");
         } else {
             if (!misvalidaciones.validarContrasena(txt_contrasena.getText())) {
                 JOptionPane.showMessageDialog(this, "Contraseña invalida");
@@ -781,10 +782,10 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
         if (txt_nivelDeeducacion_administrador.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese el correo del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese el nivel de educacion");
         } else {
             if (!misvalidaciones.validarNombresEspacios(txt_nivelDeeducacion_administrador.getText())) {
-                JOptionPane.showMessageDialog(this, "Correo invalido");
+                JOptionPane.showMessageDialog(this, "Nivel de educacion invalido");
                 validado = false;
             }
         }

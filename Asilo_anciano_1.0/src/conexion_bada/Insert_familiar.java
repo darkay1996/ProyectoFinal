@@ -17,7 +17,7 @@ public class Insert_familiar extends familiar{
     public boolean InsertarFamiliar() {
         String sql = "INSERT INTO familiar(\n"
                 + "	fam_codigo_visit, fam_cedula,fam_primer_nombre, fam_segundo_nombre,fam_primer_apellido, fam_segundo_apellido, fam_correo,fam_genero, fam_direccion,fam_tipo_sangre,fam_cod_paciente,fam_hora_inicio_visit,fam_hora_fin_visit,fam_telefono,fam_fecha_nacimiento,fam_fecha_visit)\n"
-                + "	VALUES ('" + getCodigo() + "', '" + getCedula() + "', '" + getPri_nomb() + "', '" + getSeg_nombre() + "', '" + getPrim_apell() + "', '" + getSeg_apelli() + "', '" + getCorreo() + "', '" + getGenero() + "', '" + getDireccion() + "','" + getTipo_sangre() + "','" + getCodigo_de_paciente() + "','" + getHora_inicio() + "','" + getHora_fin()+ "','" + getTelefono() + "','" + getFecha_Nacimiento() + "','" + getFecha_de_visita() + "');";
+                + "	VALUES ('" + getCodigo() + "', '" + getCedula() + "', '" + getPri_nomb() + "', '" + getSeg_nombre() + "', '" + getPrim_apell() + "', '" + getSeg_apelli() + "', '" + getCorreo() + "', '" + getGenero() + "', '" + getDireccion() + "','" + getTipo_sangre() + "','" + getCodigo_de_paciente() + "','" +"','" + getTelefono() + "','" + getFecha_Nacimiento()+ "');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
     
@@ -40,11 +40,10 @@ public class Insert_familiar extends familiar{
                 mi_famili.setTipo_sangre(rs.getString("fam_tipo_sangre"));
                 
                 mi_famili.setCodigo_de_paciente(rs.getString("fam_cod_paciente"));
-                mi_famili.setHora_inicio(rs.getString("fam_hora_inicio_visit"));
-                mi_famili.setHora_fin(rs.getString("fam_hora_fin_visit"));
+
                 mi_famili.setTelefono(rs.getString("fam_telefono"));
                 mi_famili.setFecha_Nacimiento(rs.getString("fam_fecha_nacimiento"));
-                mi_famili.setFecha_de_visita(rs.getString("fam_fecha_visit"));
+
                 
                 famili.add(mi_famili);
             }
