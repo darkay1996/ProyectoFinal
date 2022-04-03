@@ -136,15 +136,7 @@ public class crud_paciente extends javax.swing.JFrame {
         this.dispose();
         new inicio_frame().setVisible(true);
     }//GEN-LAST:event_BtRegresarPacienteActionPerformed
-    public void cargarTabla() {
-        DefaultTableModel tb = (DefaultTableModel) TablaPaciente.getModel();
-        tb.setNumRows(0);
-        List<paciente> com = inser.ListaPaciente();
-        com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTelefono(), p.getTipo_sangre(), p.getSeguro(), p.getFecha_Nacimiento(), p.getFecha_de_ingreso()};
-            tb.addRow(cami);
-        });
-    }
+
     private void BtEliminarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarPacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtEliminarPacienteActionPerformed
@@ -170,17 +162,26 @@ public class crud_paciente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BtEditarPacienteActionPerformed
 
+    public void cargarTabla() {
+        DefaultTableModel tb = (DefaultTableModel) TablaPaciente.getModel();
+        tb.setNumRows(0);
+        List<paciente> com = inser.ListaPaciente();
+        com.stream().forEach(p -> {
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTelefono(), p.getTipo_sangre(), p.getSeguro(), p.getFecha_Nacimiento(), p.getFecha_de_ingreso()};
+            tb.addRow(cami);
+        });
+    }
+
     public void modificar_paciente() {
 
         int seleccion = TablaPaciente.getSelectedRow();
         String cedulaa = TablaPaciente.getValueAt(seleccion, 0).toString();
-       
-            int filas = TablaPaciente.getSelectedRow();
-            if (filas >= 0) {
-                new Agregar_paciente().setVisible(true);
 
-            }
-        
+        int filas = TablaPaciente.getSelectedRow();
+        if (filas >= 0) {
+            new Agregar_paciente().setVisible(true);
+
+        }
 
     }
 
