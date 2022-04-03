@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ventanas;
+
 import clases.doctor;
 import conexion_bada.Insert_doctor;
 import clases.paciente;
@@ -17,7 +18,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class doctor_crud extends javax.swing.JFrame {
 
-    Insert_doctor inser =new Insert_doctor();
+    Insert_doctor inser = new Insert_doctor();
+
     public doctor_crud() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -129,6 +131,14 @@ public class doctor_crud extends javax.swing.JFrame {
         new inicio_frame().setVisible(true);
     }//GEN-LAST:event_BtRegresarDoctorActionPerformed
 
+    private void BtEliminarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarDoctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtEliminarDoctorActionPerformed
+
+    private void BtBuscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarDoctorActionPerformed
+        buscar_doctor();
+    }//GEN-LAST:event_BtBuscarDoctorActionPerformed
+
     public void cargarTabla() {
         DefaultTableModel tb = (DefaultTableModel) TablaDoctor.getModel();
         tb.setNumRows(0);
@@ -138,13 +148,7 @@ public class doctor_crud extends javax.swing.JFrame {
             tb.addRow(cami);
         });
     }
-    private void BtEliminarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarDoctorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtEliminarDoctorActionPerformed
 
-    private void BtBuscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarDoctorActionPerformed
-        buscar_doctor();
-    }//GEN-LAST:event_BtBuscarDoctorActionPerformed
     public void buscar_doctor() {
         String cedula = text_buscar.getText();
         var pacientefiltro = new ArrayList<doctor>();
@@ -169,7 +173,6 @@ public class doctor_crud extends javax.swing.JFrame {
             matriz[j][10] = pacientefiltro.get(j).getTipo_sangre();
             matriz[j][11] = pacientefiltro.get(j).getEspecialidad();
             matriz[j][12] = pacientefiltro.get(j).getFecha_Nacimiento();
-            
 
         }
         TablaDoctor.setModel(new javax.swing.table.DefaultTableModel(
@@ -179,6 +182,7 @@ public class doctor_crud extends javax.swing.JFrame {
                 }
         ));
     }
+
     /**
      * @param args the command line arguments
      */
