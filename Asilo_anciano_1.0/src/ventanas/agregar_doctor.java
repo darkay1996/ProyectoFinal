@@ -1,12 +1,15 @@
 package ventanas;
 
 import clases.doctor;
+import clases.especialidad;
 import java.text.DateFormat;
 import conexion_bada.Insert_doctor;
 import conexion_bada.Insert;
+import conexion_bada.Insert_especialidad;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class agregar_doctor extends javax.swing.JFrame {
@@ -550,6 +553,16 @@ public class agregar_doctor extends javax.swing.JFrame {
         combo_sangre_doctor.setSelectedIndex(0);
         combo_especialidad_doctor.setSelectedIndex(0);
         
+    }
+    
+     //Llenar especialidad
+    public void LLenarComboBoxEspecialidad() {
+        Insert_especialidad inser = new Insert_especialidad();
+        List<especialidad> com = inser.ListaEspecialidades();
+
+        for (int i = 0; i < com.size(); i++) {
+            combo_especialidad_doctor.addItem(com.get(i).getNombre_especialidad());
+        }
     }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
