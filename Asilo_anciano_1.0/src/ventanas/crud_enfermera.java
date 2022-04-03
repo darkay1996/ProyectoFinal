@@ -163,7 +163,7 @@ public class crud_enfermera extends javax.swing.JFrame {
             matriz[j][8] = pacientefiltro.get(j).getDireccion();
             matriz[j][9] = pacientefiltro.get(j).getTelefono();
             matriz[j][10] = pacientefiltro.get(j).getTipo_sangre();
-            matriz[j][11] = pacientefiltro.get(j).getAño_ecperiencia();
+            matriz[j][11] = pacientefiltro.get(j).getAnio_experiencia();
             matriz[j][12] = pacientefiltro.get(j).getFecha_Nacimiento();
             
 
@@ -180,7 +180,7 @@ public class crud_enfermera extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<enfermera> com = inser.ListaEnfermera();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTelefono(), p.getTipo_sangre(), p.getAño_ecperiencia(), p.getFecha_Nacimiento()};
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTelefono(), p.getTipo_sangre(), p.getAnio_experiencia(), p.getFecha_Nacimiento()};
             tb.addRow(cami);
         });
     }
