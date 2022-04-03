@@ -43,7 +43,7 @@ public class validaciones {
     
     public boolean validarNombresEspacios(String cadena) {
         cadena = cadena.trim();//trim()
-        boolean validar = cadena.matches("[\\w\\s]*");
+        boolean validar = cadena.matches("[A-Za-z\\s]*");
         return validar;
     }
     
