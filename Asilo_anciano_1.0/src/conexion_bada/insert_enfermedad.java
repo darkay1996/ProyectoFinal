@@ -18,13 +18,13 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public class insert_enfermedad extends enfermedades {
-    
+
     Conexion cone = new Conexion();
 
     public boolean insert_enfermedad() {
         String sql = "INSERT INTO enfermedad(\n"
                 + "enfermedad_nombre_)\n"
-                + "VALUES ('" +getNombre_enfermedad() + "');";
+                + "VALUES ('" + getNombre_enfermedad() + "');";
         return cone.InsertUpdateDeleteAcciones(sql);
 
     }
