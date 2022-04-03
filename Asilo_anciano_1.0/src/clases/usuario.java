@@ -11,32 +11,34 @@ package clases;
  */
 public class usuario {
 
-    private int usuario;
-    private int contraseña;
-
-    public usuario(int usuario, int contraseña) {
-        this.usuario = usuario;
-        this.contraseña = contraseña;
-    }
+    private String usuario;
+    private String contraseña;
 
     public usuario() {
     }
 
-    public int getUsuario() {
+    public usuario(String usuario, String contraseña) {
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+    }
+
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(int usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
-    public int getContraseña() {
+    public String getContraseña() {
         return contraseña;
     }
 
-    public void setContraseña(int contraseña) {
+    public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+
+
     
     
 
