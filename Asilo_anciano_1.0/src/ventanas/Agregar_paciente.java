@@ -18,6 +18,8 @@ import java.sql.ResultSet;
 //import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 //import java.util.List;
 //import java.util.Locale;
 //import javax.swing.table.DefaultTableModel;
@@ -38,7 +40,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
     String tipo_sangre = "";
     DateFormat df = DateFormat.getDateInstance();
 
-    ArrayList<paciente> lista_Paciente = new ArrayList();
+//    ArrayList<paciente> lista_Paciente = new ArrayList();
     Insert inser = new Insert();
 
     public Agregar_paciente() {
@@ -123,7 +125,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         jLabel13.setText("Datos Personales");
         jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (1).png"))); // NOI18N
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
         buscar.setToolTipText("buscar");
         buscar.setBorder(null);
         buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -597,7 +599,11 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_Masculino_pacienteActionPerformed
 
     private void Guardar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_pacienteActionPerformed
-        RegistrarPacientes();
+        try {
+            RegistrarPacientes();
+        } catch (SQLException ex) {
+            Logger.getLogger(Agregar_paciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Guardar_pacienteActionPerformed
 //    public void llenar_paciente() {
 //
@@ -620,10 +626,10 @@ public class Agregar_paciente extends javax.swing.JFrame {
 //
 //    }
 
-    public void RegistrarPacientes() {
+    public void RegistrarPacientes() throws SQLException {
         Insert persona = new Insert();
         Insert paciente = new Insert();
-        System.out.println("holaaaaaaaaaaa" + text_cedula_paciente.getText());
+//        System.out.println("holaaaaaaaaaaa" + text_cedula_paciente.getText());
 //        llenar_paciente();
 //        inser.ListaPaciente();
         try {
@@ -796,11 +802,11 @@ public class Agregar_paciente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
         }
 //        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
-        if (fecha_Nacimiento_paciente.getCalendar().toString().isEmpty()) {
+        if (fecha_Nacimiento_paciente.getDate()==null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento del paciente");
         }
-        if (String.valueOf(fecha_ingreso_paciente.getCalendar()).isEmpty()) {
+        if (fecha_ingreso_paciente.getDate()==null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de ingreso del paciente");
         }
