@@ -43,18 +43,18 @@ public class agregar_familiar extends javax.swing.JFrame {
     private void initComponents() {
 
         Genero_familiar = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        Masculino_familiar = new javax.swing.JRadioButton();
+        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         RegresarFamiliar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        Masculino_familiar = new javax.swing.JRadioButton();
-        Femenino_familiar = new javax.swing.JRadioButton();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         GuardarFamiliar = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        Femenino_familiar = new javax.swing.JRadioButton();
+        jLabel5 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         fecha_nacimiento_familiar = new com.toedter.calendar.JDateChooser();
@@ -75,82 +75,93 @@ public class agregar_familiar extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Registro de Familiar");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 250, -1));
+        jPanel2.setBackground(new java.awt.Color(212, 231, 157));
 
-        jLabel3.setText("Primer Nombre");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, 10));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setText("Primer Nombre:");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Segundo Nombre:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
-        jLabel5.setText("Primer Apellido:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
-
-        jLabel6.setText("Segundo Apellido:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
-
-        RegresarFamiliar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        RegresarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        RegresarFamiliar.setText("Regresar");
-        RegresarFamiliar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegresarFamiliarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(RegresarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
-
-        jLabel7.setText("Sexo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, -1));
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setText("E-mail:");
 
         Genero_familiar.add(Masculino_familiar);
+        Masculino_familiar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Masculino_familiar.setText("M");
+        Masculino_familiar.setOpaque(false);
         Masculino_familiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Masculino_familiarActionPerformed(evt);
             }
         });
-        getContentPane().add(Masculino_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 40, -1));
 
-        Genero_familiar.add(Femenino_familiar);
-        Femenino_familiar.setText("F");
-        getContentPane().add(Femenino_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setText("Sexo:");
 
-        jLabel11.setText("E-mail");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setText("Segundo Apellido:");
 
-        jLabel12.setText("Dirección:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, 20));
+        RegresarFamiliar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        RegresarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        RegresarFamiliar.setToolTipText("Regresar");
+        RegresarFamiliar.setBorder(null);
+        RegresarFamiliar.setOpaque(false);
+        RegresarFamiliar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarFamiliarActionPerformed(evt);
+            }
+        });
 
         GuardarFamiliar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         GuardarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
-        GuardarFamiliar.setText("Guardar");
+        GuardarFamiliar.setToolTipText("Guardar");
+        GuardarFamiliar.setBorder(null);
+        GuardarFamiliar.setOpaque(false);
         GuardarFamiliar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarFamiliarActionPerformed(evt);
             }
         });
-        getContentPane().add(GuardarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, -1, -1));
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel12.setText("Dirección:");
+
+        Genero_familiar.add(Femenino_familiar);
+        Femenino_familiar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Femenino_familiar.setText("F");
+        Femenino_familiar.setOpaque(false);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setText("Primer Apellido:");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel13.setText("Cedula:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setText("Fecha de Nacimiento:");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, -1, -1));
-        getContentPane().add(fecha_nacimiento_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 130, -1));
 
-        jLabel17.setText("Celular");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel17.setText("Celular:");
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Datos Personales");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
+        jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         text_cedula_familiar.setForeground(new java.awt.Color(102, 102, 102));
         text_cedula_familiar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -165,7 +176,6 @@ public class agregar_familiar extends javax.swing.JFrame {
                 text_cedula_familiarActionPerformed(evt);
             }
         });
-        getContentPane().add(text_cedula_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 190, 20));
 
         text_PrimerNombre_familiar.setForeground(new java.awt.Color(102, 102, 102));
         text_PrimerNombre_familiar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -180,7 +190,6 @@ public class agregar_familiar extends javax.swing.JFrame {
                 text_PrimerNombre_familiarActionPerformed(evt);
             }
         });
-        getContentPane().add(text_PrimerNombre_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 190, -1));
 
         text_SegundoNombre_familiar.setForeground(new java.awt.Color(102, 102, 102));
         text_SegundoNombre_familiar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -190,7 +199,6 @@ public class agregar_familiar extends javax.swing.JFrame {
                 text_SegundoNombre_familiarMousePressed(evt);
             }
         });
-        getContentPane().add(text_SegundoNombre_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 190, -1));
 
         text_PrimerApellido_familiar.setForeground(new java.awt.Color(102, 102, 102));
         text_PrimerApellido_familiar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -200,7 +208,6 @@ public class agregar_familiar extends javax.swing.JFrame {
                 text_PrimerApellido_familiarMousePressed(evt);
             }
         });
-        getContentPane().add(text_PrimerApellido_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 190, -1));
 
         text_SegundoApellido_familiar.setForeground(new java.awt.Color(102, 102, 102));
         text_SegundoApellido_familiar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -215,7 +222,6 @@ public class agregar_familiar extends javax.swing.JFrame {
                 text_SegundoApellido_familiarActionPerformed(evt);
             }
         });
-        getContentPane().add(text_SegundoApellido_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 190, -1));
 
         text_direccion_familiar.setForeground(new java.awt.Color(102, 102, 102));
         text_direccion_familiar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -230,7 +236,6 @@ public class agregar_familiar extends javax.swing.JFrame {
                 text_direccion_familiarActionPerformed(evt);
             }
         });
-        getContentPane().add(text_direccion_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 190, -1));
 
         text_email_familiar.setForeground(new java.awt.Color(102, 102, 102));
         text_email_familiar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -240,7 +245,6 @@ public class agregar_familiar extends javax.swing.JFrame {
                 text_email_familiarMousePressed(evt);
             }
         });
-        getContentPane().add(text_email_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 210, -1));
 
         text_celular_familiar.setForeground(new java.awt.Color(102, 102, 102));
         text_celular_familiar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -250,32 +254,253 @@ public class agregar_familiar extends javax.swing.JFrame {
                 text_celular_familiarMousePressed(evt);
             }
         });
-        getContentPane().add(text_celular_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 210, -1));
 
-        jLabel19.setText("Tipo de sangre:");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, -1, -1));
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel19.setText("Tipo de Sangre:");
 
         combo_sangre_familiar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" }));
-        getContentPane().add(combo_sangre_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 350, -1, -1));
 
-        jLabel2.setText("Parentesco Familiar");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 230, 30));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("Parentesco Familiar:");
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
-        jButton1.setText("MODIFICAR");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 550, -1, -1));
+        jButton1.setToolTipText("MODIFICAR");
+        jButton1.setBorder(null);
+        jButton1.setOpaque(false);
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
-        jButton2.setText("CONSULTAR");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 550, -1, -1));
+        jButton2.setToolTipText("CONSULTAR");
+        jButton2.setBorder(null);
+        jButton2.setOpaque(false);
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-eliminar.png"))); // NOI18N
-        jButton3.setText("ELIMINAR");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 550, -1, -1));
+        jButton3.setToolTipText("ELIMINAR");
+        jButton3.setBorder(null);
+        jButton3.setOpaque(false);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Registro de Familiar");
+
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setText("Codigo:");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setText("CREAR USUARIO");
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setText("NUEVO USUARIO:");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setText("NUEVA CONTRASEÑA:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel12))
+                        .addGap(60, 60, 60)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(text_email_familiar)
+                            .addComponent(text_SegundoNombre_familiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(text_PrimerNombre_familiar)
+                            .addComponent(text_cedula_familiar)
+                            .addComponent(text_PrimerApellido_familiar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(text_SegundoApellido_familiar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(text_direccion_familiar, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(92, 92, 92)
+                                .addComponent(jLabel8)
+                                .addGap(69, 69, 69)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(Masculino_familiar)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(Femenino_familiar))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(fecha_nacimiento_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel19)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(combo_sangre_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel17)
+                                        .addGap(49, 49, 49)
+                                        .addComponent(text_celular_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(31, 31, 31))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel9))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextField3)
+                                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                                        .addContainerGap(91, Short.MAX_VALUE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSeparator1)
+                                        .addContainerGap())))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(GuardarFamiliar)
+                            .addComponent(jLabel11))
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton2)
+                        .addGap(43, 43, 43)
+                        .addComponent(jButton1)
+                        .addGap(45, 45, 45)
+                        .addComponent(jButton3)
+                        .addGap(61, 61, 61)
+                        .addComponent(RegresarFamiliar)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(334, 334, 334)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel18)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(text_cedula_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(text_PrimerNombre_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(Masculino_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Femenino_familiar))
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(text_SegundoNombre_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(text_PrimerApellido_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(fecha_nacimiento_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(text_celular_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17))
+                                .addGap(60, 60, 60)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(43, 43, 43)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(39, 39, 39))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(text_SegundoApellido_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(49, 49, 49)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(38, 38, 38)
+                                        .addComponent(text_direccion_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11)
+                                    .addComponent(text_email_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(73, 73, 73)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(GuardarFamiliar)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1)
+                            .addComponent(jButton3)
+                            .addComponent(RegresarFamiliar)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel14)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(76, 105, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(combo_sangre_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 790));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -502,9 +727,11 @@ public class agregar_familiar extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -515,7 +742,15 @@ public class agregar_familiar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField text_PrimerApellido_familiar;
     private javax.swing.JTextField text_PrimerNombre_familiar;
     private javax.swing.JTextField text_SegundoApellido_familiar;
