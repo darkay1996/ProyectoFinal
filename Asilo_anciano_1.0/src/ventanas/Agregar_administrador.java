@@ -40,6 +40,10 @@ public class Agregar_administrador extends javax.swing.JFrame {
     public Agregar_administrador() {
         initComponents();
         this.setLocationRelativeTo(null);
+//        Insert_administrador in= new Insert_administrador();
+//        for (int i = 0; i < in.ListaAdministrador().size(); i++) {
+//            System.out.println(in.ListaAdministrador().get(i).getCedula());
+//        }
     }
 
     /**
@@ -617,7 +621,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         try {
             if (validaciones()) {
                 if (admin.validarduplicado(txt_cedula_administrador.getText())) {
-                    if (admin.validarNomduplicado(txt_usuario.getText())) {
+                    if (usu.validarNomduplicado(txt_usuario.getText())) {
                         String genero = "";
 //                usuario usu = new usuario();
 //                    persona.setCodigo(txt_codigo_administrador.getText());
@@ -647,6 +651,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         admin.setTelefono(txt_celular_administrador.getText());
                         admin.setTipo_sangre(combo_sangre_administrador.getSelectedItem().toString());
                         admin.InsertarPersona();
+                        //fin persona
                         //////////////////////////
                         usu.setContraseña(txt_contrasena.getText());
                         usu.setUsuario(txt_usuario.getText());
@@ -661,7 +666,13 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         } else {
                             System.out.println("Conexion Erronea");
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe");
+
                     }
+                } else {
+                    JOptionPane.showMessageDialog(this, "El administrador ya existe en el sistema");
+
                 }
             }
         } catch (NullPointerException n) {
@@ -808,6 +819,8 @@ public class Agregar_administrador extends javax.swing.JFrame {
         combo_sangre_administrador.setSelectedIndex(0);
         txt_nivelDeeducacion_administrador.setText("");
         Fecha_Nacimiento_administrador.setCalendar(null);
+        txt_usuario.setText("");
+        txt_contrasena.setText("");
 
     }
 
