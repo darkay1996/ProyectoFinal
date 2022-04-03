@@ -14,6 +14,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class crud_alergias extends javax.swing.JFrame {
 
+    //Objeto de la clase validaciones 
+    validaciones misvalidaciones = new validaciones();
+
     ArrayList<alergias> lista_Alergias = new ArrayList();
     Insert_alergias inser = new Insert_alergias();
 
@@ -42,8 +45,11 @@ public class crud_alergias extends javax.swing.JFrame {
         tabla_alergias = new javax.swing.JTable();
         bt_regresar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        Consultar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtBuscar = new javax.swing.JTextField();
+        Buscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,7 +64,6 @@ public class crud_alergias extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Nombre de Alergia:");
 
-        txtalergia.setText("Ingrese el nombre de una alergia");
         txtalergia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtalergiaMousePressed(evt);
@@ -95,13 +100,29 @@ public class crud_alergias extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tarjeta-de-alergia_1.png"))); // NOI18N
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
-        jButton2.setText("CONSULTAR");
+        Consultar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Consultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
+        Consultar.setText("CONSULTAR");
+        Consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultarActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-eliminar.png"))); // NOI18N
         jButton3.setText("ELIMINAR");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setText("Codigo:");
+
+        Buscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Buscar.setText("Buscar");
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,70 +132,91 @@ public class crud_alergias extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtalergia, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(Guardar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(234, 234, 234)
                                 .addComponent(jLabel1)
                                 .addGap(60, 60, 60)
-                                .addComponent(jLabel4)))
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtalergia, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Guardar))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(35, 35, 35)
+                                        .addComponent(Consultar)
+                                        .addGap(98, 98, 98)
+                                        .addComponent(jButton3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(bt_regresar)
+                                        .addGap(36, 36, 36)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jButton2)
-                .addGap(106, 106, 106)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bt_regresar)
-                .addGap(49, 49, 49))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jLabel1)))
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtalergia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Guardar))
-                .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
                     .addComponent(bt_regresar)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(164, Short.MAX_VALUE))
+                    .addComponent(Consultar))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, 750, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         RegistrarAlergias();
-        Limpiar();
+        cargarTabla();
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void txtalergiaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtalergiaMousePressed
-        txtalergia.setText("");
-        txtalergia.setForeground(Color.BLACK);
+//        txtalergia.setText("");
+//        txtalergia.setForeground(Color.BLACK);
     }//GEN-LAST:event_txtalergiaMousePressed
+
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        buscar_alergia();
+    }//GEN-LAST:event_BuscarActionPerformed
+
+    private void ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_ConsultarActionPerformed
 
     public void llenar_alergias() {
 
@@ -188,17 +230,42 @@ public class crud_alergias extends javax.swing.JFrame {
         }
 
     }
-    
+
     //Guardar las alergias en la BD
     public void RegistrarAlergias() {
         Insert_alergias alergia = new Insert_alergias();
-        alergia.setNombre_alergia(txtalergia.getText());
 
-        if (alergia.InsertarAlergias()) {
-            System.out.println("Conexion Exitosa");
-        } else {
-            System.out.println("Conexion Erronea");
+        try {
+            if (validarInformacion() == true && ValidarDuplicados() == true) {
+                alergia.setNombre_alergia(txtalergia.getText());
+
+                Limpiar();
+
+                if (alergia.InsertarAlergias()) {
+                    System.out.println("Conexion Exitosa");
+                } else {
+                    System.out.println("Conexion Erronea");
+                }
+            }
+        } catch (NullPointerException e) {
+
         }
+    }
+
+    public boolean validarInformacion() {
+        boolean validado = true;
+
+        if (txtalergia.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre de la alergia");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(txtalergia.getText())) {
+                JOptionPane.showMessageDialog(this, "Nombre de la alergia incorrecto");
+                validado = false;
+            }
+        }
+
+        return validado;
     }
 
     //Mostrar los datos en la tabla
@@ -207,15 +274,52 @@ public class crud_alergias extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<alergias> com = inser.ListaAlergias();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo_alergia(),p.getNombre_alergia()};
+            String[] cami = {p.getCodigo_alergia(), p.getNombre_alergia()};
             tb.addRow(cami);
         });
     }
+
     public void Limpiar() {
         txtalergia.setText("");
     }
 
+    public void buscar_alergia() {
+        String codigo = txtBuscar.getText();
+        var alergiafiltro = new ArrayList<alergias>();
 
+        inser.ListaAlergias().forEach((e) -> {
+            if (e.getCodigo_alergia().equals(codigo)) {
+                alergiafiltro.add(e);
+            }
+        });
+        String matriz[][] = new String[alergiafiltro.size()][3];
+        for (int j = 0; j < alergiafiltro.size(); j++) {
+            matriz[j][0] = alergiafiltro.get(j).getCodigo_alergia();
+            matriz[j][1] = alergiafiltro.get(j).getNombre_alergia();
+
+        }
+        tabla_alergias.setModel(new javax.swing.table.DefaultTableModel(
+                matriz,
+                new String[]{
+                    "codigo", "Nombre"
+                }
+        ));
+    }
+
+    public boolean ValidarDuplicados() { 
+        boolean validado = true;
+        Insert_alergias inser = new Insert_alergias();
+        List<alergias> com = inser.ListaAlergias();
+
+        for (int i = 0; i < com.size(); i++) {
+            if(com.get(i).getNombre_alergia().equalsIgnoreCase(txtalergia.getText())){
+                validado = false;
+                JOptionPane.showMessageDialog(null, "La alergia ya existe");
+            }
+        }
+        
+        return validado;
+    }
     /**
      * @param args the command line arguments
      */
@@ -253,16 +357,19 @@ public class crud_alergias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buscar;
+    private javax.swing.JButton Consultar;
     private javax.swing.JButton Guardar;
     private javax.swing.JButton bt_regresar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_alergias;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtalergia;
     // End of variables declaration//GEN-END:variables
 }
