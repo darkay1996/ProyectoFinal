@@ -72,3 +72,4 @@ public class Insert_usuario extends usuario {
         return validar;
     }
 }
+
