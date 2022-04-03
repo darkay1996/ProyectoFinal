@@ -8,6 +8,7 @@ package ventanas;
 import ventanas.Agregar_paciente;
 import clases.paciente;
 import conexion_bada.Insert;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -47,6 +48,7 @@ public class crud_paciente extends javax.swing.JFrame {
         BtRegresarPaciente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaPaciente = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,7 +67,14 @@ public class crud_paciente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(BtIngresarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
-        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 150, -1));
+
+        text_buscar.setText("Buscar...");
+        text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarMousePressed(evt);
+            }
+        });
+        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 150, -1));
 
         BtBuscarPaciente.setText("BUSCAR PACIENTE");
         BtBuscarPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +122,17 @@ public class crud_paciente extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 980, 280));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
+        jButton1.setToolTipText("Ver todos");
+        jButton1.setBorderPainted(false);
+        jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 90, 40, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,7 +162,11 @@ public class crud_paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_BtEliminarPacienteActionPerformed
 
     private void BtBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarPacienteActionPerformed
-        buscar_paciente();
+        if (!text_buscar.getText().isEmpty()) {
+            buscar_paciente();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del administrador");
+        }
 
     }//GEN-LAST:event_BtBuscarPacienteActionPerformed
 
@@ -161,6 +185,16 @@ public class crud_paciente extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_BtEditarPacienteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
+        text_buscar.setText("");
+        text_buscar.setForeground(Color.BLACK);
+
+    }//GEN-LAST:event_text_buscarMousePressed
 
     public void cargarTabla() {
         DefaultTableModel tb = (DefaultTableModel) TablaPaciente.getModel();
@@ -188,36 +222,40 @@ public class crud_paciente extends javax.swing.JFrame {
     public void buscar_paciente() {
         String cedula = text_buscar.getText();
         var pacientefiltro = new ArrayList<paciente>();
+        if (pacientefiltro.size() != 0) {
 
-        inser.ListaPaciente().forEach((e) -> {
-            if (e.getCedula().equals(cedula)) {
-                pacientefiltro.add(e);
-            }
-        });
-        String matriz[][] = new String[pacientefiltro.size()][14];
-        for (int j = 0; j < pacientefiltro.size(); j++) {
-            matriz[j][0] = pacientefiltro.get(j).getCodigo();
-            matriz[j][1] = pacientefiltro.get(j).getCedula();
-            matriz[j][2] = pacientefiltro.get(j).getPri_nomb();
-            matriz[j][3] = pacientefiltro.get(j).getSeg_nombre();
-            matriz[j][4] = pacientefiltro.get(j).getPrim_apell();
-            matriz[j][5] = pacientefiltro.get(j).getSeg_apelli();
-            matriz[j][6] = pacientefiltro.get(j).getCorreo();
-            matriz[j][7] = pacientefiltro.get(j).getGenero();
-            matriz[j][8] = pacientefiltro.get(j).getDireccion();
-            matriz[j][9] = pacientefiltro.get(j).getTelefono();
-            matriz[j][10] = pacientefiltro.get(j).getTipo_sangre();
-            matriz[j][11] = pacientefiltro.get(j).getSeguro();
-            matriz[j][12] = pacientefiltro.get(j).getFecha_Nacimiento();
-            matriz[j][13] = pacientefiltro.get(j).getFecha_de_ingreso();
-
-        }
-        TablaPaciente.setModel(new javax.swing.table.DefaultTableModel(
-                matriz,
-                new String[]{
-                    "codigo", "Nombre", "segundo_nombre", "primer apellido", "segundo apellido", "correo", "genero", "direccion", "telefono", "tipo sangre", "seguro", "fecha nacimiento", "fecha ingreso"
+            inser.ListaPaciente().forEach((e) -> {
+                if (e.getCedula().equals(cedula)) {
+                    pacientefiltro.add(e);
                 }
-        ));
+            });
+            String matriz[][] = new String[pacientefiltro.size()][14];
+            for (int j = 0; j < pacientefiltro.size(); j++) {
+                matriz[j][0] = pacientefiltro.get(j).getCodigo();
+                matriz[j][1] = pacientefiltro.get(j).getCedula();
+                matriz[j][2] = pacientefiltro.get(j).getPri_nomb();
+                matriz[j][3] = pacientefiltro.get(j).getSeg_nombre();
+                matriz[j][4] = pacientefiltro.get(j).getPrim_apell();
+                matriz[j][5] = pacientefiltro.get(j).getSeg_apelli();
+                matriz[j][6] = pacientefiltro.get(j).getCorreo();
+                matriz[j][7] = pacientefiltro.get(j).getGenero();
+                matriz[j][8] = pacientefiltro.get(j).getDireccion();
+                matriz[j][9] = pacientefiltro.get(j).getTelefono();
+                matriz[j][10] = pacientefiltro.get(j).getTipo_sangre();
+                matriz[j][11] = pacientefiltro.get(j).getSeguro();
+                matriz[j][12] = pacientefiltro.get(j).getFecha_Nacimiento();
+                matriz[j][13] = pacientefiltro.get(j).getFecha_de_ingreso();
+
+            }
+            TablaPaciente.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "codigo", "Nombre", "segundo_nombre", "primer apellido", "segundo apellido", "correo", "genero", "direccion", "telefono", "tipo sangre", "seguro", "fecha nacimiento", "fecha ingreso"
+                    }
+            ));
+        } else {
+            JOptionPane.showMessageDialog(this, "El paciente no existe en la base de datos");
+        }
     }
 
     /**
@@ -237,13 +275,17 @@ public class crud_paciente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(crud_paciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crud_paciente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(crud_paciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crud_paciente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(crud_paciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crud_paciente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(crud_paciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crud_paciente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -263,6 +305,7 @@ public class crud_paciente extends javax.swing.JFrame {
     private javax.swing.JButton BtIngresarPaciente;
     private javax.swing.JButton BtRegresarPaciente;
     private javax.swing.JTable TablaPaciente;
+    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDayChooser jDayChooser1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
