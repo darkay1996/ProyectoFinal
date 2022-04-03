@@ -10,6 +10,8 @@ import conexion_bada.Insert_doctor;
 import clases.paciente;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -45,6 +47,7 @@ public class doctor_crud extends javax.swing.JFrame {
         BtRegresarDoctor = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaDoctor = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +68,13 @@ public class doctor_crud extends javax.swing.JFrame {
             }
         });
         jPanel1.add(BtIngresarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        text_buscar.setText("Buscar...");
+        text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarMousePressed(evt);
+            }
+        });
         jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 180, 30));
 
         BtBuscarDoctor.setText("BUSCAR DOCTOR");
@@ -107,6 +117,17 @@ public class doctor_crud extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 1100, 210));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
+        jButton1.setToolTipText("Ver todos");
+        jButton1.setBorderPainted(false);
+        jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 90, 40, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,8 +157,21 @@ public class doctor_crud extends javax.swing.JFrame {
     }//GEN-LAST:event_BtEliminarDoctorActionPerformed
 
     private void BtBuscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarDoctorActionPerformed
-        buscar_doctor();
+        if (!text_buscar.getText().isEmpty()) {
+            buscar_doctor();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del administrador");
+        }
     }//GEN-LAST:event_BtBuscarDoctorActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
+        text_buscar.setText("");
+        text_buscar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_text_buscarMousePressed
 
     public void cargarTabla() {
         DefaultTableModel tb = (DefaultTableModel) TablaDoctor.getModel();
@@ -151,28 +185,29 @@ public class doctor_crud extends javax.swing.JFrame {
 
     public void buscar_doctor() {
         String cedula = text_buscar.getText();
-        var pacientefiltro = new ArrayList<doctor>();
-
+        var docfiltro = new ArrayList<doctor>();
         inser.ListaDoctor().forEach((e) -> {
             if (e.getCedula().equals(cedula)) {
-                pacientefiltro.add(e);
+                docfiltro.add(e);
             }
         });
-        String matriz[][] = new String[pacientefiltro.size()][13];
-        for (int j = 0; j < pacientefiltro.size(); j++) {
-            matriz[j][0] = pacientefiltro.get(j).getCodigo();
-            matriz[j][1] = pacientefiltro.get(j).getCedula();
-            matriz[j][2] = pacientefiltro.get(j).getPri_nomb();
-            matriz[j][3] = pacientefiltro.get(j).getSeg_nombre();
-            matriz[j][4] = pacientefiltro.get(j).getPrim_apell();
-            matriz[j][5] = pacientefiltro.get(j).getSeg_apelli();
-            matriz[j][6] = pacientefiltro.get(j).getCorreo();
-            matriz[j][7] = pacientefiltro.get(j).getGenero();
-            matriz[j][8] = pacientefiltro.get(j).getDireccion();
-            matriz[j][9] = pacientefiltro.get(j).getTelefono();
-            matriz[j][10] = pacientefiltro.get(j).getTipo_sangre();
-            matriz[j][11] = pacientefiltro.get(j).getEspecialidad();
-            matriz[j][12] = pacientefiltro.get(j).getFecha_Nacimiento();
+        if (docfiltro.size() != 0) {
+
+        String matriz[][] = new String[docfiltro.size()][13];
+        for (int j = 0; j < docfiltro.size(); j++) {
+            matriz[j][0] = docfiltro.get(j).getCodigo();
+            matriz[j][1] = docfiltro.get(j).getCedula();
+            matriz[j][2] = docfiltro.get(j).getPri_nomb();
+            matriz[j][3] = docfiltro.get(j).getSeg_nombre();
+            matriz[j][4] = docfiltro.get(j).getPrim_apell();
+            matriz[j][5] = docfiltro.get(j).getSeg_apelli();
+            matriz[j][6] = docfiltro.get(j).getCorreo();
+            matriz[j][7] = docfiltro.get(j).getGenero();
+            matriz[j][8] = docfiltro.get(j).getDireccion();
+            matriz[j][9] = docfiltro.get(j).getTelefono();
+            matriz[j][10] = docfiltro.get(j).getTipo_sangre();
+            matriz[j][11] = docfiltro.get(j).getEspecialidad();
+            matriz[j][12] = docfiltro.get(j).getFecha_Nacimiento();
 
         }
         TablaDoctor.setModel(new javax.swing.table.DefaultTableModel(
@@ -181,6 +216,9 @@ public class doctor_crud extends javax.swing.JFrame {
                     "codigo", "Nombre", "segundo_nombre", "primer apellido", "segundo apellido", "correo", "genero", "direccion", "telefono", "tipo sangre", "seguro", "fecha nacimiento", "fecha ingreso"
                 }
         ));
+        } else {
+            JOptionPane.showMessageDialog(this, "El doctor no existe en la base de datos");
+        }
     }
 
     /**
@@ -226,6 +264,7 @@ public class doctor_crud extends javax.swing.JFrame {
     private javax.swing.JButton BtIngresarDoctor;
     private javax.swing.JButton BtRegresarDoctor;
     private javax.swing.JTable TablaDoctor;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
