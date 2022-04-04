@@ -1,5 +1,5 @@
-
 package ventanas;
+
 import clases.familiar;
 import conexion_bada.Insert_familiar;
 //import conexion_bada.Insert;
@@ -8,34 +8,33 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-
-
 public class agregar_familiar extends javax.swing.JFrame {
 
     //Varibales auxiliares
-    
-    String codigoAux;
-    String cedulaAux;
-    String pri_nombAux;
-    String seg_nombreAux;
-    String prim_apellAux;
-    String seg_apelliAux;
-    String correoAux;
-    String generoAux;
-    String fecha_NacimientoAux;
-    String direccionAux;
-    String telefonoAux;
-    String tipo_sangreAux;
-    String codigo_de_pacienteAux;
-    String fecha_de_visitaAux;
-    String hora_inicioAux;
-    String hora_finAux;
-
+//    String codigoAux;
+//    String cedulaAux;
+//    String pri_nombAux;
+//    String seg_nombreAux;
+//    String prim_apellAux;
+//    String seg_apelliAux;
+//    String correoAux;
+//    String generoAux;
+//    String fecha_NacimientoAux;
+//    String direccionAux;
+//    String telefonoAux;
+//    String tipo_sangreAux;
+//    String codigo_de_pacienteAux;
+//    String fecha_de_visitaAux;
+//    String hora_inicioAux;
+//    String hora_finAux;
+    Insert_familiar familiar = new Insert_familiar();
     DateFormat df = DateFormat.getDateInstance();
     ArrayList<familiar> lista_familiar = new ArrayList();
+
     public agregar_familiar() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cargarcod();
     }
 
     @SuppressWarnings("unchecked")
@@ -78,7 +77,7 @@ public class agregar_familiar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_codigo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
@@ -330,7 +329,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                                 .addGap(92, 92, 92)
                                 .addComponent(jLabel8)
                                 .addGap(69, 69, 69)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -419,7 +418,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                         .addComponent(text_cedula_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel13))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8)))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -493,11 +492,9 @@ public class agregar_familiar extends javax.swing.JFrame {
                             .addComponent(RegresarFamiliar)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel14)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(76, 105, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(combo_sangre_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(combo_sangre_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 790));
@@ -582,10 +579,15 @@ public class agregar_familiar extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_GuardarFamiliarActionPerformed
 
+    public void cargarcod() {
+        txt_codigo.setEnabled(false);
+        txt_codigo.setText(String.valueOf(familiar.cargarcodigo()));
+    }
+
     public void RegistrarFamiliar() {
 
         String genero = "";
-        Insert_familiar familiar = new Insert_familiar();
+
         //familiar.setCodigo(text_codigo_familiar.getText());
         familiar.setCedula(text_cedula_familiar.getText());
         familiar.setPri_nomb(text_PrimerNombre_familiar.getText());
@@ -601,34 +603,28 @@ public class agregar_familiar extends javax.swing.JFrame {
         }
         familiar.setGenero(genero);
         familiar.setCorreo(text_email_familiar.getText());
-        
-        
+
         String dia = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.DAY_OF_MONTH));
         String mes = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.MONTH) + 1);
         String año = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.YEAR));
         String FechaNacimiento = (dia + "-" + mes + "-" + año);
         //String FechaNacimiento = df.format(fecha_nacimiento_familiar.getDate());
         familiar.setFecha_Nacimiento(FechaNacimiento);
-        
+
         familiar.setTelefono(text_celular_familiar.getText());
         familiar.setTipo_sangre(combo_sangre_familiar.getSelectedItem().toString());
-        
-        
+
         //String diaV = Integer.toString(fecha_visita_familiar.getCalendar().get(Calendar.DAY_OF_MONTH));
         //String mesV = Integer.toString(fecha_visita_familiar.getCalendar().get(Calendar.MONTH) + 1);
         //String añoV = Integer.toString(fecha_visita_familiar.getCalendar().get(Calendar.YEAR));
         //String FechaVisita = (diaV + "-" + mesV + "-" + añoV);
-        
         //String FechaVisita = df.format(fecha_visita_familiar.getDate());
         //familiar.setFecha_de_visita(FechaVisita);
-        
-        
-       //String Hingreso,Mingreso,Hsalida,Msalida;
+        //String Hingreso,Mingreso,Hsalida,Msalida;
         //Hingreso = Spinner_horaIniciovisita_familiar.getValue().toString();
-       // Mingreso = Spinner_minutosIniciovisita_familiar.getValue().toString();
+        // Mingreso = Spinner_minutosIniciovisita_familiar.getValue().toString();
         //Hsalida = Spinner_hora_finalvisita_familiar.getValue().toString();
         //Msalida = Spinner_minutos_finalvisita_familiar.getValue().toString();
-        
 //        if (String.valueOf(Hingreso).length() == 1) {
 //            Hingreso = "0"+Hingreso;
 //        }
@@ -651,11 +647,11 @@ public class agregar_familiar extends javax.swing.JFrame {
 //        familiar.setCodigo_de_paciente(text_codigoPaciente_familiar.getText());
 //
 //
-//        if (familiar.InsertarFamiliar()) {
-//            System.out.println("Conexion Exitosa");
-//        } else {
-//            System.out.println("Conexion Erronea");
-//        }
+        if (familiar.InsertarFamiliar()) {
+            System.out.println("Conexion Exitosa");
+        } else {
+            System.out.println("Conexion Erronea");
+        }
     }
 
     public void limpiar() {
@@ -673,10 +669,11 @@ public class agregar_familiar extends javax.swing.JFrame {
         //text_codigoPaciente_familiar.setText("");
         //Spinner_horaIniciovisita_familiar.setValue(0);
         //Spinner_minutosIniciovisita_familiar.setValue(0);
-       // Spinner_hora_finalvisita_familiar.setValue(0);
+        // Spinner_hora_finalvisita_familiar.setValue(0);
         //Spinner_minutos_finalvisita_familiar.setValue(0);
 
     }
+
     /**
      * @param args the command line arguments
      */
@@ -748,7 +745,6 @@ public class agregar_familiar extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField text_PrimerApellido_familiar;
@@ -759,5 +755,6 @@ public class agregar_familiar extends javax.swing.JFrame {
     private javax.swing.JTextField text_celular_familiar;
     private javax.swing.JTextField text_direccion_familiar;
     private javax.swing.JTextField text_email_familiar;
+    private javax.swing.JTextField txt_codigo;
     // End of variables declaration//GEN-END:variables
 }
