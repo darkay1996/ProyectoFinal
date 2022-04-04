@@ -97,6 +97,11 @@ public class crud_enfermera extends javax.swing.JFrame {
         BtModificarEnfermera.setToolTipText("MODIFICAR ENFERMERA");
         BtModificarEnfermera.setBorder(null);
         BtModificarEnfermera.setOpaque(false);
+        BtModificarEnfermera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtModificarEnfermeraActionPerformed(evt);
+            }
+        });
         jPanel1.add(BtModificarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 50, 40));
 
         BtEliminarEnfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
@@ -191,12 +196,30 @@ public class crud_enfermera extends javax.swing.JFrame {
         text_buscar.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_buscarMousePressed
 
+    private void BtModificarEnfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtModificarEnfermeraActionPerformed
+        modificar_ENFERMERA();
+    }//GEN-LAST:event_BtModificarEnfermeraActionPerformed
+public void modificar_ENFERMERA() {
+
+        int seleccion = TablaEnfermera.getSelectedRow();
+        String cedula = TablaEnfermera.getValueAt(seleccion, 1).toString();
+        inser.ListaEnfermera().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                new agregar_enfermera(cedula).setVisible(true);
+                text_buscar.setText("");
+
+            }
+        });
+
+    }
     public void cargarTabla() {
         DefaultTableModel tb = (DefaultTableModel) TablaEnfermera.getModel();
         tb.setNumRows(0);
         List<enfermera> com = inser.ListaEnfermera();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getGenero(), p.getTipo_sangre(), p.getDireccion(), p.getFecha_Nacimiento(), p.getAnio_experiencia(), p.getCorreo(), p.getTelefono()};
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), 
+                p.getSeg_apelli(), p.getGenero(), p.getTipo_sangre(), p.getDireccion(), p.getFecha_Nacimiento(), 
+                p.getAnio_experiencia(), p.getCorreo(), p.getTelefono()};
             tb.addRow(cami);
         });
     }
