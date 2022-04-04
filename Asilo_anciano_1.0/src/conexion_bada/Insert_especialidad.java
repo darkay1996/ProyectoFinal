@@ -38,4 +38,18 @@ public class Insert_especialidad extends especialidad {
             return null;
         }
     }
+
+    public int cargarcodigo() {
+        int codigo = 0;
+        String sqls = "select max(esp_codigo) from especialidades;";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("max") + 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
 }
