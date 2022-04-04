@@ -46,7 +46,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
     public Agregar_paciente() {
         initComponents();
         this.setLocationRelativeTo(null);
-//        inser.ListaPaciente();
+        cargarcod();
     }
 
     /**
@@ -626,6 +626,11 @@ public class Agregar_paciente extends javax.swing.JFrame {
 //
 //    }
 
+    public void cargarcod() {
+        text_codigo_paciente.setEnabled(false);
+        text_codigo_paciente.setText(String.valueOf(inser.cargarcodigo()));
+    }
+
     public void RegistrarPacientes() throws SQLException {
         Insert persona = new Insert();
         Insert paciente = new Insert();
@@ -679,6 +684,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                     if (persona.InsertarPersona() && paciente.InsertarPaciente()) {
                         System.out.println("Conexion Exitosa");
                         limpiar();
+                        cargarcod();
                     } else {
                         System.out.println("Conexion Erronea");
                     }
@@ -802,11 +808,11 @@ public class Agregar_paciente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
         }
 //        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
-        if (fecha_Nacimiento_paciente.getDate()==null) {
+        if (fecha_Nacimiento_paciente.getDate() == null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento del paciente");
         }
-        if (fecha_ingreso_paciente.getDate()==null) {
+        if (fecha_ingreso_paciente.getDate() == null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de ingreso del paciente");
         }
