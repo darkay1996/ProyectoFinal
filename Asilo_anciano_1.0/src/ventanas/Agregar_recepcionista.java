@@ -662,11 +662,13 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                         recep.InsertarPersona();
                         if (recep.InsertarRecepcionista()) {
                             System.out.println("Conexion Exitosa");
+                            limpiar();
                         } else {
                             System.out.println("Conexion Erronea");
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe");
+                        txt_usuario.setText("");
 
                     }
                 } else {
@@ -777,22 +779,15 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
             }
         }
 
-        if (Integer.parseInt((String) Spinner_HoraEntrada_recepcionista.getValue()) == 0) {
+        if ((Integer)Spinner_HoraEntrada_recepcionista.getValue() == 0) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Hora invalida");
+            JOptionPane.showMessageDialog(this, "Hora de entrada invalida");
         }
-        if (Integer.parseInt((String) Spinner_HoraSalida_recepcionista.getValue()) == 0) {
+        if ((Integer) Spinner_HoraSalida_recepcionista.getValue() == 0) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Hora invalida");
+            JOptionPane.showMessageDialog(this, "Hora de salida invalida");
         }
-        if (Integer.parseInt((String) Spinner_MinutosEntrada_recepcionista.getValue()) == 0) {
-            validado = false;
-            JOptionPane.showMessageDialog(this, "Hora invalida");
-        }
-        if (Integer.parseInt((String) Spinner_MinutosSalida_recepcionista.getValue()) == 0) {
-            validado = false;
-            JOptionPane.showMessageDialog(this, "Hora invalida");
-        }
+
 
         if (combo_sangre_recepcionista.getSelectedIndex() == 0) {
             validado = false;
