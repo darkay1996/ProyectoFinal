@@ -625,7 +625,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe");
-
+                        txtusurio_enfermera.setText("");
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "El enfermero ya existe en el sistema");

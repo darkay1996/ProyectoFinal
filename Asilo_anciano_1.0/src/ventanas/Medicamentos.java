@@ -5,15 +5,24 @@
  */
 package ventanas;
 
+import clases.alergias;
+import clases.medicamentos;
+import conexion_bada.Insert_medicamento;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import clases.validaciones;
+
 /**
  *
  * @author Usuario
  */
 public class Medicamentos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Medicamentos
-     */
+    validaciones misvalidaciones = new validaciones();
+    Insert_medicamento inser = new Insert_medicamento();
+
     public Medicamentos() {
         initComponents();
     }
@@ -32,12 +41,15 @@ public class Medicamentos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         btmedmodificar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtBuscar = new javax.swing.JTextField();
+        Buscar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla_medicamentos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -53,6 +65,11 @@ public class Medicamentos extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
         jButton1.setText("GUARDAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btmedmodificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btmedmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
@@ -66,6 +83,22 @@ public class Medicamentos extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
         jButton2.setText("CONSULTAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setText("Codigo:");
+
+        Buscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Buscar.setText("Buscar");
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-eliminar.png"))); // NOI18N
@@ -73,18 +106,18 @@ public class Medicamentos extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medicamento.png"))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_medicamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Nombre de los medicamentos"
+                "Codigo", "Nombre de los medicamentos"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla_medicamentos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,26 +130,30 @@ public class Medicamentos extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel1)
-                .addGap(77, 77, 77)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(btmedmodificar)
+                .addGap(36, 36, 36)
+                .addComponent(jButton2)
+                .addGap(33, 33, 33)
+                .addComponent(jButton3)
+                .addGap(107, 107, 107))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(63, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btmedmodificar)
-                        .addGap(36, 36, 36)
-                        .addComponent(jButton2)
-                        .addGap(33, 33, 33)
-                        .addComponent(jButton3)
-                        .addGap(107, 107, 107))))
+                        .addComponent(jLabel1)
+                        .addGap(77, 77, 77)
+                        .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,10 +168,15 @@ public class Medicamentos extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(91, 91, 91)
+                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton2)
@@ -152,9 +194,114 @@ public class Medicamentos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btmedmodificarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        buscar_medicamento();;
+    }//GEN-LAST:event_BuscarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Registrarmedicamento();
+        cargarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        cargarTabla();    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void llenar_medicamento() {
+        for (int i = 0; i < inser.ListaMedicamentos().size(); i++) {
+            List<medicamentos> com = inser.ListaMedicamentos();
+            com.stream().forEach(p -> {
+                txt_nombre.setText(p.getNombre_medicamento());
+            });
+        }
+    }
+
+    //Guardar las alergias en la BD
+    public void Registrarmedicamento() {
+//        Insert_alergias inser = new Insert_alergias();
+        try {
+            if (validarInformacion() == true && ValidarDuplicados() == true) {
+                inser.setNombre_medicamento(txt_nombre.getText());
+
+                if (inser.InsertarAlergias()) {
+                    System.out.println("Conexion Exitosa");
+                    Limpiar();
+                } else {
+                    System.out.println("Conexion Erronea");
+                }
+            }
+        } catch (NullPointerException e) {
+        }
+    }
+
+    public boolean validarInformacion() {
+        boolean validado = true;
+
+        if (txt_nombre.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre del medicamento");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(txt_nombre.getText())) {
+                JOptionPane.showMessageDialog(this, "Nombre del medicamento incorrecto");
+                validado = false;
+            }
+        }
+        return validado;
+    }
+
+    //Mostrar los datos en la tabla
+    public void cargarTabla() {
+        DefaultTableModel tb = (DefaultTableModel) tabla_medicamentos.getModel();
+        tb.setNumRows(0);
+        List<medicamentos> com = inser.ListaMedicamentos();
+        com.stream().forEach(p -> {
+            String[] cami = {p.getCodigo_medicamento(), p.getNombre_medicamento()};
+            tb.addRow(cami);
+        });
+    }
+
+    public void Limpiar() {
+        txt_nombre.setText("");
+        txtBuscar.setText("");
+    }
+
+    public void buscar_medicamento() {
+        String codigo = txtBuscar.getText();
+        var medicafiltro = new ArrayList<medicamentos>();
+
+        inser.ListaMedicamentos().forEach((e) -> {
+            if (e.getCodigo_medicamento().equals(codigo)) {
+                medicafiltro.add(e);
+            }
+        });
+        String matriz[][] = new String[medicafiltro.size()][3];
+        for (int j = 0; j < medicafiltro.size(); j++) {
+            matriz[j][0] = medicafiltro.get(j).getCodigo_medicamento();
+            matriz[j][1] = medicafiltro.get(j).getNombre_medicamento();
+
+        }
+        tabla_medicamentos.setModel(new javax.swing.table.DefaultTableModel(
+                matriz,
+                new String[]{
+                    "codigo", "Nombre"
+                }
+        ));
+    }
+
+    public boolean ValidarDuplicados() {
+        boolean validado = true;
+//        Insert_alergias inser = new Insert_alergias();
+        List<medicamentos> com = inser.ListaMedicamentos();
+
+        for (int i = 0; i < com.size(); i++) {
+            if (com.get(i).getNombre_medicamento().equalsIgnoreCase(txt_nombre.getText())) {
+                validado = false;
+                JOptionPane.showMessageDialog(null, "El medicamento ya existe");
+            }
+        }
+
+        return validado;
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -188,16 +335,19 @@ public class Medicamentos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buscar;
     private javax.swing.JButton btmedmodificar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tabla_medicamentos;
+    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }
