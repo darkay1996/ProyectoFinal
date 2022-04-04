@@ -649,7 +649,7 @@ public class agregar_doctor extends javax.swing.JFrame {
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe");
-
+                        txtnuevo_usuario.setText("");
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "El doctor ya existe en el sistema");
