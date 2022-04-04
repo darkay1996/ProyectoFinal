@@ -34,6 +34,7 @@ public class agregar_doctor extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         LLenarComboBoxEspecialidad();
+        cargarcod();
     }
 
     /**
@@ -596,6 +597,11 @@ public class agregar_doctor extends javax.swing.JFrame {
         text_celular_doctor.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_celular_doctorMousePressed
 
+    public void cargarcod() {
+        txtcodigo_doctor.setEnabled(false);
+        txtcodigo_doctor.setText(String.valueOf(inser.cargarcodigo()));
+    }
+
     public void RegistrarDoctor() throws SQLException {
 
         Insert_doctor docto = new Insert_doctor();
@@ -644,6 +650,7 @@ public class agregar_doctor extends javax.swing.JFrame {
                         if (docto.InsertarDoctor()) {
                             System.out.println("Conexion Exitosa");
                             limpiar();
+                            cargarcod();
                         } else {
                             System.out.println("Conexion Erronea");
                         }
