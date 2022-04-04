@@ -56,6 +56,8 @@ public class Insert_usuario extends usuario {
     }
     
     
+    
+    
         public boolean validarNomduplicado(String usuario) throws SQLException {
         boolean validar = false;
         int codigo = 0;
