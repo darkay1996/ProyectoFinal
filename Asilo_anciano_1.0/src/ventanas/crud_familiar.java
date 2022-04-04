@@ -11,6 +11,7 @@ import clases.familiar;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
 
 /**
  *
@@ -44,56 +45,79 @@ public class crud_familiar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaFamiliar = new javax.swing.JTable();
+        btrefrescar = new javax.swing.JButton();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BtRegresarFamiliar.setText("Regresar");
+        BtRegresarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        BtRegresarFamiliar.setToolTipText("Regresar");
+        BtRegresarFamiliar.setBorder(null);
+        BtRegresarFamiliar.setOpaque(false);
         BtRegresarFamiliar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtRegresarFamiliarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtRegresarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 20, -1, -1));
+        getContentPane().add(BtRegresarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 110, 50, 40));
 
-        BtIngresarFamiliar.setText("INGRESAR FAMILIAR");
+        BtIngresarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-usuario.png"))); // NOI18N
+        BtIngresarFamiliar.setToolTipText("INGRESAR FAMILIAR");
+        BtIngresarFamiliar.setBorder(null);
+        BtIngresarFamiliar.setOpaque(false);
         BtIngresarFamiliar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtIngresarFamiliarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtIngresarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
-        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 150, -1));
+        getContentPane().add(BtIngresarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 40, 40));
 
-        BtBuscarFamiliar.setText("BUSCAR FAMILIAR");
+        text_buscar.setText("Buscar...");
+        text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarMousePressed(evt);
+            }
+        });
+        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 250, 40));
+
+        BtBuscarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BtBuscarFamiliar.setToolTipText("BUSCAR FAMILIAR");
+        BtBuscarFamiliar.setBorder(null);
+        BtBuscarFamiliar.setOpaque(false);
         BtBuscarFamiliar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtBuscarFamiliarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtBuscarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, -1, -1));
+        getContentPane().add(BtBuscarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 50, 40));
 
-        BtEditarFamiliar.setText("EDITAR FAMILIAR");
+        BtEditarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        BtEditarFamiliar.setToolTipText("EDITAR FAMILIAR");
+        BtEditarFamiliar.setBorder(null);
+        BtEditarFamiliar.setOpaque(false);
         BtEditarFamiliar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtEditarFamiliarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtEditarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, -1, -1));
+        getContentPane().add(BtEditarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 110, 50, 40));
 
-        BtEliminarFamiliar.setText("ELIMINAR FAMILIAR");
+        BtEliminarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
+        BtEliminarFamiliar.setToolTipText("ELIMINAR FAMILIAR");
+        BtEliminarFamiliar.setBorder(null);
+        BtEliminarFamiliar.setOpaque(false);
         BtEliminarFamiliar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtEliminarFamiliarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtEliminarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, -1, -1));
+        getContentPane().add(BtEliminarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 110, 50, 40));
 
-        jLabel2.setFont(new java.awt.Font("Franklin Gothic Demi", 3, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 204));
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("LISTA DE FAMILIARES");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         TablaFamiliar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,7 +131,18 @@ public class crud_familiar extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 1260, 290));
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo 2.png"))); // NOI18N
+        btrefrescar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
+        btrefrescar.setToolTipText("ver todos");
+        btrefrescar.setBorder(null);
+        btrefrescar.setOpaque(false);
+        btrefrescar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btrefrescarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btrefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 120, -1, -1));
+
+        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/—Pngtree—green simple solid color background_1323927.png"))); // NOI18N
         Fondo.setText("jLabel1");
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 490));
 
@@ -180,6 +215,18 @@ public class crud_familiar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BtEditarFamiliarActionPerformed
 
+    private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
+        // TODO add your handling code here:
+        text_buscar.setText("");
+        text_buscar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_text_buscarMousePressed
+
+    private void btrefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btrefrescarActionPerformed
+        // TODO add your handling code here:
+        cargarTabla();
+        
+    }//GEN-LAST:event_btrefrescarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,6 +271,7 @@ public class crud_familiar extends javax.swing.JFrame {
     private javax.swing.JButton BtRegresarFamiliar;
     private javax.swing.JLabel Fondo;
     private javax.swing.JTable TablaFamiliar;
+    private javax.swing.JButton btrefrescar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField text_buscar;
