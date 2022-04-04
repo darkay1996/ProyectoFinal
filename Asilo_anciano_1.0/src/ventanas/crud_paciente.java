@@ -52,21 +52,24 @@ public class crud_paciente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(240, 232, 158));
+        jPanel1.setBackground(new java.awt.Color(240, 211, 139));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 59, 153));
         jLabel2.setText("LISTA DE PACIENTES");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
-        BtIngresarPaciente.setText("INGRESAR PACIENTE");
+        BtIngresarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-usuario.png"))); // NOI18N
+        BtIngresarPaciente.setToolTipText("INGRESAR PACIENTE");
+        BtIngresarPaciente.setBorder(null);
+        BtIngresarPaciente.setOpaque(false);
         BtIngresarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtIngresarPacienteActionPerformed(evt);
             }
         });
-        jPanel1.add(BtIngresarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        jPanel1.add(BtIngresarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 50, 40));
 
         text_buscar.setText("Buscar...");
         text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,41 +77,51 @@ public class crud_paciente extends javax.swing.JFrame {
                 text_buscarMousePressed(evt);
             }
         });
-        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 150, -1));
+        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 210, 30));
 
-        BtBuscarPaciente.setText("BUSCAR PACIENTE");
+        BtBuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BtBuscarPaciente.setToolTipText("BUSCAR PACIENTE");
+        BtBuscarPaciente.setBorder(null);
+        BtBuscarPaciente.setOpaque(false);
         BtBuscarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtBuscarPacienteActionPerformed(evt);
             }
         });
-        jPanel1.add(BtBuscarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, -1));
+        jPanel1.add(BtBuscarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 50, 40));
 
-        BtEditarPaciente.setText("EDITAR PACIENTE");
+        BtEditarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        BtEditarPaciente.setBorder(null);
+        BtEditarPaciente.setOpaque(false);
         BtEditarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtEditarPacienteActionPerformed(evt);
             }
         });
-        jPanel1.add(BtEditarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, -1, -1));
+        jPanel1.add(BtEditarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 50, 40));
 
-        BtEliminarPaciente.setText("ELIMINAR PACIENTE");
+        BtEliminarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
+        BtEliminarPaciente.setToolTipText("ELIMINAR PACIENTE");
+        BtEliminarPaciente.setBorder(null);
+        BtEliminarPaciente.setOpaque(false);
         BtEliminarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtEliminarPacienteActionPerformed(evt);
             }
         });
-        jPanel1.add(BtEliminarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, -1, -1));
+        jPanel1.add(BtEliminarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 50, 40));
 
         BtRegresarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BtRegresarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        BtRegresarPaciente.setText("Regresar");
+        BtRegresarPaciente.setToolTipText("Regresar");
+        BtRegresarPaciente.setBorder(null);
+        BtRegresarPaciente.setOpaque(false);
         BtRegresarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtRegresarPacienteActionPerformed(evt);
             }
         });
-        jPanel1.add(BtRegresarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, -1, -1));
+        jPanel1.add(BtRegresarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 100, 50, 40));
 
         TablaPaciente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -122,8 +135,9 @@ public class crud_paciente extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 980, 280));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
         jButton1.setToolTipText("Ver todos");
+        jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +145,7 @@ public class crud_paciente extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 90, 40, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, 50, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

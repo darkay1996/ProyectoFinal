@@ -54,47 +54,67 @@ public class crud_enfermera extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Franklin Gothic Demi", 3, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 204));
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel2.setText("LISTA DE ENFERMERA/O");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
-        BtAgregarEnfermera.setText("AGREGAR ENFERMERA");
+        BtAgregarEnfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-usuario.png"))); // NOI18N
+        BtAgregarEnfermera.setToolTipText("AGREGAR ENFERMERA");
+        BtAgregarEnfermera.setBorder(null);
+        BtAgregarEnfermera.setOpaque(false);
         BtAgregarEnfermera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtAgregarEnfermeraActionPerformed(evt);
             }
         });
-        jPanel1.add(BtAgregarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        jPanel1.add(BtAgregarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 40, 40));
 
-        BtBuscarEnfermera.setText("BUSCAR ENFERMERA");
+        BtBuscarEnfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BtBuscarEnfermera.setToolTipText("BUSCAR ENFERMERA");
+        BtBuscarEnfermera.setBorder(null);
+        BtBuscarEnfermera.setOpaque(false);
         BtBuscarEnfermera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtBuscarEnfermeraActionPerformed(evt);
             }
         });
-        jPanel1.add(BtBuscarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
+        jPanel1.add(BtBuscarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 50, 40));
 
+        text_buscar.setText("Buscar...");
+        text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarMousePressed(evt);
+            }
+        });
         text_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 text_buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 130, -1));
+        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 230, 30));
 
-        BtModificarEnfermera.setText("MODIFICAR ENFERMERA");
-        jPanel1.add(BtModificarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, -1, -1));
+        BtModificarEnfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        BtModificarEnfermera.setToolTipText("MODIFICAR ENFERMERA");
+        BtModificarEnfermera.setBorder(null);
+        BtModificarEnfermera.setOpaque(false);
+        jPanel1.add(BtModificarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 50, 40));
 
-        BtEliminarEnfermera.setText("ELIMINAR ENFERMERA");
-        jPanel1.add(BtEliminarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, -1, -1));
+        BtEliminarEnfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
+        BtEliminarEnfermera.setToolTipText("ELIMINAR ENFERMERA");
+        BtEliminarEnfermera.setBorder(null);
+        BtEliminarEnfermera.setOpaque(false);
+        jPanel1.add(BtEliminarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, 50, 40));
 
-        BtRegresarEnfermera.setText("REGRESAR");
+        BtRegresarEnfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        BtRegresarEnfermera.setToolTipText("REGRESAR");
+        BtRegresarEnfermera.setBorder(null);
+        BtRegresarEnfermera.setOpaque(false);
         BtRegresarEnfermera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtRegresarEnfermeraActionPerformed(evt);
             }
         });
-        jPanel1.add(BtRegresarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, -1, -1));
+        jPanel1.add(BtRegresarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 90, 50, 40));
 
         TablaEnfermera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,15 +128,18 @@ public class crud_enfermera extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 980, 300));
 
-        Actualizar.setText("Actualizar");
+        Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
+        Actualizar.setToolTipText("Actualizar");
+        Actualizar.setBorder(null);
+        Actualizar.setOpaque(false);
         Actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+        jPanel1.add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 50, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wallpaperbetter (3).jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,6 +184,12 @@ public class crud_enfermera extends javax.swing.JFrame {
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
         cargarTabla();
     }//GEN-LAST:event_ActualizarActionPerformed
+
+    private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
+        // TODO add your handling code here:
+        text_buscar.setText("");
+        text_buscar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_text_buscarMousePressed
 
     public void cargarTabla() {
         DefaultTableModel tb = (DefaultTableModel) TablaEnfermera.getModel();
