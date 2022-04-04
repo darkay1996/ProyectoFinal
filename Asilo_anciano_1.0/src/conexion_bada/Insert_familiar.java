@@ -54,4 +54,17 @@ public class Insert_familiar extends familiar {
         }
     }
 
+    public int cargarcodigo() {
+        int codigo = 0;
+        String sqls = "select max(fam_codigo) from familiar;";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("max") + 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
 }
