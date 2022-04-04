@@ -1,5 +1,19 @@
 package ventanas;
 
+import clases.usuario;
+import conexion_bada.Insert_doctor;
+import conexion_bada.Insert_usuario;
+import clases.especialidad;
+import javax.swing.JOptionPane;
+import clases.validaciones;
+import conexion_bada.Conexion;
+import conexion_bada.Insert;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import conexion_bada.Insert_especialidad;
 import clases.familiar;
 import conexion_bada.Insert_familiar;
 //import conexion_bada.Insert;
@@ -10,26 +24,12 @@ import java.util.Calendar;
 
 public class agregar_familiar extends javax.swing.JFrame {
 
-    //Varibales auxiliares
-//    String codigoAux;
-//    String cedulaAux;
-//    String pri_nombAux;
-//    String seg_nombreAux;
-//    String prim_apellAux;
-//    String seg_apelliAux;
-//    String correoAux;
-//    String generoAux;
-//    String fecha_NacimientoAux;
-//    String direccionAux;
-//    String telefonoAux;
-//    String tipo_sangreAux;
-//    String codigo_de_pacienteAux;
-//    String fecha_de_visitaAux;
-//    String hora_inicioAux;
-//    String hora_finAux;
-    Insert_familiar familiar = new Insert_familiar();
     DateFormat df = DateFormat.getDateInstance();
     ArrayList<familiar> lista_familiar = new ArrayList();
+
+    validaciones misvalidaciones = new validaciones();
+    Insert inser = new Insert();
+    Conexion cone = new Conexion();
 
     public agregar_familiar() {
         initComponents();
@@ -70,20 +70,20 @@ public class agregar_familiar extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         combo_sangre_familiar = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtParentesco = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        txt_codigo = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
+        txtContrasenia = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -329,7 +329,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                                 .addGap(92, 92, 92)
                                 .addComponent(jLabel8)
                                 .addGap(69, 69, 69)
-                                .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -343,7 +343,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel15)
                                         .addGap(30, 30, 30)
@@ -367,8 +367,8 @@ public class agregar_familiar extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(26, 26, 26)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField3)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                                            .addComponent(txtUsuario)
+                                            .addComponent(txtContrasenia, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
                                         .addContainerGap(91, Short.MAX_VALUE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -418,7 +418,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                         .addComponent(text_cedula_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel13))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8)))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -426,7 +426,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(text_PrimerNombre_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,7 +466,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                                 .addGap(43, 43, 43)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel10)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(39, 39, 39))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -492,7 +492,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                             .addComponent(RegresarFamiliar)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel14)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(combo_sangre_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -575,87 +575,213 @@ public class agregar_familiar extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarFamiliarActionPerformed
 
     private void GuardarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarFamiliarActionPerformed
-        RegistrarFamiliar();
-        limpiar();
+        try {
+            RegistrarFamiliar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_GuardarFamiliarActionPerformed
 
     public void cargarcod() {
-        txt_codigo.setEnabled(false);
-        txt_codigo.setText(String.valueOf(familiar.cargarcodigo()));
+        txtCodigo.setEnabled(false);
+        txtCodigo.setText(String.valueOf(inser.cargarcodigo()));
     }
 
-    public void RegistrarFamiliar() {
+    public void RegistrarFamiliar() throws SQLException {
 
-        String genero = "";
+        Insert_familiar familiar = new Insert_familiar();
+        Insert_usuario usu = new Insert_usuario();
 
-        //familiar.setCodigo(text_codigo_familiar.getText());
-        familiar.setCedula(text_cedula_familiar.getText());
-        familiar.setPri_nomb(text_PrimerNombre_familiar.getText());
-        familiar.setSeg_nombre(text_SegundoNombre_familiar.getText());
-        familiar.setPrim_apell(text_PrimerApellido_familiar.getText());
-        familiar.setSeg_apelli(text_SegundoApellido_familiar.getText());
-        familiar.setDireccion(text_direccion_familiar.getText());
-        if (Masculino_familiar.isSelected()) {
-            genero = "hombre";
+        try {
+            if (validaciones()) {
+                if (familiar.validarduplicado(text_cedula_familiar.getText())) {
+                    if (usu.validarNomduplicado(txtUsuario.getText())) {
+                        String genero = "";
+                        //familiar.setCodigo(text_codigo_familiar.getText());
+                        familiar.setCedula(text_cedula_familiar.getText());
+                        familiar.setPri_nomb(text_PrimerNombre_familiar.getText());
+                        familiar.setSeg_nombre(text_SegundoNombre_familiar.getText());
+                        familiar.setPrim_apell(text_PrimerApellido_familiar.getText());
+                        familiar.setSeg_apelli(text_SegundoApellido_familiar.getText());
+                        familiar.setDireccion(text_direccion_familiar.getText());
+                        if (Masculino_familiar.isSelected()) {
+                            genero = "hombre";
+                        }
+                        if (Femenino_familiar.isSelected()) {
+                            genero = "mujer";
+                        }
+                        familiar.setGenero(genero);
+                        familiar.setCorreo(text_email_familiar.getText());
+
+                        String dia = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+                        String mes = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.MONTH) + 1);
+                        String año = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.YEAR));
+                        String FechaNacimiento = (dia + "-" + mes + "-" + año);
+                        //String FechaNacimiento = df.format(fecha_nacimiento_familiar.getDate());
+                        familiar.setFecha_Nacimiento(FechaNacimiento);
+
+                        familiar.setTelefono(text_celular_familiar.getText());
+                        familiar.setTipo_sangre(combo_sangre_familiar.getSelectedItem().toString());
+                        familiar.InsertarPersona();
+                        //Fin Persona
+                        ///////////////////////////////////
+                        usu.setContraseña(txtContrasenia.getText());
+                        usu.setUsuario(txtUsuario.getText());
+                        usu.InsertarUsuario();
+                        /////////////////////////////////////
+                        familiar.setParectesco(txtParentesco.getText());
+                        familiar.setCedula(text_cedula_familiar.getText());
+                        familiar.setCod_usuario(usu.obtenerUsuario());
+
+                        if (familiar.InsertarFamiliar()) {
+                            System.out.println("Conexion Exitosa");
+                            limpiar();
+                            cargarcod();
+                        } else {
+                            System.out.println("Conexion Erronea");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe");
+                        txtUsuario.setText("");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "El doctor ya existe en el sistema");
+                    text_cedula_familiar.setText("");
+
+                }
+            }
+        } catch (NullPointerException n) {
+
         }
-        if (Femenino_familiar.isSelected()) {
-            genero = "mujer";
-        }
-        familiar.setGenero(genero);
-        familiar.setCorreo(text_email_familiar.getText());
+    }
 
-        String dia = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.YEAR));
-        String FechaNacimiento = (dia + "-" + mes + "-" + año);
-        //String FechaNacimiento = df.format(fecha_nacimiento_familiar.getDate());
-        familiar.setFecha_Nacimiento(FechaNacimiento);
+    public boolean validaciones() {
+        boolean validado = true;
 
-        familiar.setTelefono(text_celular_familiar.getText());
-        familiar.setTipo_sangre(combo_sangre_familiar.getSelectedItem().toString());
-
-        //String diaV = Integer.toString(fecha_visita_familiar.getCalendar().get(Calendar.DAY_OF_MONTH));
-        //String mesV = Integer.toString(fecha_visita_familiar.getCalendar().get(Calendar.MONTH) + 1);
-        //String añoV = Integer.toString(fecha_visita_familiar.getCalendar().get(Calendar.YEAR));
-        //String FechaVisita = (diaV + "-" + mesV + "-" + añoV);
-        //String FechaVisita = df.format(fecha_visita_familiar.getDate());
-        //familiar.setFecha_de_visita(FechaVisita);
-        //String Hingreso,Mingreso,Hsalida,Msalida;
-        //Hingreso = Spinner_horaIniciovisita_familiar.getValue().toString();
-        // Mingreso = Spinner_minutosIniciovisita_familiar.getValue().toString();
-        //Hsalida = Spinner_hora_finalvisita_familiar.getValue().toString();
-        //Msalida = Spinner_minutos_finalvisita_familiar.getValue().toString();
-//        if (String.valueOf(Hingreso).length() == 1) {
-//            Hingreso = "0"+Hingreso;
-//        }
-//        if (String.valueOf(Mingreso).length() == 1) {
-//            Mingreso = "0"+Mingreso;
-//        }
-//        
-//        if (String.valueOf(Hsalida).length() == 1) {
-//            Hsalida = "0"+Hsalida;
-//        }
-//        if (String.valueOf(Msalida).length() == 1) {
-//            Msalida="0"+Msalida;
-//        }
-//        
-//        hora_inicioAux = Hingreso+":" + Mingreso;
-//        hora_finAux = Hsalida+ ":" + Msalida;
-//        
-//        familiar.setHora_inicio(hora_inicioAux);
-//        familiar.setHora_fin(hora_finAux);
-//        familiar.setCodigo_de_paciente(text_codigoPaciente_familiar.getText());
-//
-//
-        if (familiar.InsertarFamiliar()) {
-            System.out.println("Conexion Exitosa");
+        if (text_cedula_familiar.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula");
         } else {
-            System.out.println("Conexion Erronea");
+            if (!misvalidaciones.validar_cedula(text_cedula_familiar.getText())) {
+                JOptionPane.showMessageDialog(this, "Cedula incorrecta");
+                validado = false;
+            }
         }
+//
+        if (text_PrimerNombre_familiar.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_PrimerNombre_familiar.getText())) {
+                JOptionPane.showMessageDialog(this, "Primer nombre incorrecto");
+                validado = false;
+            }
+        }
+        if (text_SegundoNombre_familiar.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_SegundoNombre_familiar.getText())) {
+                JOptionPane.showMessageDialog(this, "Segundo nombre incorrecto");
+                validado = false;
+            }
+        }
+        if (text_PrimerApellido_familiar.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el primer apellido");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_PrimerApellido_familiar.getText())) {
+                JOptionPane.showMessageDialog(this, "Primer apellido incorrecto");
+                validado = false;
+            }
+        }
+        if (text_SegundoApellido_familiar.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el segundo apellido");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_SegundoApellido_familiar.getText())) {
+                JOptionPane.showMessageDialog(this, "Segundo apellido incorrecto");
+                validado = false;
+            }
+        }
+        if (text_direccion_familiar.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la direccion");
+        } else {
+            if (!misvalidaciones.validarDireccion(text_direccion_familiar.getText())) {
+                JOptionPane.showMessageDialog(this, "Direccion invalida");
+                validado = false;
+            }
+        }
+        if (text_celular_familiar.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el celular");
+        } else {
+            if (!misvalidaciones.validarTelefono(text_celular_familiar.getText())) {
+                JOptionPane.showMessageDialog(this, "Celular invalido");
+                validado = false;
+            }
+        }
+        if (text_email_familiar.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el correo");
+        } else {
+            if (!misvalidaciones.validarCorreo(text_email_familiar.getText())) {
+                JOptionPane.showMessageDialog(this, "Correo invalido");
+                validado = false;
+            }
+        }
+
+        if (txtUsuario.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese un usuario");
+        } else {
+            if (!misvalidaciones.validarUsuario(txtUsuario.getText())) {
+                JOptionPane.showMessageDialog(this, "Usuario invalido");
+                validado = false;
+            }
+        }
+
+        if (txtContrasenia.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese una contraseña");
+        } else {
+            if (!misvalidaciones.validarContrasena(txtContrasenia.getText())) {
+                JOptionPane.showMessageDialog(this, "Contraseña invalida");
+                validado = false;
+            }
+        }
+
+        if (txtParentesco.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el parentesco");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(txtParentesco.getText())) {
+                JOptionPane.showMessageDialog(this, "Parentesco incorrecto");
+                validado = false;
+            }
+        }
+
+        if (combo_sangre_familiar.getSelectedIndex() == 0) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
+        }
+//        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
+        if (fecha_nacimiento_familiar.getDate() == null) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento");
+        }
+
+        if (!Masculino_familiar.isSelected() && !Femenino_familiar.isSelected()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "seleccione un genero");
+        }
+
+        return validado;
     }
 
     public void limpiar() {
-        //text_codigo_familiar.setText("");
+        txtCodigo.setText("");
         text_cedula_familiar.setText("");
         text_PrimerNombre_familiar.setText("");
         text_SegundoNombre_familiar.setText("");
@@ -666,12 +792,10 @@ public class agregar_familiar extends javax.swing.JFrame {
         text_celular_familiar.setText("");
         Genero_familiar.clearSelection();
         combo_sangre_familiar.setSelectedIndex(0);
-        //text_codigoPaciente_familiar.setText("");
-        //Spinner_horaIniciovisita_familiar.setValue(0);
-        //Spinner_minutosIniciovisita_familiar.setValue(0);
-        // Spinner_hora_finalvisita_familiar.setValue(0);
-        //Spinner_minutos_finalvisita_familiar.setValue(0);
-
+        txtParentesco.setText("");
+        fecha_nacimiento_familiar.setCalendar(null);
+        txtUsuario.setText("");
+        txtContrasenia.setText("");
     }
 
     /**
@@ -744,9 +868,6 @@ public class agregar_familiar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField text_PrimerApellido_familiar;
     private javax.swing.JTextField text_PrimerNombre_familiar;
     private javax.swing.JTextField text_SegundoApellido_familiar;
@@ -755,6 +876,9 @@ public class agregar_familiar extends javax.swing.JFrame {
     private javax.swing.JTextField text_celular_familiar;
     private javax.swing.JTextField text_direccion_familiar;
     private javax.swing.JTextField text_email_familiar;
-    private javax.swing.JTextField txt_codigo;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtContrasenia;
+    private javax.swing.JTextField txtParentesco;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
