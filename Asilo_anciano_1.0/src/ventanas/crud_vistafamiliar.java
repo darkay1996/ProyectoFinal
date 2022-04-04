@@ -54,6 +54,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         tablavisitante = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
+        txt_codigo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,6 +161,9 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 230, 30));
 
+        txt_codigo.setText("jLabel9");
+        jPanel2.add(txt_codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, 40, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,6 +242,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTable tablavisitante;
+    private javax.swing.JLabel txt_codigo;
     private javax.swing.JTextField txtvisitapellido;
     private javax.swing.JTextField txtvisitcedula;
     private javax.swing.JTextField txtvisitnombre;
