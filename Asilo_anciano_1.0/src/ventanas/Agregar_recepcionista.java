@@ -5,15 +5,23 @@ import clases.recepcionista;
 //import conexion_bada.Insert_doctor;
 //import conexion_bada.Insert;
 import conexion_bada.Insert_recepcionista;
+import conexion_bada.Insert_usuario;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
+import clases.validaciones;
+import conexion_bada.Insert_Persona;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Agregar_recepcionista extends javax.swing.JFrame {
 
+    validaciones misvalidaciones = new validaciones();
     String hora_ingresoAux;
     String hora_salidaAux;
-    
+
     DateFormat df = DateFormat.getDateInstance();
     ArrayList<recepcionista> lista_recepcionista = new ArrayList();
 
@@ -73,8 +81,8 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        txtnuevo_recepcionista = new javax.swing.JTextField();
-        txtcontrasena_recepcionista = new javax.swing.JTextField();
+        txt_usuario = new javax.swing.JTextField();
+        txt_contrasena = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -301,97 +309,94 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
+                            .addComponent(jSeparator1)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(189, 189, 189)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(334, 334, 334))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(Guardar_recepcionista)
+                        .addGap(88, 88, 88)
+                        .addComponent(Regresar_recepcionista))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(text_PrimerNombre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel5)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(text_cedula_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(text_direccion_recepcionista)
+                                        .addComponent(text_PrimerApellido_recepcionista)
+                                        .addComponent(text_email_recepcionista)
+                                        .addComponent(text_segundoApellido_recepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                                    .addComponent(text_SegundoNombre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(50, 50, 50)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(165, 165, 165)
-                                .addComponent(Guardar_recepcionista)
-                                .addGap(88, 88, 88)
-                                .addComponent(Regresar_recepcionista))
+                                .addComponent(jLabel8)
+                                .addGap(27, 27, 27)
+                                .addComponent(Masculino_recepcionista)
+                                .addGap(18, 18, 18)
+                                .addComponent(Femenino_recepcionista))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(text_PrimerNombre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel17)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel3)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel5)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(text_cedula_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(text_direccion_recepcionista)
-                                                .addComponent(text_PrimerApellido_recepcionista)
-                                                .addComponent(text_email_recepcionista)
-                                                .addComponent(text_segundoApellido_recepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
-                                            .addComponent(text_SegundoNombre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(77, 77, 77)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(Masculino_recepcionista)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Femenino_recepcionista))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addGap(44, 44, 44)
-                                        .addComponent(combo_sangre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addGap(78, 78, 78)
-                                        .addComponent(text_celular_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(58, 58, 58)
-                                        .addComponent(text_codigo_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addGap(51, 51, 51)
-                                        .addComponent(Fecha_Nacimiento_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(13, 13, 13)
-                                                .addComponent(Spinner_HoraEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(Spinner_MinutosEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel15))
-                                        .addGap(72, 72, 72)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(Spinner_HoraSalida_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(28, 28, 28)
-                                                .addComponent(Spinner_MinutosSalida_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel16)))
+                                .addComponent(jLabel9)
+                                .addGap(44, 44, 44)
+                                .addComponent(combo_sangre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(78, 78, 78)
+                                .addComponent(text_celular_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(58, 58, 58)
+                                .addComponent(text_codigo_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(51, 51, 51)
+                                .addComponent(Fecha_Nacimiento_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(13, 13, 13)
+                                        .addComponent(Spinner_HoraEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Spinner_MinutosEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel15))
+                                .addGap(72, 72, 72)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Spinner_HoraSalida_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(Spinner_MinutosSalida_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel16)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel19)
+                                        .addGap(61, 61, 61)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel19)
-                                                .addGap(61, 61, 61)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtcontrasena_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtnuevo_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addComponent(jLabel18)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel12)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel18)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -479,14 +484,14 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel18)
-                            .addComponent(txtnuevo_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Guardar_recepcionista)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel19)
-                            .addComponent(txtcontrasena_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(Regresar_recepcionista)))
                 .addContainerGap(193, Short.MAX_VALUE))
         );
@@ -501,9 +506,11 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_Masculino_recepcionistaActionPerformed
 
     private void Guardar_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_recepcionistaActionPerformed
-
-        RegistrarRecepcionista();
-        limpiar();
+        try {
+            RegistrarRecepcionista();
+        } catch (SQLException ex) {
+            Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Guardar_recepcionistaActionPerformed
 
     private void Regresar_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regresar_recepcionistaActionPerformed
@@ -586,68 +593,223 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_text_PrimerApellido_recepcionistaActionPerformed
 
-    public void RegistrarRecepcionista() {
+    public void RegistrarRecepcionista() throws SQLException {
+        Insert_usuario usu = new Insert_usuario();
+        Insert_recepcionista recep = new Insert_recepcionista();
+        Insert_Persona per = new Insert_Persona();
+        try {
+            if (validaciones()) {
+                if (per.validarduplicado(text_cedula_recepcionista.getText())) {
+                    if (usu.validarNomduplicado(txt_usuario.getText())) {
+                        String genero = "";
 
-        String genero = "";
-        Insert_recepcionista recepcionista = new Insert_recepcionista();
-        recepcionista.setCodigo(text_codigo_recepcionista.getText());
-        recepcionista.setCedula(text_cedula_recepcionista.getText());
-        recepcionista.setPri_nomb(text_PrimerNombre_recepcionista.getText());
-        recepcionista.setSeg_nombre(text_SegundoNombre_recepcionista.getText());
-        recepcionista.setPrim_apell(text_PrimerApellido_recepcionista.getText());
-        recepcionista.setSeg_apelli(text_segundoApellido_recepcionista.getText());
-        recepcionista.setDireccion(text_direccion_recepcionista.getText());
-        if (Masculino_recepcionista.isSelected()) {
-            genero = "hombre";
-        }
-        if (Femenino_recepcionista.isSelected()) {
-            genero = "mujer";
-        }
-        recepcionista.setGenero(genero);
-        
-        
-        String dia = Integer.toString(Fecha_Nacimiento_recepcionista.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(Fecha_Nacimiento_recepcionista.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(Fecha_Nacimiento_recepcionista.getCalendar().get(Calendar.YEAR));
-        String FechaNacimiento = (dia + "-" + mes + "-" + año);
-        //String Fecha = df.format(Fecha_Nacimiento_recepcionista.getDate());
-        recepcionista.setFecha_Nacimiento(FechaNacimiento);
-        
-        recepcionista.setCorreo(text_email_recepcionista.getText());
-        recepcionista.setTelefono(text_celular_recepcionista.getText());
-        recepcionista.setTipo_sangre(combo_sangre_recepcionista.getSelectedItem().toString());
-        
-        
-        String Hingreso,Mingreso,Hsalida,Msalida;
-        Hingreso = Spinner_HoraEntrada_recepcionista.getValue().toString();
-        Mingreso = Spinner_MinutosEntrada_recepcionista.getValue().toString();
-        Hsalida = Spinner_HoraSalida_recepcionista.getValue().toString();
-        Msalida = Spinner_MinutosSalida_recepcionista.getValue().toString();
-        
-        if (String.valueOf(Hingreso).length() == 1) {
-            Hingreso = "0"+Hingreso;
-        }
-        if (String.valueOf(Mingreso).length() == 1) {
-            Mingreso = "0"+Mingreso;
-        }
-        
-        if (String.valueOf(Hsalida).length() == 1) {
-            Hsalida = "0"+Hsalida;
-        }
-        if (String.valueOf(Msalida).length() == 1) {
-            Msalida="0"+Msalida;
-        }
-        
-        hora_ingresoAux = Hingreso+":" + Mingreso;
-        hora_salidaAux = Hsalida+ ":" + Msalida;
-        recepcionista.setHora_ingreso(hora_ingresoAux);
-        recepcionista.setHora_salida(hora_salidaAux);
+                        recep.setCodigo(text_codigo_recepcionista.getText());
+                        recep.setCedula(text_cedula_recepcionista.getText());
+                        recep.setPri_nomb(text_PrimerNombre_recepcionista.getText());
+                        recep.setSeg_nombre(text_SegundoNombre_recepcionista.getText());
+                        recep.setPrim_apell(text_PrimerApellido_recepcionista.getText());
+                        recep.setSeg_apelli(text_segundoApellido_recepcionista.getText());
+                        recep.setDireccion(text_direccion_recepcionista.getText());
+                        if (Masculino_recepcionista.isSelected()) {
+                            genero = "hombre";
+                        }
+                        if (Femenino_recepcionista.isSelected()) {
+                            genero = "mujer";
+                        }
+                        recep.setGenero(genero);
 
-        if (recepcionista.InsertarRecepcionista()) {
-            System.out.println("Conexion Exitosa");
+                        String dia = Integer.toString(Fecha_Nacimiento_recepcionista.getCalendar().get(Calendar.DAY_OF_MONTH));
+                        String mes = Integer.toString(Fecha_Nacimiento_recepcionista.getCalendar().get(Calendar.MONTH) + 1);
+                        String año = Integer.toString(Fecha_Nacimiento_recepcionista.getCalendar().get(Calendar.YEAR));
+                        String FechaNacimiento = (dia + "-" + mes + "-" + año);
+                        //String Fecha = df.format(Fecha_Nacimiento_recepcionista.getDate());
+                        recep.setFecha_Nacimiento(FechaNacimiento);
+
+                        recep.setCorreo(text_email_recepcionista.getText());
+                        recep.setTelefono(text_celular_recepcionista.getText());
+                        recep.setTipo_sangre(combo_sangre_recepcionista.getSelectedItem().toString());
+
+                        String Hingreso, Mingreso, Hsalida, Msalida;
+                        Hingreso = Spinner_HoraEntrada_recepcionista.getValue().toString();
+                        Mingreso = Spinner_MinutosEntrada_recepcionista.getValue().toString();
+                        Hsalida = Spinner_HoraSalida_recepcionista.getValue().toString();
+                        Msalida = Spinner_MinutosSalida_recepcionista.getValue().toString();
+
+                        if (String.valueOf(Hingreso).length() == 1) {
+                            Hingreso = "0" + Hingreso;
+                        }
+                        if (String.valueOf(Mingreso).length() == 1) {
+                            Mingreso = "0" + Mingreso;
+                        }
+
+                        if (String.valueOf(Hsalida).length() == 1) {
+                            Hsalida = "0" + Hsalida;
+                        }
+                        if (String.valueOf(Msalida).length() == 1) {
+                            Msalida = "0" + Msalida;
+                        }
+
+                        hora_ingresoAux = Hingreso + ":" + Mingreso;
+                        hora_salidaAux = Hsalida + ":" + Msalida;
+                        recep.setHora_ingreso(hora_ingresoAux);
+                        recep.setHora_salida(hora_salidaAux);
+                        recep.setCod_usuario(usu.obtenerUsuario());
+
+                        usu.setUsuario(txt_usuario.getText());
+                        usu.setContraseña(txt_contrasena.getText());
+
+                        usu.InsertarUsuario();
+                        recep.InsertarPersona();
+                        if (recep.InsertarRecepcionista()) {
+                            System.out.println("Conexion Exitosa");
+                        } else {
+                            System.out.println("Conexion Erronea");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe");
+
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "La recepcionista ya existe en el sistema");
+                    text_cedula_recepcionista.setText("");
+
+                }
+            }
+        } catch (NullPointerException n) {
+
+        }
+    }
+
+    public boolean validaciones() {
+        boolean validado = true;
+
+        if (text_cedula_recepcionista.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula");
         } else {
-            System.out.println("Conexion Erronea");
+            if (!misvalidaciones.validar_cedula(text_cedula_recepcionista.getText())) {
+                JOptionPane.showMessageDialog(this, "Cedula incorrecta");
+                validado = false;
+            }
         }
+//
+        if (text_PrimerNombre_recepcionista.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el primer nombre");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_PrimerNombre_recepcionista.getText())) {
+                JOptionPane.showMessageDialog(this, "Primer nombre incorrecto");
+                validado = false;
+            }
+        }
+        if (text_SegundoNombre_recepcionista.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el segundo nombre");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_SegundoNombre_recepcionista.getText())) {
+                JOptionPane.showMessageDialog(this, "Segundo nombre incorrecto");
+                validado = false;
+            }
+        }
+        if (text_PrimerApellido_recepcionista.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el primer apellido");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_PrimerApellido_recepcionista.getText())) {
+                JOptionPane.showMessageDialog(this, "Primer apellido incorrecto");
+                validado = false;
+            }
+        }
+        if (text_segundoApellido_recepcionista.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el segundo apellido");
+        } else {
+            if (!misvalidaciones.validar_nombre_apellido(text_segundoApellido_recepcionista.getText())) {
+                JOptionPane.showMessageDialog(this, "Segundo apellido incorrecto");
+                validado = false;
+            }
+        }
+        if (text_direccion_recepcionista.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la direccion");
+        } else {
+            if (!misvalidaciones.validarDireccion(text_direccion_recepcionista.getText())) {
+                JOptionPane.showMessageDialog(this, "Direccion invalida");
+                validado = false;
+            }
+        }
+        if (text_cedula_recepcionista.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el celular");
+        } else {
+            if (!misvalidaciones.validarTelefono(text_cedula_recepcionista.getText())) {
+                JOptionPane.showMessageDialog(this, "Celular invalido");
+                validado = false;
+            }
+        }
+        if (text_email_recepcionista.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese el correo");
+        } else {
+            if (!misvalidaciones.validarCorreo(text_email_recepcionista.getText())) {
+                JOptionPane.showMessageDialog(this, "Correo invalido");
+                validado = false;
+            }
+        }
+
+        if (txt_usuario.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese un usuario");
+        } else {
+            if (!misvalidaciones.validarUsuario(txt_usuario.getText())) {
+                JOptionPane.showMessageDialog(this, "Usuario invalido");
+                validado = false;
+            }
+        }
+
+        if (txt_contrasena.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese una contraseña");
+        } else {
+            if (!misvalidaciones.validarContrasena(txt_contrasena.getText())) {
+                JOptionPane.showMessageDialog(this, "Contraseña invalida");
+                validado = false;
+            }
+        }
+
+        if (Integer.parseInt((String) Spinner_HoraEntrada_recepcionista.getValue()) == 0) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Hora invalida");
+        }
+        if (Integer.parseInt((String) Spinner_HoraSalida_recepcionista.getValue()) == 0) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Hora invalida");
+        }
+        if (Integer.parseInt((String) Spinner_MinutosEntrada_recepcionista.getValue()) == 0) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Hora invalida");
+        }
+        if (Integer.parseInt((String) Spinner_MinutosSalida_recepcionista.getValue()) == 0) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Hora invalida");
+        }
+
+        if (combo_sangre_recepcionista.getSelectedIndex() == 0) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
+        }
+//        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
+        if (Fecha_Nacimiento_recepcionista.getDate() == null) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento del administrador");
+        }
+
+        if (!Masculino_recepcionista.isSelected() && !Femenino_recepcionista.isSelected()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "seleccione un genero");
+        }
+
+        return validado;
     }
 
     public void limpiar() {
@@ -664,6 +826,9 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         Spinner_HoraEntrada_recepcionista.setValue(0);
         Spinner_HoraSalida_recepcionista.setValue(0);
         combo_sangre_recepcionista.setSelectedIndex(0);
+        Fecha_Nacimiento_recepcionista.setCalendar(null);
+        txt_usuario.setText("");
+        txt_contrasena.setText("");
 
     }
 
@@ -746,7 +911,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     private javax.swing.JTextField text_direccion_recepcionista;
     private javax.swing.JTextField text_email_recepcionista;
     private javax.swing.JTextField text_segundoApellido_recepcionista;
-    private javax.swing.JTextField txtcontrasena_recepcionista;
-    private javax.swing.JTextField txtnuevo_recepcionista;
+    private javax.swing.JTextField txt_contrasena;
+    private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }

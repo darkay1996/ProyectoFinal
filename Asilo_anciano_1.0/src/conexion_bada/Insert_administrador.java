@@ -73,20 +73,20 @@ public class Insert_administrador extends administrador {
 
 
 
-    public boolean validarduplicado(String cedula) throws SQLException {
-        boolean validar = false;
-        int codigo = 0;
-        String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
-        ResultSet dup = cone.selectConsulta(sqls);
-//        try {catch
-        while (dup.next()) {
-            codigo = dup.getInt("count");
-        }
-        if (codigo == 0) {
-            validar = true;
-        }
-        System.out.println("repetido=" + codigo);
-        return validar;
-    }
+//    public boolean validarduplicado(String cedula) throws SQLException {
+//        boolean validar = false;
+//        int codigo = 0;
+//        String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
+//        ResultSet dup = cone.selectConsulta(sqls);
+////        try {catch
+//        while (dup.next()) {
+//            codigo = dup.getInt("count");
+//        }
+//        if (codigo == 0) {
+//            validar = true;
+//        }
+//        System.out.println("repetido=" + codigo);
+//        return validar;
+//    }
 
 }

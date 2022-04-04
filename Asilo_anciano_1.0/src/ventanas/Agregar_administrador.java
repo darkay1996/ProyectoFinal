@@ -12,6 +12,7 @@ import clases.usuario;
 //import conexion_bada.Insert;
 import conexion_bada.Insert_administrador;
 import conexion_bada.Insert_usuario;
+import conexion_bada.Insert_Persona;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -619,10 +620,10 @@ public class Agregar_administrador extends javax.swing.JFrame {
     public void RegistrarAdministrador() throws SQLException {
         Insert_administrador admin = new Insert_administrador();
         Insert_usuario usu = new Insert_usuario();
-//        Insert admin = new Insert();
+        Insert_Persona per = new Insert_Persona();
         try {
             if (validaciones()) {
-                if (admin.validarduplicado(txt_cedula_administrador.getText())) {
+                if (per.validarduplicado(txt_cedula_administrador.getText())) {
                     if (usu.validarNomduplicado(txt_usuario.getText())) {
                         String genero = "";
 //                usuario usu = new usuario();

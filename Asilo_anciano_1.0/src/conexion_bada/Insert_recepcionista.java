@@ -13,37 +13,46 @@ public class Insert_recepcionista extends recepcionista {
 
     Conexion cone = new Conexion();
 
-    public boolean InsertarRecepcionista() {
-        String sql = "INSERT INTO recepcionista(\n"
-                + "	recep_codigo, recep_cedula,recep_primer_nombre, recep_segundo_nombre,recep_primer_apellido, recep_segundo_apellido, recep_correo,recep_genero, recep_direccion,recep_tipo_sangre,recep_celular,recep_fecha_nacimiento,recep_hingreso,recep_hsalida)\n"
-                + "	VALUES ('" + getCodigo()+ "', '" + getCedula()+ "', '" + getPri_nomb()+ "', '" + getSeg_nombre()+ "', '" + getPrim_apell()+ "', '" + getSeg_apelli()+ "', '" + getCorreo()+ "', '" + getGenero()+ "', '" + getDireccion()+ "','" + getTipo_sangre()+ "','" + getTelefono()+ "','" + getFecha_Nacimiento()+ "','" + getHora_ingreso()+ "','" + getHora_salida()+ "');";
+    public boolean InsertarPersona() {
+        String sql = "INSERT INTO persona(\n"
+                + "	per_cedula, per_primer_nombre,per_segundo_nombre, per_primer_apellido,per_segundo_apellido, per_correo, per_genero, per_direccion,per_tipo_sangre,per_telefono,per_fecha_nacimiento)\n"
+                + "	VALUES ('" + getCedula() + "', '" + getPri_nomb() + "', '" + getSeg_nombre() + "', '" + getPrim_apell() + "', '" + getSeg_apelli() + "', '" + getCorreo() + "', '" + getGenero() + "', '" + getDireccion() + "', '" + getTipo_sangre() + "','" + getTelefono() + "','" + getFecha_Nacimiento() + "');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
-    
+
+    public boolean InsertarRecepcionista() {
+        String sql = "INSERT INTO recepcionista(\n"
+                + "	recep_cedula,recep_hora_ingreso,recep_hora_salida,recep_codigo_usuario)\n"
+                + "	VALUES ('" + getCedula() + "', '" + getHora_ingreso() + "', '" + getHora_salida() + "', '" + getCod_usuario() + "');";
+        return cone.InsertUpdateDeleteAcciones(sql);
+    }
+
     public List<recepcionista> ListaRecepcionista() {
-        String sqls = "select * from recepcionista;";
-        ResultSet rs = cone.selectConsulta(sqls);
+        String sqls = "select * from persona per, recepcionista recep, usuario us where per.per_cedula= recep.recep_cedula and  us.us_codigo = recep_codigo_usuario;";
+        ResultSet rr = cone.selectConsulta(sqls);
         List<recepcionista> recep = new ArrayList<>();
         try {
-            while (rs.next()) {
+            while (rr.next()) {
                 recepcionista mi_recepcionista = new recepcionista();
-                mi_recepcionista.setCodigo(rs.getString("recep_codigo"));
-                mi_recepcionista.setCedula(rs.getString("recep_cedula"));
-                mi_recepcionista.setPri_nomb(rs.getString("recep_primer_nombre"));
-                mi_recepcionista.setSeg_nombre(rs.getString("recep_segundo_nombre"));
-                mi_recepcionista.setPrim_apell(rs.getString("recep_primer_apellido"));
-                mi_recepcionista.setSeg_apelli(rs.getString("recep_segundo_apellido"));
-                mi_recepcionista.setCorreo(rs.getString("recep_correo"));
-                mi_recepcionista.setGenero(rs.getString("recep_genero"));
-                mi_recepcionista.setDireccion(rs.getString("recep_direccion"));
-                mi_recepcionista.setTipo_sangre(rs.getString("recep_tipo_sangre"));
-                mi_recepcionista.setTelefono(rs.getString("recep_celular"));
-                mi_recepcionista.setFecha_Nacimiento(rs.getString("recep_fecha_nacimiento"));
-                mi_recepcionista.setHora_ingreso(rs.getString("recep_hingreso"));
-                mi_recepcionista.setHora_salida(rs.getString("recep_hsalida"));
+                mi_recepcionista.setCodigo(rr.getString("recep_codigo"));
+                mi_recepcionista.setCedula(rr.getString("recep_cedula"));
+                mi_recepcionista.setHora_ingreso(rr.getString("recep_hora_ingreso"));
+                mi_recepcionista.setHora_salida(rr.getString("recep_hora_salida"));
+                mi_recepcionista.setCod_usuario(rr.getInt("recep_codigo_usuario"));
+
+                mi_recepcionista.setPri_nomb(rr.getString("per_primer_nombre"));
+                mi_recepcionista.setSeg_nombre(rr.getString("per_segundo_nombre"));
+                mi_recepcionista.setPrim_apell(rr.getString("per_primer_apellido"));
+                mi_recepcionista.setSeg_apelli(rr.getString("per_segundo_apellido"));
+                mi_recepcionista.setCorreo(rr.getString("per_correo"));
+                mi_recepcionista.setGenero(rr.getString("per_genero"));
+                mi_recepcionista.setFecha_Nacimiento(rr.getString("per_fecha_nacimiento"));
+                mi_recepcionista.setDireccion(rr.getString("per_direccion"));
+                mi_recepcionista.setTelefono(rr.getString("per_telefono"));
+                mi_recepcionista.setTipo_sangre(rr.getString("per_tipo_sangre"));
                 recep.add(mi_recepcionista);
             }
-            rs.close();
+            rr.close();
             return recep;
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);

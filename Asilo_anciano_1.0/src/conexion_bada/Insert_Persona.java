@@ -24,7 +24,8 @@ public class Insert_Persona extends persona {
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
-    public boolean validarduplicado(String cedula) throws SQLException {
+    
+        public boolean validarduplicado(String cedula) throws SQLException {
         boolean validar = false;
         int codigo = 0;
         String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
