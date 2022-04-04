@@ -671,6 +671,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe");
+                        txt_usuario.setText("");
 
                     }
                 } else {
