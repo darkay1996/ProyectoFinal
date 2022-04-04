@@ -23,11 +23,12 @@ import conexion_bada.Insert_especialidad;
 
 public class agregar_doctor extends javax.swing.JFrame {
 
+    Conexion mi_cone = new Conexion();
     DateFormat df = DateFormat.getDateInstance();
     ArrayList<doctor> lista_doctor = new ArrayList();
 
     validaciones misvalidaciones = new validaciones();
-    Insert inser = new Insert();
+    Insert_doctor inser = new Insert_doctor();
     Conexion cone = new Conexion();
 
     public agregar_doctor() {
@@ -37,6 +38,29 @@ public class agregar_doctor extends javax.swing.JFrame {
         cargarcod();
     }
 
+    public agregar_doctor(String cedula) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        Guardar_doctor.setVisible(false);
+        String SQL_SELECT = "SELECT * FROM doctor WHERE cedula = " + cedula + ";";
+        llenar_doctor();
+    }
+    public void llenar_doctor() {
+
+            List<doctor> com = inser.ListaDoctor();
+            com.stream().forEach(p -> {
+                txtcodigo_doctor.setText(p.getCodigo().toString());
+                text_cedula_doctor.setText(p.getCedula().toString());
+                text_PrimerNombre_doctor.setText(p.getPri_nomb().toString());
+                text_SegundoNombre_doctor.setText(p.getSeg_nombre().toString());
+                text_PrimerApellido_doctor.setText(p.getPrim_apell().toString());
+                text_SegundoApellido_doctor.setText(p.getSeg_apelli().toString());
+                text_email_doctor.setText(p.getCorreo().toString());
+                text_direccion_doctor.setText(p.getDireccion());
+                text_celular_doctor.setText(p.getTelefono());
+
+            });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,6 +111,7 @@ public class agregar_doctor extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         txtnuevo_usuario = new javax.swing.JTextField();
         txtnueva_contrasena = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -299,6 +324,13 @@ public class agregar_doctor extends javax.swing.JFrame {
 
         txtnueva_contrasena.setToolTipText("Debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20");
 
+        jButton1.setText("MODIFICAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -389,7 +421,9 @@ public class agregar_doctor extends javax.swing.JFrame {
                         .addGap(225, 225, 225)
                         .addComponent(Guardar_doctor)
                         .addGap(94, 94, 94)
-                        .addComponent(Regresar_doctor))
+                        .addComponent(Regresar_doctor)
+                        .addGap(46, 46, 46)
+                        .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(357, 357, 357)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -472,17 +506,6 @@ public class agregar_doctor extends javax.swing.JFrame {
                         .addGap(27, 27, 27)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel14)
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(text_email_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Regresar_doctor)
-                            .addComponent(Guardar_doctor)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(text_direccion_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -494,7 +517,21 @@ public class agregar_doctor extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel18)
-                            .addComponent(txtnueva_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtnueva_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(text_email_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(57, 57, 57)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Regresar_doctor)
+                                    .addComponent(Guardar_doctor))))))
                 .addGap(626, 626, 626))
         );
 
@@ -597,6 +634,33 @@ public class agregar_doctor extends javax.swing.JFrame {
         text_celular_doctor.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_celular_doctorMousePressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       modificar_doctor();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    public void modificar_doctor() {
+        String genero = "";
+        if (Masculino_doctor.isSelected()) {
+            genero = "hombre";
+        }
+        if (Femenino_doctor.isSelected()) {
+            genero = "mujer";
+        }
+        String tipoo_sangre = combo_sangre_doctor.getSelectedItem().toString();
+        String especialidad = combo_especialidad_doctor.getSelectedItem().toString();
+
+        String dia = Integer.toString(Fecha_Nacimiento_doctor.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(Fecha_Nacimiento_doctor.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(Fecha_Nacimiento_doctor.getCalendar().get(Calendar.YEAR));
+        String FechaNacimiento = (dia + "-" + mes + "-" + año);
+
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE persona per SET  per_primer_nombre='" + text_PrimerNombre_doctor.getText() + "', per_segundo_nombre='" + text_SegundoNombre_doctor.getText() + "'"
+                + ", per_primer_apellido='" + text_PrimerApellido_doctor.getText() + "', per_segundo_apellido='" + text_SegundoApellido_doctor.getText() + "'"
+                + ", per_correo='" + text_email_doctor.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_doctor.getText() + "', per_telefono='" + text_celular_doctor.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_doctor.getText() + "'");
+        
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE doctor SET doc_especialidad='" + especialidad + "' WHERE doc_cedula='" + text_cedula_doctor.getText() + "'");
+
+        limpiar();
+    }
     public void cargarcod() {
         txtcodigo_doctor.setEnabled(false);
         txtcodigo_doctor.setText(String.valueOf(inser.cargarcodigo()));
@@ -858,6 +922,7 @@ public class agregar_doctor extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combo_especialidad_doctor;
     private javax.swing.JComboBox<String> combo_sangre_doctor;
     private javax.swing.ButtonGroup grupo_sexo;
+    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
