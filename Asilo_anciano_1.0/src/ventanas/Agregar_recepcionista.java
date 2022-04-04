@@ -11,14 +11,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import clases.validaciones;
+import conexion_bada.Conexion;
 import conexion_bada.Insert_Persona;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Agregar_recepcionista extends javax.swing.JFrame {
 
     Insert_recepcionista recep = new Insert_recepcionista();
+    Conexion mi_cone = new Conexion();
     validaciones misvalidaciones = new validaciones();
     String hora_ingresoAux;
     String hora_salidaAux;
@@ -29,6 +32,32 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     public Agregar_recepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
+    }
+
+    public Agregar_recepcionista(String cedula) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        Guardar_recepcionista.setVisible(false);
+        String SQL_SELECT = "SELECT * FROM recepcionista WHERE cedula = " + cedula + ";";
+        llenar_recepcionista();
+    }
+
+    public void llenar_recepcionista() {
+
+        List<recepcionista> com = recep.ListaRecepcionista();
+        com.stream().forEach(p -> {
+            text_codigo_recepcionista.setText(p.getCodigo().toString());
+            text_cedula_recepcionista.setText(p.getCedula().toString());
+            text_PrimerNombre_recepcionista.setText(p.getPri_nomb().toString());
+            text_SegundoNombre_recepcionista.setText(p.getSeg_nombre().toString());
+            text_PrimerApellido_recepcionista.setText(p.getPrim_apell().toString());
+            text_segundoApellido_recepcionista.setText(p.getSeg_apelli().toString());
+            text_email_recepcionista.setText(p.getCorreo().toString());
+            text_direccion_recepcionista.setText(p.getDireccion());
+            text_celular_recepcionista.setText(p.getTelefono());
+
+        });
+
     }
 
     /**
@@ -85,6 +114,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         txt_usuario = new javax.swing.JTextField();
         txt_contrasena = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -93,7 +123,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         text_cedula_recepcionista.setForeground(new java.awt.Color(102, 102, 102));
         text_cedula_recepcionista.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_cedula_recepcionista.setText("Ingrese la cedula");
         text_cedula_recepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_cedula_recepcionistaMousePressed(evt);
@@ -110,7 +139,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         text_SegundoNombre_recepcionista.setForeground(new java.awt.Color(102, 102, 102));
         text_SegundoNombre_recepcionista.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_SegundoNombre_recepcionista.setText("Ingrese el Segundo nombre");
         text_SegundoNombre_recepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_SegundoNombre_recepcionistaMousePressed(evt);
@@ -119,7 +147,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         text_PrimerNombre_recepcionista.setForeground(new java.awt.Color(102, 102, 102));
         text_PrimerNombre_recepcionista.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_PrimerNombre_recepcionista.setText("Ingrese el Primer nombre");
         text_PrimerNombre_recepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_PrimerNombre_recepcionistaMousePressed(evt);
@@ -136,7 +163,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         text_codigo_recepcionista.setForeground(new java.awt.Color(102, 102, 102));
         text_codigo_recepcionista.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_codigo_recepcionista.setText("Código de recep");
         text_codigo_recepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_codigo_recepcionistaMousePressed(evt);
@@ -157,7 +183,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         text_PrimerApellido_recepcionista.setForeground(new java.awt.Color(102, 102, 102));
         text_PrimerApellido_recepcionista.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_PrimerApellido_recepcionista.setText("Ingrese el Primer apellido");
         text_PrimerApellido_recepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_PrimerApellido_recepcionistaMousePressed(evt);
@@ -174,7 +199,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         text_direccion_recepcionista.setForeground(new java.awt.Color(102, 102, 102));
         text_direccion_recepcionista.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_direccion_recepcionista.setText("Ingrese la dirección");
         text_direccion_recepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_direccion_recepcionistaMousePressed(evt);
@@ -188,7 +212,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         text_segundoApellido_recepcionista.setForeground(new java.awt.Color(102, 102, 102));
         text_segundoApellido_recepcionista.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_segundoApellido_recepcionista.setText("Ingrese el Segundo apellido");
         text_segundoApellido_recepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_segundoApellido_recepcionistaMousePressed(evt);
@@ -230,7 +253,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         text_email_recepcionista.setForeground(new java.awt.Color(102, 102, 102));
         text_email_recepcionista.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_email_recepcionista.setText("Ingrese el E-mail");
         text_email_recepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_email_recepcionistaMousePressed(evt);
@@ -239,7 +261,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         text_celular_recepcionista.setForeground(new java.awt.Color(102, 102, 102));
         text_celular_recepcionista.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_celular_recepcionista.setText("Ingrese el celular");
         text_celular_recepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_celular_recepcionistaMousePressed(evt);
@@ -299,6 +320,13 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
+        jButton1.setText("MODIFICAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -316,88 +344,93 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(334, 334, 334))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(Guardar_recepcionista)
-                        .addGap(88, 88, 88)
-                        .addComponent(Regresar_recepcionista))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(text_PrimerNombre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel5)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(text_cedula_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(text_direccion_recepcionista)
-                                        .addComponent(text_PrimerApellido_recepcionista)
-                                        .addComponent(text_email_recepcionista)
-                                        .addComponent(text_segundoApellido_recepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
-                                    .addComponent(text_SegundoNombre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(50, 50, 50)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(27, 27, 27)
-                                .addComponent(Masculino_recepcionista)
-                                .addGap(18, 18, 18)
-                                .addComponent(Femenino_recepcionista))
+                                .addGap(165, 165, 165)
+                                .addComponent(Guardar_recepcionista)
+                                .addGap(88, 88, 88)
+                                .addComponent(Regresar_recepcionista)
+                                .addGap(45, 45, 45)
+                                .addComponent(jButton1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(44, 44, 44)
-                                .addComponent(combo_sangre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(78, 78, 78)
-                                .addComponent(text_celular_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(58, 58, 58)
-                                .addComponent(text_codigo_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(51, 51, 51)
-                                .addComponent(Fecha_Nacimiento_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGap(56, 56, 56)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(text_PrimerNombre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel17)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel3)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel5)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(text_cedula_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(text_direccion_recepcionista)
+                                                .addComponent(text_PrimerApellido_recepcionista)
+                                                .addComponent(text_email_recepcionista)
+                                                .addComponent(text_segundoApellido_recepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                                            .addComponent(text_SegundoNombre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(50, 50, 50)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(Masculino_recepcionista)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Femenino_recepcionista))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(combo_sangre_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(78, 78, 78)
+                                        .addComponent(text_celular_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(58, 58, 58)
+                                        .addComponent(text_codigo_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addGap(51, 51, 51)
+                                        .addComponent(Fecha_Nacimiento_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(13, 13, 13)
+                                                .addComponent(Spinner_HoraEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(Spinner_MinutosEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel15))
+                                        .addGap(72, 72, 72)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(Spinner_HoraSalida_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(28, 28, 28)
+                                                .addComponent(Spinner_MinutosSalida_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel16)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(13, 13, 13)
-                                        .addComponent(Spinner_HoraEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Spinner_MinutosEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel15))
-                                .addGap(72, 72, 72)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(Spinner_HoraSalida_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(Spinner_MinutosSalida_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel16)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel19)
-                                        .addGap(61, 61, 61)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel18)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel19)
+                                                .addGap(61, 61, 61)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jLabel18)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel12)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGap(0, 23, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -492,9 +525,10 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel19)
-                            .addComponent(txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
                         .addComponent(Regresar_recepcionista)))
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 890));
@@ -521,7 +555,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
     private void text_cedula_recepcionistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_cedula_recepcionistaMousePressed
 
-        text_cedula_recepcionista.setText("");
+      
         text_cedula_recepcionista.setForeground(Color.BLACK);
 
         // TODO add your handling code here:
@@ -532,7 +566,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_text_cedula_recepcionistaActionPerformed
 
     private void text_codigo_recepcionistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_codigo_recepcionistaMousePressed
-        text_codigo_recepcionista.setText("");
+      
         text_codigo_recepcionista.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_codigo_recepcionistaMousePressed
 
@@ -541,7 +575,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_text_codigo_recepcionistaActionPerformed
 
     private void text_PrimerNombre_recepcionistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_PrimerNombre_recepcionistaMousePressed
-        text_PrimerNombre_recepcionista.setText("");
+        
         text_PrimerNombre_recepcionista.setForeground(Color.BLACK);
 
         // TODO add your handling code here:
@@ -552,20 +586,20 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_text_PrimerNombre_recepcionistaActionPerformed
 
     private void text_SegundoNombre_recepcionistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_SegundoNombre_recepcionistaMousePressed
-        text_SegundoNombre_recepcionista.setText("");
+       
         text_SegundoNombre_recepcionista.setForeground(Color.BLACK);
         // TODO add your handling code here:
     }//GEN-LAST:event_text_SegundoNombre_recepcionistaMousePressed
 
     private void text_PrimerApellido_recepcionistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_PrimerApellido_recepcionistaMousePressed
-        text_PrimerApellido_recepcionista.setText("");
+     
         text_PrimerApellido_recepcionista.setForeground(Color.BLACK);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_text_PrimerApellido_recepcionistaMousePressed
 
     private void text_direccion_recepcionistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_direccion_recepcionistaMousePressed
-        text_direccion_recepcionista.setText("");
+        
         text_direccion_recepcionista.setForeground(Color.BLACK);
 
         // TODO add your handling code here:
@@ -576,23 +610,73 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_text_direccion_recepcionistaActionPerformed
 
     private void text_email_recepcionistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_email_recepcionistaMousePressed
-        text_email_recepcionista.setText("");
+       
         text_email_recepcionista.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_email_recepcionistaMousePressed
 
     private void text_celular_recepcionistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_celular_recepcionistaMousePressed
-        text_celular_recepcionista.setText("");
+       
         text_celular_recepcionista.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_celular_recepcionistaMousePressed
 
     private void text_segundoApellido_recepcionistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_segundoApellido_recepcionistaMousePressed
-        text_segundoApellido_recepcionista.setText("");
+        
         text_segundoApellido_recepcionista.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_segundoApellido_recepcionistaMousePressed
 
     private void text_PrimerApellido_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_PrimerApellido_recepcionistaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_text_PrimerApellido_recepcionistaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        modificar_recepcionista();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    public void modificar_recepcionista() {
+        String genero = "";
+        if (Masculino_recepcionista.isSelected()) {
+            genero = "hombre";
+        }
+        if (Femenino_recepcionista.isSelected()) {
+            genero = "mujer";
+        }
+        String tipoo_sangre = combo_sangre_recepcionista.getSelectedItem().toString();
+
+        String dia = Integer.toString(Fecha_Nacimiento_recepcionista.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(Fecha_Nacimiento_recepcionista.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(Fecha_Nacimiento_recepcionista.getCalendar().get(Calendar.YEAR));
+        String FechaNacimiento = (dia + "-" + mes + "-" + año);
+        String Hingreso, Mingreso, Hsalida, Msalida;
+        Hingreso = Spinner_HoraEntrada_recepcionista.getValue().toString();
+        Mingreso = Spinner_MinutosEntrada_recepcionista.getValue().toString();
+        Hsalida = Spinner_HoraSalida_recepcionista.getValue().toString();
+        Msalida = Spinner_MinutosSalida_recepcionista.getValue().toString();
+
+        if (String.valueOf(Hingreso).length() == 1) {
+            Hingreso = "0" + Hingreso;
+        }
+        if (String.valueOf(Mingreso).length() == 1) {
+            Mingreso = "0" + Mingreso;
+        }
+
+        if (String.valueOf(Hsalida).length() == 1) {
+            Hsalida = "0" + Hsalida;
+        }
+        if (String.valueOf(Msalida).length() == 1) {
+            Msalida = "0" + Msalida;
+        }
+
+        hora_ingresoAux = Hingreso + ":" + Mingreso;
+        hora_salidaAux = Hsalida + ":" + Msalida;
+        
+        
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE persona per SET  per_primer_nombre='" + text_PrimerNombre_recepcionista.getText() + "', per_segundo_nombre='" + text_SegundoNombre_recepcionista.getText() + "'"
+                + ", per_primer_apellido='" + text_PrimerApellido_recepcionista.getText() + "', per_segundo_apellido='" + text_segundoApellido_recepcionista.getText() + "'"
+                + ", per_correo='" + text_email_recepcionista.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_recepcionista.getText() + "', per_telefono='" + text_celular_recepcionista.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_recepcionista.getText() + "'");
+        
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE recepcionista SET recep_hora_ingreso='" + hora_ingresoAux + "',recep_hora_salida='" + hora_salidaAux + "' WHERE recep_cedula='" + text_cedula_recepcionista.getText() + "'");
+       
+        limpiar();
+    }
 
     public void cargarcod() {
         text_codigo_recepcionista.setEnabled(false);
@@ -880,6 +964,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     private javax.swing.JSpinner Spinner_MinutosEntrada_recepcionista;
     private javax.swing.JSpinner Spinner_MinutosSalida_recepcionista;
     private javax.swing.JComboBox<String> combo_sangre_recepcionista;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
