@@ -24,6 +24,7 @@ public class crud_especialidad extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTabla();
+        cargarcod();
     }
 
     /**
@@ -49,6 +50,7 @@ public class crud_especialidad extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
         Consultar = new javax.swing.JButton();
+        txt_codigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,6 +123,8 @@ public class crud_especialidad extends javax.swing.JFrame {
             }
         });
 
+        txt_codigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,10 +151,12 @@ public class crud_especialidad extends javax.swing.JFrame {
                                             .addComponent(txtespecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(61, 61, 61)
+                                            .addGap(6, 6, 6)
+                                            .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
                                             .addComponent(btguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGap(18, 18, 18)
                                             .addComponent(jLabel3)
                                             .addGap(40, 40, 40)))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -175,9 +181,12 @@ public class crud_especialidad extends javax.swing.JFrame {
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(txtespecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtespecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -236,6 +245,11 @@ public class crud_especialidad extends javax.swing.JFrame {
 
     }
 
+    public void cargarcod() {
+        txt_codigo.setEnabled(false);
+        txt_codigo.setText(String.valueOf(inser.cargarcodigo()));
+    }
+
     //Guardar las alergias en la BD
     public void RegistrarEspecialidades() {
         Insert_especialidad alergia = new Insert_especialidad();
@@ -243,10 +257,12 @@ public class crud_especialidad extends javax.swing.JFrame {
         try {
             if (validarInformacion() == true && ValidarDuplicados() == true) {
                 alergia.setNombre_especialidad(txtespecialidad.getText());
-                Limpiar();
+                
 
                 if (alergia.InsertarEspecialidad()) {
                     System.out.println("Conexion Exitosa");
+                    Limpiar();
+                    cargarcod();
                 } else {
                     System.out.println("Conexion Erronea");
                 }
@@ -378,6 +394,7 @@ public class crud_especialidad extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_especialidad;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txt_codigo;
     private javax.swing.JTextField txtespecialidad;
     // End of variables declaration//GEN-END:variables
 }

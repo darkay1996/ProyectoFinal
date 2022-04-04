@@ -40,4 +40,6 @@ public class Insert_Persona extends persona {
         System.out.println("repetido=" + codigo);
         return validar;
     }
+        
+        
 }

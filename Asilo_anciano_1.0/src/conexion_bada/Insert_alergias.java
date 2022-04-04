@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 // Prueba
+
 public class Insert_alergias extends alergias {
 
     Conexion cone = new Conexion();
@@ -37,5 +38,19 @@ public class Insert_alergias extends alergias {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
+
+    public int cargarcodigo() {
+        int codigo = 0;
+        String sqls = "select max(aler_codigo) from alergias;";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("max") + 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
     }
 }

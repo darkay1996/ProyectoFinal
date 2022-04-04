@@ -49,4 +49,17 @@ public class insert_enfermedad extends enfermedades {
         }
 
     }
+        public int cargarcodigo() {
+        int codigo = 0;
+        String sqls = "select max(enfermedad_codigo) from enfermedad;";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("max")+1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
 }

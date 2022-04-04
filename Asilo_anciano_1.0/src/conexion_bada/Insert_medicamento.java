@@ -18,7 +18,8 @@ import java.util.logging.Logger;
  *
  * @author Bryan
  */
-public class Insert_medicamento extends medicamentos{
+public class Insert_medicamento extends medicamentos {
+
     Conexion cone = new Conexion();
 
     public boolean InsertarAlergias() {
@@ -45,5 +46,19 @@ public class Insert_medicamento extends medicamentos{
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
+
+    public int cargarcodigo() {
+        int codigo = 0;
+        String sqls = "select max(medi_codigo) from medicamentos;";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("max") + 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
     }
 }

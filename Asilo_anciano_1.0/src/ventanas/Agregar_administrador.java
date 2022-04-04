@@ -41,10 +41,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
     public Agregar_administrador() {
         initComponents();
         this.setLocationRelativeTo(null);
-//        Insert_administrador in= new Insert_administrador();
-//        for (int i = 0; i < in.ListaAdministrador().size(); i++) {
-//            System.out.println(in.ListaAdministrador().get(i).getCedula());
-//        }
+        cargarcod();
     }
 
     /**
@@ -323,9 +320,9 @@ public class Agregar_administrador extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(txt_codigo_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(178, 178, 178))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_codigo_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(342, 342, 342))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -436,9 +433,10 @@ public class Agregar_administrador extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txt_cedula_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_codigo_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel7)
+                                        .addComponent(txt_codigo_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_cedula_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -617,6 +615,11 @@ public class Agregar_administrador extends javax.swing.JFrame {
         txt_nivelDeeducacion_administrador.setForeground(Color.BLACK);
     }//GEN-LAST:event_txt_nivelDeeducacion_administradorMousePressed
 
+    public void cargarcod() {
+        txt_codigo_administrador.setEnabled(false);
+        txt_codigo_administrador.setText(String.valueOf(inser.cargarcodigo()));
+    }
+
     public void RegistrarAdministrador() throws SQLException {
         Insert_administrador admin = new Insert_administrador();
         Insert_usuario usu = new Insert_usuario();
@@ -666,6 +669,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         if (admin.InsertarAdministrador()) {
                             System.out.println("Conexion Exitosa");
                             limpiar();
+                            cargarcod();
                         } else {
                             System.out.println("Conexion Erronea");
                         }

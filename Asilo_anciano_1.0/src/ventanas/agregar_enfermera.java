@@ -31,6 +31,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
     public agregar_enfermera() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cargarcod();
     }
 
     /**
@@ -572,6 +573,11 @@ public class agregar_enfermera extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_text_direccion_enfermeraActionPerformed
 
+    public void cargarcod() {
+        txtcodigo_enfermera.setEnabled(false);
+        txtcodigo_enfermera.setText(String.valueOf(inser.cargarcodigo()));
+    }
+
     public void RegistrarEnfermera() throws SQLException {
         Insert_enfermera enfermera = new Insert_enfermera();
         Insert_usuario usu = new Insert_usuario();
@@ -620,6 +626,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
                         if (enfermera.InsertarEnfermera()) {
                             System.out.println("Conexion Exitosa");
                             limpiar();
+                            cargarcod();
                         } else {
                             System.out.println("Conexion Erronea");
                         }

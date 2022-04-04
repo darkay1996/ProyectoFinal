@@ -71,7 +71,7 @@
                                   <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" min="-2" pref="197" max="-2" attributes="0"/>
+                                  <Component id="txtCodigo" min="-2" pref="197" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
@@ -87,7 +87,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jTextField1" min="-2" pref="230" max="-2" attributes="0"/>
+                                          <Component id="txtParentesco" min="-2" pref="230" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
@@ -118,8 +118,8 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jTextField3" max="32767" attributes="0"/>
-                                              <Component id="jTextField4" pref="207" max="32767" attributes="0"/>
+                                              <Component id="txtUsuario" max="32767" attributes="0"/>
+                                              <Component id="txtContrasenia" pref="207" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace pref="91" max="32767" attributes="0"/>
                                       </Group>
@@ -189,7 +189,7 @@
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="jTextField2" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="txtCodigo" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -199,7 +199,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="text_PrimerNombre_familiar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="txtParentesco" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -252,7 +252,7 @@
                                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="txtUsuario" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               </Group>
@@ -287,16 +287,13 @@
                               <Component id="RegresarFamiliar" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField4" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="txtContrasenia" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="76" pref="105" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="combo_sangre_familiar" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="combo_sangre_familiar" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -597,7 +594,7 @@
             <Property name="text" type="java.lang.String" value="Parentesco Familiar:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="txtParentesco">
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
@@ -667,7 +664,7 @@
             <Property name="text" type="java.lang.String" value="Codigo:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="txtCodigo">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
@@ -705,9 +702,9 @@
             <Property name="text" type="java.lang.String" value="NUEVA CONTRASE&#xd1;A:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="txtUsuario">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="txtContrasenia">
         </Component>
       </SubComponents>
     </Container>
