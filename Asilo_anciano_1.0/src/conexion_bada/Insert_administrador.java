@@ -70,23 +70,21 @@ public class Insert_administrador extends administrador {
             return null;
         }
     }
+    
+        public int cargarcodigo() {
+        int codigo = 0;
+        String sqls = "select max(admin_codigo) from administrador;";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("max") + 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
 
 
-
-//    public boolean validarduplicado(String cedula) throws SQLException {
-//        boolean validar = false;
-//        int codigo = 0;
-//        String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
-//        ResultSet dup = cone.selectConsulta(sqls);
-////        try {catch
-//        while (dup.next()) {
-//            codigo = dup.getInt("count");
-//        }
-//        if (codigo == 0) {
-//            validar = true;
-//        }
-//        System.out.println("repetido=" + codigo);
-//        return validar;
-//    }
 
 }
