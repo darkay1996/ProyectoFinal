@@ -5,11 +5,13 @@
  */
 package ventanas;
 
-import conexion_bada.Insert_enfermera;
 import clases.enfermera;
 import clases.paciente;
+import conexion_bada.Insert_enfermera;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -45,6 +47,7 @@ public class crud_enfermera extends javax.swing.JFrame {
         BtRegresarEnfermera = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaEnfermera = new javax.swing.JTable();
+        Actualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,12 +101,20 @@ public class crud_enfermera extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Cédula", "Primer nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Sexo", "Tipo de sangre", "Dirección", "Fecha de nacimiento", "E-mail", "Celular", "Años de experiencia"
+                "Código", "Cédula", "Primer nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Sexo", "Tipo de sangre", "Dirección", "Fecha de nacimiento", "Años de experiencia", "E-mail", "Celular"
             }
         ));
         jScrollPane1.setViewportView(TablaEnfermera);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 980, 300));
+
+        Actualizar.setText("Actualizar");
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 490));
@@ -139,8 +150,28 @@ public class crud_enfermera extends javax.swing.JFrame {
     }//GEN-LAST:event_BtAgregarEnfermeraActionPerformed
 
     private void BtBuscarEnfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarEnfermeraActionPerformed
-        buscar_enfermera();
+        if (!text_buscar.getText().isEmpty()) {
+            buscar_enfermera();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula de la enfermera");
+        }
+
     }//GEN-LAST:event_BtBuscarEnfermeraActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_ActualizarActionPerformed
+
+    public void cargarTabla() {
+        DefaultTableModel tb = (DefaultTableModel) TablaEnfermera.getModel();
+        tb.setNumRows(0);
+        List<enfermera> com = inser.ListaEnfermera();
+        com.stream().forEach(p -> {
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getGenero(), p.getTipo_sangre(), p.getDireccion(), p.getFecha_Nacimiento(), p.getAnio_experiencia(), p.getCorreo(), p.getTelefono()};
+            tb.addRow(cami);
+        });
+    }
+
     public void buscar_enfermera() {
         String cedula = text_buscar.getText();
         var pacientefiltro = new ArrayList<enfermera>();
@@ -150,39 +181,35 @@ public class crud_enfermera extends javax.swing.JFrame {
                 pacientefiltro.add(e);
             }
         });
-        String matriz[][] = new String[pacientefiltro.size()][14];
-        for (int j = 0; j < pacientefiltro.size(); j++) {
-            matriz[j][0] = pacientefiltro.get(j).getCodigo();
-            matriz[j][1] = pacientefiltro.get(j).getCedula();
-            matriz[j][2] = pacientefiltro.get(j).getPri_nomb();
-            matriz[j][3] = pacientefiltro.get(j).getSeg_nombre();
-            matriz[j][4] = pacientefiltro.get(j).getPrim_apell();
-            matriz[j][5] = pacientefiltro.get(j).getSeg_apelli();
-            matriz[j][6] = pacientefiltro.get(j).getCorreo();
-            matriz[j][7] = pacientefiltro.get(j).getGenero();
-            matriz[j][8] = pacientefiltro.get(j).getDireccion();
-            matriz[j][9] = pacientefiltro.get(j).getTelefono();
-            matriz[j][10] = pacientefiltro.get(j).getTipo_sangre();
-            matriz[j][11] = pacientefiltro.get(j).getAnio_experiencia();
-            matriz[j][12] = pacientefiltro.get(j).getFecha_Nacimiento();
-            
 
+        if (pacientefiltro.size() != 0) {
+            String matriz[][] = new String[pacientefiltro.size()][14];
+            for (int j = 0; j < pacientefiltro.size(); j++) {
+                matriz[j][0] = pacientefiltro.get(j).getCodigo();
+                matriz[j][1] = pacientefiltro.get(j).getCedula();
+                matriz[j][2] = pacientefiltro.get(j).getPri_nomb();
+                matriz[j][3] = pacientefiltro.get(j).getSeg_nombre();
+                matriz[j][4] = pacientefiltro.get(j).getPrim_apell();
+                matriz[j][5] = pacientefiltro.get(j).getSeg_apelli();
+                matriz[j][6] = pacientefiltro.get(j).getCorreo();
+                matriz[j][7] = pacientefiltro.get(j).getGenero();
+                matriz[j][8] = pacientefiltro.get(j).getDireccion();
+                matriz[j][9] = pacientefiltro.get(j).getTelefono();
+                matriz[j][10] = pacientefiltro.get(j).getTipo_sangre();
+                matriz[j][11] = pacientefiltro.get(j).getAnio_experiencia();
+                matriz[j][12] = pacientefiltro.get(j).getFecha_Nacimiento();
+
+            }
+            TablaEnfermera.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "codigo", "Nombre", "segundo_nombre", "primer apellido", "segundo apellido", "correo", "genero", "direccion", "telefono", "tipo sangre", "seguro", "fecha nacimiento", "fecha ingreso"
+                    }
+            ));
+        }else{
+            JOptionPane.showMessageDialog(this, "La enfermera no existe en la base de datos");
         }
-        TablaEnfermera.setModel(new javax.swing.table.DefaultTableModel(
-                matriz,
-                new String[]{
-                    "codigo", "Nombre", "segundo_nombre", "primer apellido", "segundo apellido", "correo", "genero", "direccion", "telefono", "tipo sangre", "seguro", "fecha nacimiento", "fecha ingreso"
-                }
-        ));
-    }
-    public void cargarTabla() {
-        DefaultTableModel tb = (DefaultTableModel) TablaEnfermera.getModel();
-        tb.setNumRows(0);
-        List<enfermera> com = inser.ListaEnfermera();
-        com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTelefono(), p.getTipo_sangre(), p.getAnio_experiencia(), p.getFecha_Nacimiento()};
-            tb.addRow(cami);
-        });
+
     }
 
     /**
@@ -222,6 +249,7 @@ public class crud_enfermera extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Actualizar;
     private javax.swing.JButton BtAgregarEnfermera;
     private javax.swing.JButton BtBuscarEnfermera;
     private javax.swing.JButton BtEliminarEnfermera;
