@@ -72,6 +72,20 @@ public class Insert extends paciente {
         }
     }
 
+    public int cargarcodigo() {
+        int codigo = 0;
+        String sqls = "select max(paci_codigo) from paciente;";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("max")+1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
+
 //    public boolean validarduplicado(String cedula) throws SQLException {
 //        boolean validar = false;
 //        int codigo = 0;
@@ -87,17 +101,16 @@ public class Insert extends paciente {
 //        System.out.println("repetido="+codigo);
 //        return validar;
 //    }
-    
-            public boolean validarduplicado(String cedula) throws SQLException {
+    public boolean validarduplicado(String cedula) throws SQLException {
         boolean validar = false;
         int codigo = 0;
-        String sqls = "select count(*) from persona where per_cedula='"+cedula+"';";
+        String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
         ResultSet dup = cone.selectConsulta(sqls);
 //        try {catch
-            while (dup.next()) {
-                codigo = dup.getInt("count");
-            }
-        if (codigo==0) {
+        while (dup.next()) {
+            codigo = dup.getInt("count");
+        }
+        if (codigo == 0) {
             validar = true;
         }
 //        System.out.println("repetido="+codigo);
