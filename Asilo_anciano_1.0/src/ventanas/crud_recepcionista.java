@@ -9,6 +9,7 @@ import clases.paciente;
 import clases.recepcionista;
 import java.util.ArrayList;
 import conexion_bada.Insert_recepcionista;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,46 +46,69 @@ public class crud_recepcionista extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Franklin Gothic Demi", 3, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 204));
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("LISTA DE RECEPCIONISTAS");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
-        BtRegresarRecepcionista.setText("Regresar");
+        BtRegresarRecepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anterior.png"))); // NOI18N
+        BtRegresarRecepcionista.setToolTipText("Regresar");
+        BtRegresarRecepcionista.setBorder(null);
+        BtRegresarRecepcionista.setOpaque(false);
         BtRegresarRecepcionista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtRegresarRecepcionistaActionPerformed(evt);
             }
         });
-        getContentPane().add(BtRegresarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 30, -1, -1));
+        getContentPane().add(BtRegresarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 100, 50, 40));
 
-        BtEliminarRecepcionista.setText("ELIMINAR RECEPCIONISTA");
+        BtEliminarRecepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
+        BtEliminarRecepcionista.setToolTipText("ELIMINAR RECEPCIONISTA");
+        BtEliminarRecepcionista.setBorder(null);
+        BtEliminarRecepcionista.setOpaque(false);
         BtEliminarRecepcionista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtEliminarRecepcionistaActionPerformed(evt);
             }
         });
-        getContentPane().add(BtEliminarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 100, -1, -1));
+        getContentPane().add(BtEliminarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, 50, 40));
 
-        BtEditarRecepcionista.setText("EDITAR RECEPCIONISTA");
-        getContentPane().add(BtEditarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, -1, -1));
+        BtEditarRecepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        BtEditarRecepcionista.setToolTipText("EDITAR RECEPCIONISTA");
+        BtEditarRecepcionista.setBorder(null);
+        BtEditarRecepcionista.setOpaque(false);
+        getContentPane().add(BtEditarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 50, 40));
 
-        BtBuscarRecepcionista.setText("BUSCAR RECEPCIONISTA");
+        BtBuscarRecepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BtBuscarRecepcionista.setToolTipText("BUSCAR RECEPCIONISTA");
+        BtBuscarRecepcionista.setBorder(null);
+        BtBuscarRecepcionista.setOpaque(false);
         BtBuscarRecepcionista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtBuscarRecepcionistaActionPerformed(evt);
             }
         });
-        getContentPane().add(BtBuscarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, -1));
-        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 150, -1));
+        getContentPane().add(BtBuscarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 50, 40));
 
-        BtIngresarRecepcionista.setText("INGRESAR RECEPCIONISTA");
+        text_buscar.setText("Buscar...");
+        text_buscar.setToolTipText("");
+        text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarMousePressed(evt);
+            }
+        });
+        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 250, 40));
+
+        BtIngresarRecepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-usuario.png"))); // NOI18N
+        BtIngresarRecepcionista.setToolTipText("INGRESAR RECEPCIONISTA");
+        BtIngresarRecepcionista.setBorder(null);
+        BtIngresarRecepcionista.setOpaque(false);
         BtIngresarRecepcionista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtIngresarRecepcionistaActionPerformed(evt);
             }
         });
-        getContentPane().add(BtIngresarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        getContentPane().add(BtIngresarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 50, 40));
 
         TablaRecepcionista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,7 +122,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1240, 310));
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
+        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/wallpaperbetter (1).jpg"))); // NOI18N
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, 520));
 
         pack();
@@ -164,6 +188,12 @@ public class crud_recepcionista extends javax.swing.JFrame {
         this.dispose();
         new Agregar_paciente().setVisible(true);
     }//GEN-LAST:event_BtIngresarRecepcionistaActionPerformed
+
+    private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
+        // TODO add your handling code here:
+        text_buscar.setText("");
+        text_buscar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_text_buscarMousePressed
 
     /**
      * @param args the command line arguments
