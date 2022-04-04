@@ -219,28 +219,21 @@ public class crud_alergias extends javax.swing.JFrame {
     }//GEN-LAST:event_ConsultarActionPerformed
 
     public void llenar_alergias() {
-
         for (int i = 0; i < inser.ListaAlergias().size(); i++) {
-
             List<alergias> com = inser.ListaAlergias();
             com.stream().forEach(p -> {
                 txtalergia.setText(p.getNombre_alergia().toString());
-
             });
         }
-
     }
 
     //Guardar las alergias en la BD
     public void RegistrarAlergias() {
         Insert_alergias alergia = new Insert_alergias();
-
         try {
             if (validarInformacion() == true && ValidarDuplicados() == true) {
                 alergia.setNombre_alergia(txtalergia.getText());
-
                 Limpiar();
-
                 if (alergia.InsertarAlergias()) {
                     System.out.println("Conexion Exitosa");
                 } else {
@@ -248,7 +241,6 @@ public class crud_alergias extends javax.swing.JFrame {
                 }
             }
         } catch (NullPointerException e) {
-
         }
     }
 
@@ -264,7 +256,6 @@ public class crud_alergias extends javax.swing.JFrame {
                 validado = false;
             }
         }
-
         return validado;
     }
 
