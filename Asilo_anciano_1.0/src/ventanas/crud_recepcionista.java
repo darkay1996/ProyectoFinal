@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import conexion_bada.Insert_recepcionista;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class crud_recepcionista extends javax.swing.JFrame {
@@ -37,6 +38,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
         BtEliminarRecepcionista = new javax.swing.JButton();
         BtEditarRecepcionista = new javax.swing.JButton();
         BtBuscarRecepcionista = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         text_buscar = new javax.swing.JTextField();
         BtIngresarRecepcionista = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -77,7 +79,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
         BtEditarRecepcionista.setToolTipText("EDITAR RECEPCIONISTA");
         BtEditarRecepcionista.setBorder(null);
         BtEditarRecepcionista.setOpaque(false);
-        getContentPane().add(BtEditarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 50, 40));
+        getContentPane().add(BtEditarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 50, 40));
 
         BtBuscarRecepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         BtBuscarRecepcionista.setToolTipText("BUSCAR RECEPCIONISTA");
@@ -89,6 +91,17 @@ public class crud_recepcionista extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtBuscarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 50, 40));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
+        jButton1.setToolTipText("Ver todos");
+        jButton1.setBorderPainted(false);
+        jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 60, 50));
 
         text_buscar.setText("Buscar...");
         text_buscar.setToolTipText("");
@@ -108,14 +121,14 @@ public class crud_recepcionista extends javax.swing.JFrame {
                 BtIngresarRecepcionistaActionPerformed(evt);
             }
         });
-        getContentPane().add(BtIngresarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 50, 40));
+        getContentPane().add(BtIngresarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 50, 40));
 
         TablaRecepcionista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Cédula", "Primer nombre", "segundo nombre", "Primer apellido", "Segundo apellido", "Sexo", "Tipo de sangre", "Dirección", "Fecha de nacimiento", "E-mail", "Celular", "Hora de ingreso", "Hora de salida"
+                "Código", "Cédula", "Primer nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Correo", "Telefono", "Dirección", "Fecha de nacimiento", "Tipo de sangre", "Genero", "Hora de ingreso", "Hora de salida"
             }
         ));
         jScrollPane1.setViewportView(TablaRecepcionista);
@@ -138,49 +151,58 @@ public class crud_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_BtEliminarRecepcionistaActionPerformed
 
     private void BtBuscarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarRecepcionistaActionPerformed
-        buscar_recepcionista();
+        if (!text_buscar.getText().isEmpty()) {
+            buscar_recepcionista();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del recepcionista");
+        }
     }//GEN-LAST:event_BtBuscarRecepcionistaActionPerformed
 
     public void buscar_recepcionista() {
         String cedula = text_buscar.getText();
-        var pacientefiltro = new ArrayList<recepcionista>();
+        var recepfiltro = new ArrayList<recepcionista>();
 
         inser.ListaRecepcionista().forEach((e) -> {
             if (e.getCedula().equals(cedula)) {
-                pacientefiltro.add(e);
+                recepfiltro.add(e);
             }
         });
-        String matriz[][] = new String[pacientefiltro.size()][14];
-        for (int j = 0; j < pacientefiltro.size(); j++) {
-            matriz[j][0] = pacientefiltro.get(j).getCodigo();
-            matriz[j][1] = pacientefiltro.get(j).getCedula();
-            matriz[j][2] = pacientefiltro.get(j).getPri_nomb();
-            matriz[j][3] = pacientefiltro.get(j).getSeg_nombre();
-            matriz[j][4] = pacientefiltro.get(j).getPrim_apell();
-            matriz[j][5] = pacientefiltro.get(j).getSeg_apelli();
-            matriz[j][6] = pacientefiltro.get(j).getCorreo();
-            matriz[j][7] = pacientefiltro.get(j).getGenero();
-            matriz[j][8] = pacientefiltro.get(j).getDireccion();
-            matriz[j][9] = pacientefiltro.get(j).getTipo_sangre();
-            matriz[j][10] = pacientefiltro.get(j).getTelefono();
-            matriz[j][11] = pacientefiltro.get(j).getFecha_Nacimiento();
-            matriz[j][12] = pacientefiltro.get(j).getHora_ingreso();
-            matriz[j][13] = pacientefiltro.get(j).getHora_salida();
+        if (recepfiltro.size() != 0) {
+            String matriz[][] = new String[recepfiltro.size()][14];
+            for (int j = 0; j < recepfiltro.size(); j++) {
+                matriz[j][0] = recepfiltro.get(j).getCodigo();
+                matriz[j][1] = recepfiltro.get(j).getCedula();
+                matriz[j][2] = recepfiltro.get(j).getPri_nomb();
+                matriz[j][3] = recepfiltro.get(j).getSeg_nombre();
+                matriz[j][4] = recepfiltro.get(j).getPrim_apell();
+                matriz[j][5] = recepfiltro.get(j).getSeg_apelli();
+                matriz[j][6] = recepfiltro.get(j).getCorreo();
+                matriz[j][7] = recepfiltro.get(j).getTelefono();
+                matriz[j][8] = recepfiltro.get(j).getDireccion();
+                matriz[j][9] = recepfiltro.get(j).getFecha_Nacimiento();
+                matriz[j][10] = recepfiltro.get(j).getTipo_sangre();
+                matriz[j][11] = recepfiltro.get(j).getGenero();
+                matriz[j][12] = recepfiltro.get(j).getHora_ingreso();
+                matriz[j][13] = recepfiltro.get(j).getHora_salida();
 
+            }
+            TablaRecepcionista.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "Código", "Cédula", "Primer nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Correo", "Telefono", "Dirección", "Fecha de nacimiento", "Tipo de sangre", "Genero", "Hora de ingreso", "Hora de salida"
+                    }
+            ));
+        } else {
+            JOptionPane.showMessageDialog(this, "La recepcionista no existe en la base de datos");
         }
-        TablaRecepcionista.setModel(new javax.swing.table.DefaultTableModel(
-                matriz,
-                new String[]{
-                    "codigo", "cedula", "primer nombre", "segundo nombre", "primer apellido","segundo apellido", "correo", "genero", "direccion", "tipo sangre", "telefono", "fecha nacimiento", "hora ingreso", "fecha salida"
-                }
-        ));
     }
+
     public void cargarTabla() {
         DefaultTableModel tb = (DefaultTableModel) TablaRecepcionista.getModel();
         tb.setNumRows(0);
         List<recepcionista> com = inser.ListaRecepcionista();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTipo_sangre(), p.getTelefono(), p.getFecha_Nacimiento(), p.getHora_ingreso(),p.getHora_salida()};
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getTelefono(), p.getDireccion(), p.getFecha_Nacimiento(), p.getTipo_sangre(), p.getGenero(), p.getHora_ingreso(), p.getHora_salida()};
             tb.addRow(cami);
         });
     }
@@ -194,6 +216,10 @@ public class crud_recepcionista extends javax.swing.JFrame {
         text_buscar.setText("");
         text_buscar.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_buscarMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,6 +264,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
     private javax.swing.JButton BtRegresarRecepcionista;
     private javax.swing.JLabel Fondo;
     private javax.swing.JTable TablaRecepcionista;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField text_buscar;
