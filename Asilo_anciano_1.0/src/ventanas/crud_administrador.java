@@ -82,6 +82,11 @@ public class crud_administrador extends javax.swing.JFrame {
         BtEditarAdministrador.setToolTipText("EDITAR ADMINISTRADOR");
         BtEditarAdministrador.setBorder(null);
         BtEditarAdministrador.setOpaque(false);
+        BtEditarAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtEditarAdministradorActionPerformed(evt);
+            }
+        });
         getContentPane().add(BtEditarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 50, 40));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
@@ -173,6 +178,22 @@ public class crud_administrador extends javax.swing.JFrame {
         text_buscar.setText("");
         text_buscar.setForeground(Color.BLACK);    }//GEN-LAST:event_text_buscarMousePressed
 
+    private void BtEditarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarAdministradorActionPerformed
+       modificar_administrador();
+    }//GEN-LAST:event_BtEditarAdministradorActionPerformed
+public void modificar_administrador() {
+
+        int seleccion = TablaAdministrador.getSelectedRow();
+        String cedula = TablaAdministrador.getValueAt(seleccion, 1).toString();
+        inser.ListaAdministrador().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                new Agregar_administrador(cedula).setVisible(true);
+                text_buscar.setText("");
+
+            }
+        });
+
+    }
     public void cargarTabla() {
         DefaultTableModel tb = (DefaultTableModel) TablaAdministrador.getModel();
         tb.setNumRows(0);
