@@ -51,23 +51,24 @@ public class doctor_crud extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(240, 232, 158));
+        jPanel1.setBackground(new java.awt.Color(158, 216, 180));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 59, 153));
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("LISTA DE DOCTORES");
-        jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 450, -1));
 
-        BtIngresarDoctor.setText("INGRESAR DOCTOR");
+        BtIngresarDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-usuario.png"))); // NOI18N
+        BtIngresarDoctor.setToolTipText("INGRESAR DOCTOR");
+        BtIngresarDoctor.setBorder(null);
+        BtIngresarDoctor.setOpaque(false);
         BtIngresarDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtIngresarDoctorActionPerformed(evt);
             }
         });
-        jPanel1.add(BtIngresarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        jPanel1.add(BtIngresarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 50, 40));
 
         text_buscar.setText("Buscar...");
         text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,35 +76,46 @@ public class doctor_crud extends javax.swing.JFrame {
                 text_buscarMousePressed(evt);
             }
         });
-        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 180, 30));
+        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 260, 40));
 
-        BtBuscarDoctor.setText("BUSCAR DOCTOR");
+        BtBuscarDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BtBuscarDoctor.setToolTipText("BUSCAR DOCTOR");
+        BtBuscarDoctor.setBorder(null);
+        BtBuscarDoctor.setOpaque(false);
         BtBuscarDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtBuscarDoctorActionPerformed(evt);
             }
         });
-        jPanel1.add(BtBuscarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, -1));
+        jPanel1.add(BtBuscarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 40, 40));
 
-        BtEditarDoctor.setText("EDITAR DOCTOR");
-        jPanel1.add(BtEditarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, -1, -1));
+        BtEditarDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        BtEditarDoctor.setToolTipText("EDITAR DOCTOR");
+        BtEditarDoctor.setBorder(null);
+        BtEditarDoctor.setOpaque(false);
+        jPanel1.add(BtEditarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 40, 40));
 
-        BtEliminarDoctor.setText("ELIMINAR DOCTOR");
+        BtEliminarDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
+        BtEliminarDoctor.setToolTipText("ELIMINAR DOCTOR");
+        BtEliminarDoctor.setBorder(null);
+        BtEliminarDoctor.setOpaque(false);
         BtEliminarDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtEliminarDoctorActionPerformed(evt);
             }
         });
-        jPanel1.add(BtEliminarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, -1, -1));
+        jPanel1.add(BtEliminarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 50, 40));
 
         BtRegresarDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        BtRegresarDoctor.setText("Regresar");
+        BtRegresarDoctor.setToolTipText("Regresar");
+        BtRegresarDoctor.setBorder(null);
+        BtRegresarDoctor.setOpaque(false);
         BtRegresarDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtRegresarDoctorActionPerformed(evt);
             }
         });
-        jPanel1.add(BtRegresarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, -1, -1));
+        jPanel1.add(BtRegresarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 100, 40, 40));
 
         TablaDoctor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,7 +129,7 @@ public class doctor_crud extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 1100, 210));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
         jButton1.setToolTipText("Ver todos");
         jButton1.setBorderPainted(false);
         jButton1.setOpaque(false);
@@ -126,7 +138,7 @@ public class doctor_crud extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 90, 40, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 50, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
