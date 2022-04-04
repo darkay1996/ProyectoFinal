@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 public class Agregar_recepcionista extends javax.swing.JFrame {
 
+    Insert_recepcionista recep = new Insert_recepcionista();
     validaciones misvalidaciones = new validaciones();
     String hora_ingresoAux;
     String hora_salidaAux;
@@ -593,9 +594,14 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_text_PrimerApellido_recepcionistaActionPerformed
 
+    public void cargarcod() {
+        text_codigo_recepcionista.setEnabled(false);
+        text_codigo_recepcionista.setText(String.valueOf(recep.cargarcodigo()));
+    }
+
     public void RegistrarRecepcionista() throws SQLException {
         Insert_usuario usu = new Insert_usuario();
-        Insert_recepcionista recep = new Insert_recepcionista();
+
         Insert_Persona per = new Insert_Persona();
         try {
             if (validaciones()) {
@@ -663,6 +669,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                         if (recep.InsertarRecepcionista()) {
                             System.out.println("Conexion Exitosa");
                             limpiar();
+                            cargarcod();
                         } else {
                             System.out.println("Conexion Erronea");
                         }
@@ -779,7 +786,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
             }
         }
 
-        if ((Integer)Spinner_HoraEntrada_recepcionista.getValue() == 0) {
+        if ((Integer) Spinner_HoraEntrada_recepcionista.getValue() == 0) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Hora de entrada invalida");
         }
@@ -787,7 +794,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Hora de salida invalida");
         }
-
 
         if (combo_sangre_recepcionista.getSelectedIndex() == 0) {
             validado = false;
