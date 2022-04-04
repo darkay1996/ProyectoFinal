@@ -75,4 +75,18 @@ public class Insert_enfermera extends enfermera {
         System.out.println("repetido=" + codigo);
         return validar;
     }
+
+    public int cargarcodigo() {
+        int codigo = 0;
+        String sqls = "select max(enfer_codigo) from enfermera;";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("max") + 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
 }
